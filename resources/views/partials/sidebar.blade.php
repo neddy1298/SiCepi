@@ -32,8 +32,8 @@
 
 
         <li class="menu-header">Admin Panel</li>
-        <li class="{{ request()->is('dashboard/user/*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('dashboard.writing.create') }}"><i class="fas fa-users"></i>
+        <li class="{{ request()->is('dashboard/user_*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('dashboard.user.index') }}"><i class="fas fa-users"></i>
                 <span>List User</span></a></li>
 
         <li class="{{ request()->is('dashboard/admin/*') ? 'active' : '' }} nav-item dropdown">
@@ -45,8 +45,8 @@
                 <li class="{{ request()->is('dashboard/admin/list_template') ? 'active' : '' }}"><a class="nav-link"
                         href="{{ route('dashboard.admin.template') }}">List Template</a></li>
 
-                <li class="{{ request()->is('dashboard/admin/list_user') ? 'active' : '' }}"><a class="nav-link"
-                        href="{{ route('dashboard.admin.user') }}">List
+                <li class="{{ request()->is('dashboard/admin/list_user_writing') ? 'active' : '' }}"><a class="nav-link"
+                        href="{{ route('dashboard.admin.user_writing') }}">List
                         Tulisan User</a></li>
                 <li class="{{ request()->is('dashboard/admin/list_tag') ? 'active' : '' }}"><a class="nav-link"
                         href="{{ route('dashboard.admin.tag') }}">Tag Management</a></li>

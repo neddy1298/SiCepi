@@ -7,14 +7,11 @@ use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        return view('app.tag.view');
+        $tags = Tag::latest()->get();
+        return view('app.tag.view', compact('tags'));
     }
 
     /**

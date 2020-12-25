@@ -55,4 +55,8 @@ class WritingController extends Controller
         dd($request->all());
         Writing::update($request->all());
     }
+    public function user_writing()
+    {
+        # code...
+    }
 }

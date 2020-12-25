@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\WritingController;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ Route::namespace('Auth')->group(function () {
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::get('/',[DashboardController::class, 'index'])->name('index');
 
+    // Writing
     Route::group(['prefix' => 'writing', 'as' => 'writing.'], function () {
         Route::get('/',[WritingController::class, 'index'])->name('index');
         Route::get('/new',[WritingController::class, 'create'])->name('create');
@@ -37,12 +39,23 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
         Route::post('/new_fill',[WritingController::class, 'store'])->name('store');
     });
 
+    // User
+    Route::group(['as' => 'user.'], function () {
+
+        Route::get('/user_list',[UserController::class, 'index'])->name('index');
+        Route::get('/user_create',[UserController::class, 'create'])->name('create');
+        Route::post('/user_create',[UserController::class, 'store'])->name('store');
+        Route::get('/user_edit/{user_id}',[UserController::class, 'edit'])->name('edit');
+        Route::post('/user_edit/{user_id}',[UserController::class, 'update'])->name('update');
+
+    });
+
+    // Writing Management
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/list_template',[TemplateController::class, 'index'])->name('template');
         Route::get('/new_template',[TemplateController::class, 'create'])->name('new_template');
         // Route::post('/new',[TemplateController::class, 'store'])->name('store');
-
-        Route::get('/list_user',[WritingController::class, 'index_user'])->name('user');
+        Route::get('/list_user_writing',[WritingController::class, 'user_writing'])->name('user_writing');
         Route::get('/list_tag',[TagController::class, 'index'])->name('tag');
 
     });

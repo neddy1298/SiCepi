@@ -1,39 +1,56 @@
 @extends('layouts.app')
 
+@section('title', 'Template')
+
+@push('stylesheet')
+
+<!-- CSS Libraries -->
+<link rel="stylesheet" href="{{ asset('plugin') }}/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="{{ asset('plugin') }}/datatables.net-select-bs4/css/select.bootstrap4.min.css">
+
+@endpush
+
 @section('content')
-  <section class="section">
+
+<section class="section">
     <div class="section-header">
-      <h1>Package Management</h1>
-    </div>
-    <div class="section-body">
-      <h2 class="section-title">List of Packages Question</h2>
-      <p class="section-lead">This page is for managing packages including questions and answers.</p>
-      <div class="card">
-        <div class="card-body p-0">
-          <div class="table-responsive">
-            <table class="table table-striped table-md">
-              <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Level</th>
-                <th></th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td>1</td>
-                <td>Lorem</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipisicing.</td>
-                <td>3</td>
-                <td></td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
+        <h1>@yield('header', 'title')</h1>
+        <div class="section-header-breadcrumb">
+            {{ request()->path() }}
         </div>
-      </div>
     </div>
-  </section>
+
+    <div class="section-body">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        @yield('card-header')
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            @yield('table')
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 @endsection
+
+@push('javascript')
+
+<!-- JS Libraies -->
+<script src="{{ asset('plugin') }}/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="{{ asset('plugin') }}/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{ asset('plugin') }}/datatables.net-select-bs4/js/select.bootstrap4.min.js"></script>
+
+<!-- Page Specific JS File -->
+<script src="{{ asset('js') }}/page/modules-datatables.js"></script>
+
+@stack('js')
+@endpush
