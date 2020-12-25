@@ -51,7 +51,7 @@
                             <div class="row">
 
                                 <div class="form-group offset-6 col-3">
-                                    <a href="{{ redirect()->back() }}"
+                                    <a href="{{ route('dashboard.user.index') }}"
                                         class="btn btn-secondary btn-lg btn-block">Kembali</a>
                                 </div>
                                 <div class="form-group col-3">

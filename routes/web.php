@@ -47,6 +47,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
         Route::post('/user_create',[UserController::class, 'store'])->name('store');
         Route::get('/user_edit/{user_id}',[UserController::class, 'edit'])->name('edit');
         Route::post('/user_edit/{user_id}',[UserController::class, 'update'])->name('update');
+        Route::get('/user_delete/{user_id}',[UserController::class, 'destroy'])->name('destroy');
 
     });
 

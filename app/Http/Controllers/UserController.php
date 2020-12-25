@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $users = User::latest()->get();
@@ -60,5 +65,13 @@ class UserController extends Controller
             'role' => $request->role,
         ]);
         return redirect()->route('dashboard.user.index');
+    }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect()->back();
     }
 }

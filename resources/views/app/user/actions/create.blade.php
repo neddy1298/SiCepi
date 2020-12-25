@@ -66,7 +66,7 @@
                                 <button type="submit" class="btn btn-primary btn-lg btn-block">
                                     Submit
                                 </button>
-                                <a href="{{ redirect()->back() }}"
+                                <a href="{{ route('dashboard.user.index') }}"
                                     class="btn btn-secondary btn-lg btn-block">Kembali</a>
                             </div>
                         </form>
