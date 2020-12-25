@@ -43,11 +43,11 @@
                                             <div>
                                                 <a href="{{ route('dashboard.user.edit', $user->id) }}"
                                                     class="btn btn-warning"><i class="fas fa-pencil-alt"></i>
-                                                    Edit</a>
+                                                </a>
                                                 <button class="btn btn-danger"
                                                     data-confirm="Hapus User?|Kamu yakin ingin menghapus {{ $user->name }}"
                                                     data-confirm-yes="window.location.href='{{ route('dashboard.user.destroy', $user->id) }}'">
-                                                    <i class="fas fa-trash"></i> Delete</button>
+                                                    <i class="fas fa-trash"></i></button>
 
                                             </div>
                                         </td>

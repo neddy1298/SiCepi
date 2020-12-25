@@ -18,69 +18,59 @@ class TagController extends Controller
         return view('app.tag.view', compact('tags'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('app.tag.actions.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tag_name' => 'required',
+            'tag_body' => 'required',
+            'default_replace' => 'required',
+        ]);
+
+        $tag_body = "{{ ". $request->tag_body ." }}";
+
+        $tag = Tag::create([
+            'tag_name' => $request->tag_name,
+            'tag_body' => $tag_body,
+            'default_replace' => $request->tag_body,
+            'promp_text' => $request->promp_text
+        ]);
+
+
+        return redirect()->route('dashboard.admin.tag');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Tag $tag)
+    public function edit($id)
     {
-        //
+        $tag = Tag::find($id);
+        return view('app.tag.actions.edit', compact('tag'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Tag $tag)
+    public function update(Request $request, $id)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'tag_name' => 'required',
+            'tag_body' => 'required',
+            'default_replace' => 'required',
+        ]);
+
+        $tag = Tag::find($id);
+        $tag->update($request->all());
+
+        return redirect()->route('dashboard.admin.tag_edit', $tag->id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Tag $tag)
+    public function destroy($id)
     {
-        //
-    }
+        $tag = Tag::find($id);
+        $tag->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Tag $tag)
-    {
-        //
+        return redirect()->route('dashboard.admin.tag');
+
     }
 }

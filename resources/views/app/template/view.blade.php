@@ -1,9 +1,6 @@
-@extends('layouts.app')
-
-@section('title', 'Template')
+@extends('app.table')
 
 @section('content')
-
 <section class="section">
     <div class="section-header">
         <h1>Template</h1>
@@ -17,39 +14,38 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Basic DataTables</h4>
+                        <h4>List Template</h4>
                         <div class="card-header-form">
-                            <form action="#" method="GET">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search" name="search">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-info"><i class="fas fa-search"></i></button>
-                                    </div>
-                                </div>
-                            </form>
+                            <a href="{{ route('dashboard.admin.tag_create') }}" class="btn btn-primary">Buat Tag
+                                Baru</a>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped" id="table-1">
+                            <table class="table table-striped" id="template-table">
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
-                                        <th class="text-center">Catalog -> Template</th>
-                                        <th>Text</th>
+                                        <th>Template Catalog</th>
+                                        <th>Template Name</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($templates as $template)
                                     <tr>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center"><a href="#">{{ $template->catalog }} ->
-                                                {{ $template->template }}</a></td>
-                                        <td>{{ substr($template->text, 0,100) }}...</td>
-                                        <td>
+                                        <td class="text-center" width="5%">1</td>
+                                        <td>{{ $template->catalog }}</td>
+                                        <td>{{ $template->template }}</td>
+                                        <td width="20%">
                                             <div>
-                                                <a href="" class="btn btn-info">Action</a>
+                                                <a href="{{ route('dashboard.admin.tag_edit', $template->id) }}"
+                                                    class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
+                                                <button class="btn btn-danger"
+                                                    data-confirm="Hapus User?|Kamu yakin ingin menghapus {{ $template->name }}"
+                                                    data-confirm-yes="window.location.href='{{ route('dashboard.admin.tag_delete', $template->id) }}'">
+                                                    <i class="fas fa-trash"></i></button>
+
                                             </div>
                                         </td>
                                     </tr>
@@ -64,4 +60,13 @@
     </div>
 </section>
 
+
 @endsection
+
+@push('js')
+<script>
+    $(document).ready( function () {
+    $('#template-table').DataTable();
+} );
+</script>
+@endpush

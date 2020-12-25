@@ -57,7 +57,13 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
         Route::get('/new_template',[TemplateController::class, 'create'])->name('new_template');
         // Route::post('/new',[TemplateController::class, 'store'])->name('store');
         Route::get('/list_user_writing',[WritingController::class, 'user_writing'])->name('user_writing');
-        Route::get('/list_tag',[TagController::class, 'index'])->name('tag');
+
+        Route::get('/tag_list',[TagController::class, 'index'])->name('tag');
+        Route::get('/tag_new',[TagController::class, 'create'])->name('tag_create');
+        Route::post('/tag_new',[TagController::class, 'store'])->name('tag_store');
+        Route::get('/tag_edit/{tag_id}',[TagController::class, 'edit'])->name('tag_edit');
+        Route::post('/tag_edit/{tag_id}',[TagController::class, 'update'])->name('tag_update');
+        Route::get('/tag_delete/{tag_id}',[TagController::class, 'destroy'])->name('tag_delete');
 
     });
 

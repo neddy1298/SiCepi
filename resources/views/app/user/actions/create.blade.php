@@ -62,12 +62,17 @@
                                 </div>
                             </div>
 
-                            <div class="form-group offset-6">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                    Submit
-                                </button>
-                                <a href="{{ route('dashboard.user.index') }}"
-                                    class="btn btn-secondary btn-lg btn-block">Kembali</a>
+                            <div class="row">
+
+                                <div class="form-group offset-6 col-3">
+                                    <a href="{{ route('dashboard.user.index') }}"
+                                        class="btn btn-secondary btn-lg btn-block">Kembali</a>
+                                </div>
+                                <div class="form-group col-3">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                        Simpan
+                                    </button>
+                                </div>
                             </div>
                         </form>
                     </div>
