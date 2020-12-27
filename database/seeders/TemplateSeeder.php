@@ -16,13 +16,15 @@ class TemplateSeeder extends Seeder
     {
         $quote = [
             'catalog_id' => 1,
-            'template' => 'default',
-            'text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti possimus dignissimos doloremque quos accusantium iusto similique maiores ipsa ut laborum assumenda quibusdam, praesentium quam accusamus quae odit, deserunt error rem.'
+            'template_name' => 'default',
+            'template_intro' => 'test',
+            'status' => 'Published'
         ];
         $sales = [
             'catalog_id' => 2,
-            'template' => 'Sales Letter 1',
-            'text' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic asperiores, vel alias veniam dolorum, fugit enim similique molestiae voluptates doloremque cupiditate voluptate aut aspernatur? Atque minus quam eligendi laboriosam quos.'
+            'template_name' => 'Sales Letter 1',
+            'template_intro' => 'test',
+            'status' => 'Not Published'
         ];
 
         Template::create($quote);

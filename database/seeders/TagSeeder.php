@@ -15,42 +15,44 @@ class TagSeeder extends Seeder
     public function run()
     {
         $tags = [[
-            'tag_name' => 'product_name',
-            'tag_body' => '{{ProductName}}',
-            'default_raplace' => '',
+            'tag_name' => 'Product Name',
+            'tag_body' => '{{product_name}}',
+            'default_replace' => '',
             'promp_text' => 'your product name'
         ],[
-            'tag_name' => 'product_feature',
-            'tag_body' => '{{ProductFeature}}',
-            'default_raplace' => '',
+            'tag_name' => 'Product Feature',
+            'tag_body' => '{{product_feature}}',
+            'default_replace' => '',
             'promp_text' => 'your product feature'
         ],[
-            'tag_name' => 'business_field',
-            'tag_body' => '{{ProductFeature}}',
-            'default_raplace' => '',
+            'tag_name' => 'Business Field',
+            'tag_body' => '{{business_field}}',
+            'default_replace' => '',
             'promp_text' => 'your product feature'
         ],[
-            'tag_name' => 'user_email',
-            'tag_body' => '{{ProductFeature}}',
-            'default_raplace' => '',
+            'tag_name' => 'Email Address',
+            'tag_body' => '{{email_address}}',
+            'default_replace' => '',
             'promp_text' => 'your product feature'
         ],[
-            'tag_name' => 'user_name',
-            'tag_body' => '{{ProductFeature}}',
-            'default_raplace' => '',
+            'tag_name' => 'Name',
+            'tag_body' => '{{name}}',
+            'default_replace' => '',
             'promp_text' => 'your product feature'
         ],[
-            'tag_name' => 'company_name',
-            'tag_body' => '{{ProductFeature}}',
-            'default_raplace' => '',
+            'tag_name' => 'Company Name',
+            'tag_body' => '{{company_name}}',
+            'default_replace' => '',
             'promp_text' => 'your product feature'
         ],[
-            'tag_name' => 'company_industry',
-            'tag_body' => '{{ProductFeature}}',
-            'default_raplace' => '',
+            'tag_name' => 'Company Industry',
+            'tag_body' => '{{company_industry}}',
+            'default_replace' => '',
             'promp_text' => 'your product feature'
         ]];
 
-        Tag::create($tags);
+        foreach ($tags as $tag) {
+            Tag::create($tag);
+        }
     }
 }

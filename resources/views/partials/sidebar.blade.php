@@ -24,7 +24,7 @@
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-user-cog"></i> <span>User Settings</span></a>
             <ul class="dropdown-menu">
                 <li class="{{ request()->is('dashboard/admin/new_template') ? 'active' : '' }}"><a class="nav-link"
-                        href="{{ route('dashboard.admin.new_template') }}">My Profile</a></li>
+                        href="{{ route('dashboard.admin.template_create') }}">My Profile</a></li>
                 <li class="{{ request()->is('dashboard/admin/list_template') ? 'active' : '' }}"><a class="nav-link"
                         href="{{ route('dashboard.admin.template') }}">Ubah Password</a></li>
             </ul>
@@ -39,8 +39,8 @@
         <li class="{{ request()->is('dashboard/admin/*') ? 'active' : '' }} nav-item dropdown">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-book"></i> <span>Management Tulisan</span></a>
             <ul class="dropdown-menu">
-                <li class="{{ request()->is('dashboard/admin/new_template') ? 'active' : '' }}"><a class="nav-link"
-                        href="{{ route('dashboard.admin.new_template') }}">Buat
+                <li class="{{ request()->is('dashboard/admin/new_template') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('dashboard.admin.template_create') }}">Buat
                         Template</a></li>
                 <li class="{{ request()->is('dashboard/admin/list_template') ? 'active' : '' }}"><a class="nav-link"
                         href="{{ route('dashboard.admin.template') }}">List Template</a></li>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWritingsTable extends Migration
+class CreateBlocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,18 @@ class CreateWritingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('writings', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+        Schema::create('blocks', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('template_id');
-            $table->unsignedBigInteger('user_id');
-            $table->text('writing')->nullable();
-            $table->timestamps();
+            $table->string('tags');
+
+            $table->string('block_name');
+            $table->string('block_body');
 
             $table->foreign('template_id')->references('id')->on('templates')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+
+            $table->timestamps();
         });
     }
 
@@ -33,6 +35,6 @@ class CreateWritingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('writings');
+        Schema::dropIfExists('blocks');
     }
 }

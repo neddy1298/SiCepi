@@ -16,9 +16,10 @@ class CreateTemplatesTable extends Migration
         Schema::create('templates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('catalog_id');
-            $table->string('template');
-            $table->string('tags');
-            $table->text('text');
+            $table->string('template_name');
+            $table->string('template_intro');
+            $table->enum('status', ['Published', 'Not Published'])->default('Not Published');
+
             $table->timestamps();
 
             $table->foreign('catalog_id')->references('id')->on('catalogs')->onDelete('cascade');

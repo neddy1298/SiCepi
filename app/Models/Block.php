@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Template extends Model
+class Block extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'catalog_id', 'template_name', 'template_intro', 'status'
+        'template_id', 'tags', 'block_name', 'block_body',
     ];
 }

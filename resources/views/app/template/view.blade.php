@@ -16,7 +16,8 @@
                     <div class="card-header">
                         <h4>List Template</h4>
                         <div class="card-header-form">
-                            <a href="{{ route('dashboard.admin.tag_create') }}" class="btn btn-primary">Buat Tag
+                            <a href="{{ route('dashboard.admin.template_create') }}" class="btn btn-primary">Buat
+                                Template
                                 Baru</a>
                         </div>
                     </div>
@@ -36,14 +37,14 @@
                                     <tr>
                                         <td class="text-center" width="5%">1</td>
                                         <td>{{ $template->catalog }}</td>
-                                        <td>{{ $template->template }}</td>
+                                        <td>{{ $template->template_name }}</td>
                                         <td width="20%">
                                             <div>
-                                                <a href="{{ route('dashboard.admin.tag_edit', $template->id) }}"
+                                                <a href="{{ route('dashboard.admin.template_edit', $template->id) }}"
                                                     class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
                                                 <button class="btn btn-danger"
-                                                    data-confirm="Hapus User?|Kamu yakin ingin menghapus {{ $template->name }}"
-                                                    data-confirm-yes="window.location.href='{{ route('dashboard.admin.tag_delete', $template->id) }}'">
+                                                    data-confirm="Hapus User?|Kamu yakin ingin menghapus {{ $template->template_name }}"
+                                                    data-confirm-yes="window.location.href='{{ route('dashboard.admin.template_destroy', $template->id) }}'">
                                                     <i class="fas fa-trash"></i></button>
 
                                             </div>
