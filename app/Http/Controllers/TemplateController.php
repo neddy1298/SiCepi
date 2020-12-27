@@ -34,13 +34,27 @@ class TemplateController extends Controller
 
     public function store(Request $request)
     {
+        $text = explode(" ",$request->block_body);
+        $tags_id = [];
+        foreach ($text as $item) {
+
+            $tags = Tag::get();
+            foreach ($tags as $tag) {
+                if($item == $tag->tag_body){
+
+                    array_push($tags_id, $item);
+
+                }
+            }
+        }
+
+        $tags = implode(' ', array_values($tags_id));
 
         if($request->status == null){
             $request->status = 'Not Published';
         }else{
             $request->status = 'Published';
         }
-
         $template = Template::create([
             'catalog_id' => $request->catalog_id,
             'template_name' => $request->template_name,
@@ -50,18 +64,14 @@ class TemplateController extends Controller
             ]);
 
 
-        if ($request->catalog_id != 1) {
+        $block = Block::create([
+            'tags' => $tags,
+            'block_name' => $request->block_name,
+            'template_id' => $template->id,
+            'block_body' => $request->block_body,
+        ]);
 
-            Block::create([
-                'template_id' => $template->id,
-                'tag_id' => $request->tag_id,
-                'block_name' => $request->block_name,
-                'block_body' => $request->block_body,
-
-                ]);
-            }
-
-        return redirect()->route('dashboard.admin.template_edit', $template->id);
+        return redirect()->route('dashboard.admin.template');
     }
 
     public function edit($id)

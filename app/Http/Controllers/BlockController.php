@@ -9,6 +9,10 @@ use App\Models\Block;
 
 class BlockController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function create($id)
     {
         $tags = Tag::get();

@@ -65,7 +65,7 @@
                                         rows="10"></textarea>
                                     <small><span class="text-danger">**</span> Pastikan text dan tag diberi
                                         jarak</small><br>
-                                    <small><span class="text-danger">***</span> Contoh nama saya @{{name}} dangan email
+                                    <small><span class="text-danger">***</span> Contoh nama saya @{{name}} dengan email
                                         @{{email_address}} ...</small>
                                     <div class="invalid-feedback">
                                     </div>
