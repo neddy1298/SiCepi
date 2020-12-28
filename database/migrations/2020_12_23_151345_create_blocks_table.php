@@ -19,7 +19,7 @@ class CreateBlocksTable extends Migration
             $table->string('tags');
 
             $table->string('block_name');
-            $table->string('block_body');
+            $table->longText('block_body');
 
             $table->foreign('template_id')->references('id')->on('templates')->onDelete('cascade');
 

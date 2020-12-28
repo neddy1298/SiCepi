@@ -40,8 +40,8 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::group(['prefix' => 'writing', 'as' => 'writing.'], function () {
         Route::get('/',[WritingController::class, 'index'])->name('index');
         Route::get('/new',[WritingController::class, 'create'])->name('create');
-        Route::get('/new_fill',[WritingController::class, 'fill'])->name('fill');
-        Route::post('/new_fill',[WritingController::class, 'store'])->name('store');
+        Route::post('/fill',[WritingController::class, 'store'])->name('store');
+        Route::get('/fill/{id}',[WritingController::class, 'fill'])->name('fill');
     });
 
     // User

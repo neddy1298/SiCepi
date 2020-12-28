@@ -36,6 +36,7 @@
                                     <label for="tag_body"><span class="text-danger">*</span> Tag Body</label>
                                     <input id="tag_body" type="text" class="form-control" name="tag_body" required
                                         value="{{ $tag->tag_body }}" readonly>
+                                    <small><span class="text-danger">**</span> Tag tidak dapat di edit</small>
                                     <div class="invalid-feedback">
                                     </div>
                                 </div>

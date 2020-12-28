@@ -31,7 +31,7 @@ class TagController extends Controller
             'default_replace' => 'required',
         ]);
 
-        $tag_body = "{{ ". $request->tag_body ." }}";
+        $tag_body = "{{". $request->tag_body ."}}";
 
         $tag = Tag::create([
             'tag_name' => $request->tag_name,
@@ -53,11 +53,6 @@ class TagController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->all());
-        $request->validate([
-            'tag_name' => 'required',
-            'tag_body' => 'required',
-            'default_replace' => 'required',
-        ]);
 
         $tag = Tag::find($id);
         $tag->update($request->all());

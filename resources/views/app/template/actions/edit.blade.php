@@ -93,7 +93,7 @@
                                         </h4>
                                     </div>
                                     <div class="card-body">
-                                        <p>{{ $block->block_body }}</p>
+                                        <p>{!! $block->block_body !!}</p>
                                     </div>
 
                                 </div>

@@ -46,24 +46,29 @@
                                     </div>
                                 </div>
                                 @else
-                                <div class="col">
+                                @for ($i = 0; $i < $blocks; $i++) <div class="col-12">
                                     <div class="form-group">
-                                        <label>Sales</label>
+                                        <label>Tema katalog</label>
+                                        <input type="text" class="form-control"
+                                            value="{{ $template->catalog }} -> {{ $template->template }}" disabled>
+                                        <input type="hidden" name="catalog_id">
+                                        <input type="hidden" name="template_id">
                                     </div>
-                                </div>
-                                @endif
                             </div>
-                        </div>
-                        <div class="card-footer text-right">
-                            <button class="btn btn-primary">Berikutnya</button>
-                        </div>
-                    </form>
 
-
+                            @endfor @endif
+                        </div>
                 </div>
-            </div>
+                <div class="card-footer text-right">
+                    <button class="btn btn-primary">Berikutnya</button>
+                </div>
+                </form>
 
+
+            </div>
         </div>
+
+    </div>
 
     </div>
 </section>

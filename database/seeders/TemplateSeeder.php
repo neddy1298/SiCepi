@@ -17,13 +17,13 @@ class TemplateSeeder extends Seeder
         $quote = [
             'catalog_id' => 1,
             'template_name' => 'default',
-            'template_intro' => 'test',
+            'template_intro' => 'default',
             'status' => 'Published'
         ];
         $sales = [
             'catalog_id' => 2,
-            'template_name' => 'Sales Letter 1',
-            'template_intro' => 'test',
+            'template_name' => 'Sales Letter Sample Group 1',
+            'template_intro' => 'Here are some sales letters that demonstrate how this automatic writing system work.',
             'status' => 'Not Published'
         ];
 
