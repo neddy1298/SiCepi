@@ -11,6 +11,6 @@ class Tag extends Model
 
     protected $fillable = [
 
-        'tag_name', 'tag_body', 'default_replace', 'promp_text',
+        'tag_name', 'tag_body', 'tag_field', 'default_replace', 'promp_text',
     ];
 }

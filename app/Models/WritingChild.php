@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Writing extends Model
+class WritingChild extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name', 'catalog_id', 'template_id', 'user_id', 'field'
+        'writing_id', 'writing_name', 'writing_text',
     ];
 }

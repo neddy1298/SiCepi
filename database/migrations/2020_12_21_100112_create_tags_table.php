@@ -17,6 +17,7 @@ class CreateTagsTable extends Migration
             $table->bigIncrements('id');
             $table->string('tag_name');
             $table->string('tag_body');
+            $table->string('tag_field');
             $table->string('default_replace')->nullable();
             $table->string('promp_text')->nullable();
             $table->timestamps();

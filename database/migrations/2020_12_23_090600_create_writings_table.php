@@ -19,12 +19,15 @@ class CreateWritingsTable extends Migration
             $table->unsignedBigInteger('template_id');
             $table->unsignedBigInteger('catalog_id');
             $table->unsignedBigInteger('user_id');
-            $table->longText('writing')->nullable();
+            // $table->unsignedBigInteger('writing_child_id');
+            // $table->longText('writing')->nullable();
+            $table->longText('field')->nullable();
             $table->timestamps();
 
             $table->foreign('template_id')->references('id')->on('templates')->onDelete('cascade');
             $table->foreign('catalog_id')->references('id')->on('templates')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            // $table->foreign('writing_child_id')->references('id')->on('writing_children')->onDelete('cascade');
         });
     }
 

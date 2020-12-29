@@ -41,7 +41,10 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
         Route::get('/',[WritingController::class, 'index'])->name('index');
         Route::get('/new',[WritingController::class, 'create'])->name('create');
         Route::post('/fill',[WritingController::class, 'store'])->name('store');
-        Route::get('/fill/{id}',[WritingController::class, 'fill'])->name('fill');
+        Route::get('/fill/{id}',[WritingController::class, 'build'])->name('build');
+        Route::post('/fill/{id}',[WritingController::class, 'build_store'])->name('build_store');
+
+        Route::get('/edit/{writing_id}',[WritingController::class, 'edit'])->name('edit');
     });
 
     // User
@@ -119,9 +122,9 @@ Route::get('/test', function () {
     dd($result);
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
+// Route::get('/login', function () {
+//     return view('auth.login');
+// });
 
 Route::get('/skeleton', function () {
     return view('layouts.skeleton');

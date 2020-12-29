@@ -36,6 +36,7 @@ class TagController extends Controller
         $tag = Tag::create([
             'tag_name' => $request->tag_name,
             'tag_body' => $tag_body,
+            'tag_field' => $request->tag_body,
             'default_replace' => $request->tag_body,
             'promp_text' => $request->promp_text
         ]);
