@@ -7,6 +7,10 @@
     <title>@yield('title', 'Home') &mdash; {{ config('app.name') }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('plugin') }}/summernote/dist/summernote-bs4.css">
+
+
     @stack('stylesheet')
     @yield('css')
 </head>
@@ -19,6 +23,9 @@
     <script src="{{ mix('js/vendor.js') }}"></script>
     <script src="{{ mix('js/app.js') }}"></script>
     @stack('javascript')
+    @yield('js')
+    <script src="{{ asset('plugin') }}/summernote/dist/summernote-bs4.js"></script>
+
 </body>
 
 </html>

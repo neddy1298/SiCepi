@@ -2,6 +2,8 @@
 
 @section('title', 'Template')
 
+
+
 @section('content')
 
 <section class="section">
@@ -101,13 +103,17 @@
                                 </div>
 
                                 <div class="form-group col-12">
-                                    <label for="tag_body"><span class="text-danger">*</span> Block Body</label>
-
-                                    <textarea class="form-control" name="block_body" id="text_tag_input" cols="30"
-                                        rows="10"></textarea>
+                                    <div class="form-group row mb-4">
+                                        <label for="tag_body"><span class="text-danger">*</span> Block Body</label>
+                                        <div class="col-sm-12 col-md-12">
+                                            <textarea class="summernote-simple" name="block_body"
+                                                id="text_tag_input"></textarea>
+                                        </div>
+                                    </div>
                                     <small><span class="text-danger">**</span> Pastikan text dan tag diberi
                                         jarak</small><br>
-                                    <small><span class="text-danger">***</span> Contoh nama saya @{{name}} dengan email
+                                    <small><span class="text-danger">***</span> Contoh : nama saya @{{name}} dengan
+                                        email
                                         @{{email_address}} ...</small>
                                     <div class="invalid-feedback">
                                     </div>

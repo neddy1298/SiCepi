@@ -62,8 +62,8 @@
                                 <div class="form-group col-12">
                                     <label for="tag_body"><span class="text-danger">*</span> Block Body</label>
 
-                                    <textarea class="form-control" name="block_body" id="text_tag_input" cols="30"
-                                        rows="10">{{ $block->block_body }}</textarea>
+                                    <textarea class="form-control summernote-simple" name="block_body"
+                                        id="text_tag_input summernote">{{ $block->block_body }}</textarea>
                                     <small><span class="text-danger">**</span> Pastikan text dan tag diberi
                                         jarak</small><br>
                                     <small><span class="text-danger">***</span> Contoh nama saya @{{name}} dengan email
@@ -94,7 +94,11 @@
     {
     var value = document.getElementById("tags_select").value;
     var input = $('#text_tag_input');
-    input.val(input.val() + value + ' ');
+    // $('#summernote').summernote('reset');
+    // $('#summernote').summernote('insertText', 'Hello, world');
+    var get_code = $('#summernote').summernote('code');
+    console.log(get_code);
+    // edit.val(input.val() + value + ' ');
     }
 </script>
 

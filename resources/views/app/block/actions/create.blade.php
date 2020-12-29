@@ -61,8 +61,8 @@
                                 <div class="form-group col-12">
                                     <label for="tag_body"><span class="text-danger">*</span> Block Body</label>
 
-                                    <textarea class="form-control" name="block_body" id="text_tag_input" cols="30"
-                                        rows="10"></textarea>
+                                    <textarea class="form-control summernote-simple" name="block_body"
+                                        id="text_tag_input"></textarea>
                                     <small><span class="text-danger">**</span> Pastikan text dan tag diberi
                                         jarak</small><br>
                                     <small><span class="text-danger">***</span> Contoh nama saya @{{name}} dengan email
