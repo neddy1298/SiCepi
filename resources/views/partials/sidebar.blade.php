@@ -45,7 +45,7 @@
                 <li class="{{ request()->is('dashboard/admin/list_template') ? 'active' : '' }}"><a class="nav-link"
                         href="{{ route('dashboard.admin.template') }}">List Template</a></li>
 
-                <li class="{{ request()->is('dashboard/admin/list_user_writing') ? 'active' : '' }}"><a class="nav-link"
+                <li class="{{ request()->is('dashboard/admin/list_user_*') ? 'active' : '' }}"><a class="nav-link"
                         href="{{ route('dashboard.admin.user_writing') }}">List
                         Tulisan User</a></li>
                 <li class="{{ request()->is('dashboard/admin/tag_*') ? 'active' : '' }}"><a class="nav-link"

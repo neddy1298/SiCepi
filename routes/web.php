@@ -105,6 +105,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
 
         // User Writing
         Route::get('/list_user_writing',[WritingController::class, 'user_writing'])->name('user_writing');
+        Route::get('/list_user_writing/{id}',[WritingController::class, 'user_writing_detail'])->name('user_writing_detail');
 
         // Tag Management
         Route::get('/tag_list',[TagController::class, 'index'])->name('tag');

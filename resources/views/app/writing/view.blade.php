@@ -1,80 +1,51 @@
 @extends('layouts.app')
 
-@section('title', 'Tulisan Kamu')
+@section('title', 'Template')
 
 @section('content')
+
 <section class="section">
     <div class="section-header">
-        <h1>Tulisan Baru</h1>
+        <h1>Tulisan Saya</h1>
     </div>
 
     <div class="section-body">
 
+        <h2 class="section-title">Tulisan Saya</h2>
         <div class="row">
-            <div class="col-12 col-md-12 col-lg-12">
-                <div class="card">
+            @foreach ($writings as $writing)
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card card-primary">
                     <div class="card-header">
-                        <h4>Tulisan Baru</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label>Beri nama tulisanmu</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label>Pilih katalog tulisanmu</label>
-                                    <select class="form-control select2">
-                                        <option>Option 1</option>
-                                        <option>Option 2</option>
-                                        <option>Option 3</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Pilih tema tulisanmu</label>
-                                    <select class="form-control select2">
-                                        <option>Option 1</option>
-                                        <option>Option 2</option>
-                                        <option>Option 3</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="offset-1 col-7">
-                                <div id="accordion">
-                                    <div class="accordion">
-                                        <div class="accordion-header" role="button" data-toggle="collapse"
-                                            data-target="#panel-body-1" aria-expanded="true">
-                                            <h4>Tema 1</h4>
-                                        </div>
-                                        <div class="accordion-body collapse show" id="panel-body-1"
-                                            data-parent="#accordion">
-                                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing
-                                                elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                                minim veniam,
-                                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                commodo
-                                                consequat. Duis aute irure dolor in reprehenderit in voluptate
-                                                velit esse
-                                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                                                cupidatat non
-                                                proident, sunt in culpa qui officia deserunt mollit anim id est
-                                                laborum.</p>
-                                        </div>
-                                    </div>
+                        <h4>{{ $writing->catalog }} -> {{ $writing->template_name }}</h4>
+                        <div class="card-header-action">
+                            <div class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle">Options</a>
+                                <div class="dropdown-menu">
+                                    <a href="{{ route('dashboard.writing.edit', $writing->id) }}"
+                                        class="dropdown-item has-icon"><i class="far fa-edit"></i> Edit</a>
+                                    <a href="{{ route('dashboard.writing.build', $writing->id) }}"
+                                        class="dropdown-item has-icon"><i class="fas fa-undo-alt"></i> Rebuild
+                                        Tulisan</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item has-icon text-danger"
+                                        data-confirm="Hapus Tulisan?|Kamu yakin ingin menghapus {{ $writing->name }}"
+                                        data-confirm-yes="window.location.href='{{ route('dashboard.writing.delete', $writing->id) }}'">
+                                        <i class="far fa-trash-alt"></i> Delete</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer text-right">
-                        <button class="btn btn-primary">Submit</button>
+                    <div class="card-body">
+                        <h3><a href="{{ route('dashboard.writing.edit', $writing->id) }}" class="btn-link"
+                                underline>{{ $writing->name }}</a></h3>
+                        <p class="pt-2">Update Time : {{ $writing->updated_at }}</p>
                     </div>
                 </div>
             </div>
-
+            @endforeach
         </div>
-
     </div>
 </section>
+
 @endsection
