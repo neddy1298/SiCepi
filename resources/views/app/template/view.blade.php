@@ -26,7 +26,7 @@
                             <table class="table table-striped" id="template-table">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">No</th>
+                                        <th>Status</th>
                                         <th>Template Catalog</th>
                                         <th>Template Name</th>
                                         <th>Action</th>
@@ -35,7 +35,14 @@
                                 <tbody>
                                     @foreach ($templates as $template)
                                     <tr>
-                                        <td class="text-center" width="5%">1</td>
+                                        <td>
+                                            @if ($template->status == "Published")
+
+                                            <span class="badge badge-success">{{ $template->status }}</span>
+                                            @else
+                                            <span class="badge badge-warning">{{ $template->status }}</span>
+                                            @endif
+                                        </td>
                                         <td>{{ $template->catalog }}</td>
                                         <td>{{ $template->template_name }}</td>
                                         <td width="20%">
