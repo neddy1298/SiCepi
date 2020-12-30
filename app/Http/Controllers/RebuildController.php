@@ -15,6 +15,11 @@ use Alert;
 
 class RebuildController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function edit(Request $request, $id)
     {
 

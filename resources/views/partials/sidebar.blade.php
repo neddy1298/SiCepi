@@ -30,6 +30,8 @@
             </ul>
         </li>
 
+        @if (Auth::user()->is_admin == 1)
+
 
         <li class="menu-header">Admin Panel</li>
         <li class="{{ request()->is('dashboard/user_*') ? 'active' : '' }}">
@@ -52,6 +54,7 @@
                         href="{{ route('dashboard.admin.tag') }}">Tag Management</a></li>
             </ul>
         </li>
+        @endif
         <hr>
         <li>
             <a class="dropdown-item has-icon text-danger" href=" {{ route('logout') }}"

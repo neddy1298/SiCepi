@@ -9,7 +9,7 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right">
             <div class="dropdown-title">Welcome, {{ Auth::user()->name }}</div>
-            <a href="#" class="dropdown-item has-icon">
+            <a href="{{ route('dashboard.user.profile') }}" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile Settings
             </a>
             <div class="dropdown-divider"></div>

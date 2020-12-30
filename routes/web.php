@@ -10,7 +10,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BlockController;
 
-use App\Models\Tag;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +35,18 @@ Route::namespace('Auth')->group(function () {
 
 // Dashboard
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
+
+    Route::group(['prefix' => 'error'], function () {
+
+        Route::get('403', function(){
+            return view('app.error.403');
+        });
+
+        Route::get('404', function(){
+            return view('app.error.404');
+        });
+    });
+
     Route::get('/',[DashboardController::class, 'index'])->name('index');
 
     // Writing
@@ -72,18 +84,21 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
         });
 
 
-        Route::get('/user_list',[UserController::class, 'index'])->name('index');
-        Route::get('/user_create',[UserController::class, 'create'])->name('create');
-        Route::post('/user_create',[UserController::class, 'store'])->name('store');
-        Route::get('/user_edit/{user_id}',[UserController::class, 'edit'])->name('edit');
-        Route::post('/user_edit/{user_id}',[UserController::class, 'update'])->name('update');
-        Route::get('/user_delete/{user_id}',[UserController::class, 'destroy'])->name('destroy');
+        Route::group(['middleware' => ['admin']], function () {
 
+            Route::get('/user_list',[UserController::class, 'index'])->name('index');
+            Route::get('/user_create',[UserController::class, 'create'])->name('create');
+            Route::post('/user_create',[UserController::class, 'store'])->name('store');
+            Route::get('/user_edit/{user_id}',[UserController::class, 'edit'])->name('edit');
+            Route::post('/user_edit/{user_id}',[UserController::class, 'update'])->name('update');
+            Route::get('/user_delete/{user_id}',[UserController::class, 'destroy'])->name('destroy');
+        });
 
     });
 
+
     // Writing Management
-    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']], function () {
 
         // New Template
         Route::get('/new_template',[TemplateController::class, 'create'])->name('template_create');
@@ -119,37 +134,3 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
 
 });
 
-Route::get('/test', function () {
-    $text = "Test {{name}} dengan email {{email_address}} dan company {{company_name}}";
-
-    $text = explode(" ",$text);
-        // echo $text;
-        // dd($text);
-
-    // if($text == "{{*}}"){
-    //     echo $text;
-    // }
-    $result = [];
-    foreach ($text as $item) {
-
-        $tags = Tag::get();
-        foreach ($tags as $tag) {
-            if($item == $tag->tag_body){
-                echo "true: ". $item . " == ". $tag->tag_body;
-                echo "<br>";
-
-                array_push($result, $tag->tag_name);
-            }
-        }
-    }
-    // echo "<br>". $result. "<br>";
-    dd($result);
-});
-
-// Route::get('/login', function () {
-//     return view('auth.login');
-// });
-
-Route::get('/skeleton', function () {
-    return view('layouts.skeleton');
-});

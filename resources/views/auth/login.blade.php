@@ -56,6 +56,9 @@ offset-xl-4'])
                     <br>
                     <label class="control-label">Admin: <a href="#" id="admin_select"
                             onclick="admin_select()">admin@gmail.com/admin</a></label>
+                    <br>
+                    <label class="control-label">Admin: <a href="#" id="user_select"
+                            onclick="user_select()">user@gmail.com/user</a></label>
                 </div>
 
             </form>
@@ -72,6 +75,14 @@ offset-xl-4'])
         var password = $('#password');
         email.val('admin@gmail.com');
         password.val('admin');
+        }
+
+        function user_select()
+        {
+        var email = $('#email');
+        var password = $('#password');
+        email.val('user@gmail.com');
+        password.val('user');
         }
     </script>
     @endsection

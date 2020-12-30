@@ -17,13 +17,13 @@ class UserSeeder extends Seeder
         $user = [
             'name' => 'user',
             'email' => 'user@gmail.com',
-            'role' => 'user',
+            'is_admin' => 0,
             'password' => bcrypt('user'),
         ];
         $admin = [
             'name' => 'admin',
             'email' => 'admin@gmail.com',
-            'role' => 'admin',
+            'is_admin' => 1,
             'password' => bcrypt('admin'),
         ];
         User::create($user);
