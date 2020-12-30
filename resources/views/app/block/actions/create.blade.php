@@ -92,8 +92,9 @@
     function tag_select()
     {
     var value = document.getElementById("tags_select").value;
-    var input = $('#text_tag_input');
+    var input = $('#text_tag_input').summernote();
     input.val(input.val() + value + ' ');
+    window.location.reload();
     }
 </script>
 

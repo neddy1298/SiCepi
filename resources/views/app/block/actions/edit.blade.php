@@ -63,7 +63,7 @@
                                     <label for="tag_body"><span class="text-danger">*</span> Block Body</label>
 
                                     <textarea class="form-control summernote-simple" name="block_body"
-                                        id="text_tag_input summernote" required>{{ $block->block_body }}</textarea>
+                                        id="text_tag_input" required>{{ $block->block_body }}</textarea>
                                     <small><span class="text-danger">**</span> Pastikan text dan tag diberi
                                         jarak</small><br>
                                     <small><span class="text-danger">***</span> Contoh nama saya @{{name}} dengan email
@@ -93,12 +93,9 @@
     function tag_select()
     {
     var value = document.getElementById("tags_select").value;
-    var input = $('#text_tag_input');
-    // $('#summernote').summernote('reset');
-    // $('#summernote').summernote('insertText', 'Hello, world');
-    var get_code = $('#summernote').summernote('code');
-    console.log(get_code);
-    // edit.val(input.val() + value + ' ');
+    var input = $('#text_tag_input').summernote();
+    input.val(input.val() + value + ' ');
+    window.location.reload();
     }
 </script>
 
