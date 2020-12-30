@@ -16,8 +16,8 @@
             <a class="nav-link" href="{{ route('dashboard.writing.create') }}"><i class="fas fa-pencil-alt"></i>
                 <span>Tulisan Baru</span></a></li>
 
-        <li class="{{ request()->is('dashboard/my_writing/*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('dashboard.writing.create') }}"><i class="fas fa-bookmark"></i>
+        <li class="{{ request()->is('dashboard/my_writing') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('dashboard.user_index') }}"><i class="fas fa-bookmark"></i>
                 <span>Tulisan Saya</span></a></li>
 
         <li class="{{ request()->is('dashboard/settings/*') ? 'active' : '' }} nav-item dropdown">

@@ -29,9 +29,17 @@ class WritingController extends Controller
         return view('app.writing.view');
     }
 
-    public function index_user()
+    public function user_index()
     {
-        return view('app.writing.view');
+        $writings = Writing::where('writings.user_id', auth()->user()->id)
+        ->join('catalogs', 'catalogs.id' ,'=' ,'writings.catalog_id')
+        ->join('templates', 'templates.id' ,'=' ,'writings.template_id')
+        ->select('writings.*', 'catalogs.catalog' ,'templates.template_name')
+        ->get();
+
+        // dd($writing);
+
+        return view('app.writing.user_view', compact('writings'));
     }
 
     public function create()
@@ -100,43 +108,46 @@ class WritingController extends Controller
         $template = Template::find($writing->template_id);
         $blocks = Block::where('blocks.template_id', '=', $template->id)->get();
 
-        // dd($request->all());
-
+        // dd($template);
         $result = "";
+
+        if ($template->id == 1) {
+            $writingchild = WritingChild::create([
+                'writing_id' => $id,
+                'writing_name' => 'Quote',
+                'writing_text' => $request->writing,
+            ]);
+
+        }else{
+
         foreach($blocks as $block){
 
 
-            $fields = collect(explode(" ", $block->tags));
+                $fields = collect(explode(" ", $block->tags));
 
-            $result = $block->block_body;
+                $result = $block->block_body;
 
 
-            foreach ($fields as $field) {
+                foreach ($fields as $field) {
 
-                $result = str_replace($field,$request->$field, $result);
+                    $result = str_replace($field,$request->$field, $result);
+
+                }
+
+
+                $writingchild = WritingChild::create([
+                    'writing_id' => $id,
+                    'writing_name' => $block->block_name,
+                    'writing_text' => $result,
+                ]);
 
             }
-
-
-            $writingchild = WritingChild::create([
-                'writing_id' => $id,
-                'writing_name' => $block->block_name,
-                'writing_text' => $result,
-            ]);
-
         }
-        // $text = collect($text);
-        // $text = collect(explode("---", $text));
-
-        // dd($writingchild);
 
         $writing->update([
             'name' => $request->name,
-            // 'writing' => collect(['template_name' => $block->block_name, 'text' => $text]),
             'field' => $request->except(['_token', 'name'])
         ]);
-
-        // dd($writing);
 
 
         return redirect()->route('dashboard.writing.edit', $writing->id);
@@ -152,18 +163,50 @@ class WritingController extends Controller
         ->select('writings.*', 'catalogs.catalog', 'templates.template_name',)
         ->get()->first();
 
-        // dd($writing);
-
         $writingchilds = WritingChild::where('writing_id', $id)->get();
-        // $keys = array_keys($writing->writing->toArray());
-        // dd($writingchild);
 
         return view('app.writing.actions.edit', compact('writing', 'writingchilds'));
     }
 
+    public function update(Request $request, $id)
+    {
+        $writing = Writing::find($id);
+        $writingchild = WritingChild::where('writing_children.writing_id', '=', $writing->id)->get();
+
+        $result = $request->except('name', '_token');
+
+        foreach($writingchild as $block){
+
+            $writingchildedit = WritingChild::where('writing_children.id', '=', $result['child_id_'.$block->id])->get()->first();
+
+            $writingchildedit->update([
+                'writing_text' => $result['block_body_'.$block->id],
+            ]);
+
+        }
+
+
+        $writing->update([
+            'name' => $request->name,
+        ]);
+
+
+
+        return redirect()->route('dashboard.writing.edit', $writing->id);
+
+
+    }
 
     public function user_writing()
     {
         # code...
+    }
+
+    public function destroy($id)
+    {
+        $writing = Writing::find($id);
+        $writing->delete();
+
+        return redirect()->back();
     }
 }

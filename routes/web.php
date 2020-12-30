@@ -45,7 +45,13 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
         Route::post('/fill/{id}',[WritingController::class, 'build_store'])->name('build_store');
 
         Route::get('/edit/{writing_id}',[WritingController::class, 'edit'])->name('edit');
+        Route::post('/edit/{writing_id}',[WritingController::class, 'update'])->name('update');
+        Route::get('/delete/{writing_id}',[WritingController::class, 'destroy'])->name('delete');
     });
+
+    // My Writing
+    Route::get('/my_writing',[WritingController::class, 'user_index'])->name('user_index');
+
 
     // User
     Route::group(['as' => 'user.'], function () {

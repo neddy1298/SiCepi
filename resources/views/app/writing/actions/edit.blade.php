@@ -14,10 +14,10 @@
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Tulisan Baru -> Pilih Template ( 2/2 )</h4>
+                        <h4>Tulisan Baru -> Edit Tulisan ( 2/2 )</h4>
                     </div>
 
-                    <form method="POST" action="{{ route('dashboard.writing.build_store', $writing->id) }}">
+                    <form method="POST" action="{{ route('dashboard.writing.update', $writing->id) }}">
                         @csrf
                         <div class="card-body">
                             <div class="row">
@@ -35,12 +35,18 @@
                                             value="{{ $writing->catalog }} -> {{ $writing->template_name }}" disabled>
                                     </div>
                                 </div>
+
+                                @foreach ($writingchilds as $writingchild)
+
                                 @if ($writing->catalog_id == 1)
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label>Quote</label>
-                                        <textarea class="form-control" name="writing" cols="30" rows="10"
-                                            onkeypress="quote()" id="quote_text"></textarea>
+                                        <label>{{ $writing->writing_name }}</label>
+                                        <input type="hidden" name="child_id_{{ $writingchild->id }}"
+                                            value="{{ $writingchild->id }}">
+                                        <textarea class="form-control" name="block_body_{{ $writingchild->id }}"
+                                            cols="30" rows="10" onkeyup="quote()"
+                                            id="block_body">{{ $writingchild->writing_text }}</textarea>
 
                                     </div>
                                 </div>
@@ -48,25 +54,25 @@
                                     <div class="form-group">
                                         <label>Tampilan quote</label>
 
-                                        <blockquote id="tampilan_quote"></blockquote>
+                                        <blockquote id="tampilan_quote">{{ $writingchild->writing_text }}</blockquote>
                                     </div>
                                 </div>
                                 @else
-                                @foreach ($writingchilds as $writingchild)
+                                <input type="hidden" name="child_id_{{ $writingchild->id }}"
+                                    value="{{ $writingchild->id }}">
+                                <div class="form-group col-12">
+                                    <label for="tag_body">{{ $writingchild->writing_name }}</label>
 
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>{{ $writingchild->writing_name }}</label>
-
-                                        <label></label>
-                                        <textarea class="form-control" name="writing[]"
-                                            required>{{ $writingchild->writing_text }}</textarea>
+                                    <textarea class="form-control summernote-simple"
+                                        name="block_body_{{ $writingchild->id }}"
+                                        id="text_tag_input">{{ $writingchild->writing_text }}</textarea>
+                                    <div class="invalid-feedback">
                                     </div>
                                 </div>
 
+                                @endif
                                 @endforeach
 
-                                @endif
                             </div>
                         </div>
                         <div class="card-footer text-right">
@@ -82,11 +88,10 @@
 
     </div>
 </section>
-
 <script>
     function quote() {
         document.getElementById('tampilan_quote').innerHTML = "";
-        var quote = document.getElementById('quote_text').value;
+        var quote = document.getElementById('block_body').value;
         document.getElementById('tampilan_quote').innerHTML = quote;
     }
 </script>

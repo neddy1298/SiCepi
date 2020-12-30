@@ -6,34 +6,43 @@
 
 <section class="section">
     <div class="section-header">
-        <h1>Card</h1>
-        <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-            <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div>
-            <div class="breadcrumb-item">Card</div>
-        </div>
+        <h1>Tulisan Saya</h1>
     </div>
 
     <div class="section-body">
 
         <h2 class="section-title">Tulisan Saya</h2>
-
         <div class="row">
-            <div class="col-12 col-md-4 col-lg-4">
+            @foreach ($writings as $writing)
+            <div class="col-12 col-md-4 col-lg-3">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h4>Card Header</h4>
+                        <h4>{{ $writing->catalog }} -> {{ $writing->template_name }}</h4>
                         <div class="card-header-action">
-                            <a href="#" class="btn btn-primary">
-                                View All
-                            </a>
+                            <div class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle">Options</a>
+                                <div class="dropdown-menu">
+                                    <a href="{{ route('dashboard.writing.edit', $writing->id) }}"
+                                        class="dropdown-item has-icon"><i class="far fa-edit"></i> Edit</a>
+                                    <a href="{{ route('dashboard.writing.build', $writing->id) }}"
+                                        class="dropdown-item has-icon"><i class="fas fa-undo-alt"></i> Rebuild
+                                        Tulisan</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="{{ route('dashboard.writing.delete', $writing->id) }}"
+                                        class="dropdown-item has-icon text-danger"><i class="far fa-trash-alt"></i>
+                                        Delete</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <p>Write something here</p>
+                        <h3><a href="{{ route('dashboard.writing.edit', $writing->id) }}" class="btn-link"
+                                underline>{{ $writing->name }}</a></h3>
+                        <p class="pt-2">Update Time : {{ $writing->updated_at }}</p>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 </section>
