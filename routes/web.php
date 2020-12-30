@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\WritingController;
+use App\Http\Controllers\RebuildController;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
@@ -38,12 +39,18 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
 
     // Writing
     Route::group(['prefix' => 'writing', 'as' => 'writing.'], function () {
+        // Create
         Route::get('/',[WritingController::class, 'index'])->name('index');
         Route::get('/new',[WritingController::class, 'create'])->name('create');
         Route::post('/fill',[WritingController::class, 'store'])->name('store');
         Route::get('/fill/{id}',[WritingController::class, 'build'])->name('build');
         Route::post('/fill/{id}',[WritingController::class, 'build_store'])->name('build_store');
 
+        // Rebuild
+        Route::get('/rebuild/{id}',[RebuildController::class, 'edit'])->name('rebuild');
+        Route::post('/rebuild/{id}',[RebuildController::class, 'store'])->name('rebuild');
+
+        // Edit
         Route::get('/edit/{writing_id}',[WritingController::class, 'edit'])->name('edit');
         Route::post('/edit/{writing_id}',[WritingController::class, 'update'])->name('update');
         Route::get('/delete/{writing_id}',[WritingController::class, 'destroy'])->name('delete');

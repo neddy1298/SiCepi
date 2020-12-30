@@ -24,7 +24,7 @@
                                 <div class="dropdown-menu">
                                     <a href="{{ route('dashboard.writing.edit', $writing->id) }}"
                                         class="dropdown-item has-icon"><i class="far fa-edit"></i> Edit</a>
-                                    <a href="{{ route('dashboard.writing.build', $writing->id) }}"
+                                    <a href="{{ route('dashboard.writing.rebuild', $writing->id) }}"
                                         class="dropdown-item has-icon"><i class="fas fa-undo-alt"></i> Rebuild
                                         Tulisan</a>
                                     <div class="dropdown-divider"></div>

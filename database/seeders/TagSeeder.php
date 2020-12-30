@@ -52,8 +52,8 @@ class TagSeeder extends Seeder
             'promp_text' => 'Your company name'
         ],[
             'tag_name' => 'Name',
-            'tag_body' => '{{name}}',
-            'tag_field' => 'name',
+            'tag_body' => '{{user_name}}',
+            'tag_field' => 'user_name',
             'default_replace' => '',
             'promp_text' => 'Your name'
         ]];

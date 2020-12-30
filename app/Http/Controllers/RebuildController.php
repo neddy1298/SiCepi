@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
 use App\Models\Writing;
 use App\Models\Catalog;
 use App\Models\Template;
@@ -11,73 +11,9 @@ use App\Models\Tag;
 use App\Models\WritingChild;
 use Response;
 
-class WritingController extends Controller
+class RebuildController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-//     public function template()
-// {
-//         $templates = Template::get();
-//         return Response::json($templates);
-// }
-
-    public function index()
-    {
-        return view('app.writing.view');
-    }
-
-    public function user_index()
-    {
-        $writings = Writing::where('writings.user_id', auth()->user()->id)
-        ->join('catalogs', 'catalogs.id' ,'=' ,'writings.catalog_id')
-        ->join('templates', 'templates.id' ,'=' ,'writings.template_id')
-        ->select('writings.*', 'catalogs.catalog' ,'templates.template_name')
-        ->get();
-
-        // dd($writing);
-
-        return view('app.writing.user_view', compact('writings'));
-    }
-
-    public function create()
-    {
-        $catalogs = Catalog::get();
-        $templates = Template::get();
-        $blocks = Block::get();
-        return view('app.writing.actions.create', compact('catalogs', 'templates', 'blocks'));
-
-    }
-
-    public function store(Request $request)
-    {
-        // dd($request->all());
-
-        $writing = Writing::create($request->all());
-
-        $block = Block::where('blocks.template_id', $writing->template_id)->get()->first();
-        // dd($block);
-        if($block){
-            if ($block->tags == "") {
-                if ($block->template_id != 1)
-                {
-                    $writingchild = WritingChild::create([
-                        'writing_id' => $writing->id,
-                        'writing_name' => $block->block_name,
-                        'writing_text' => $block->block_body,
-                    ]);
-                }
-                return redirect()->route('dashboard.writing.edit', $writing->id);
-            }
-        }
-
-        return redirect()->route('dashboard.writing.build', $writing->id);
-
-    }
-
-    public function build(Request $request, $id)
+    public function edit(Request $request, $id)
     {
 
         $writing = Writing::join('catalogs', 'catalogs.id' ,'=' ,'writings.catalog_id')
@@ -86,11 +22,26 @@ class WritingController extends Controller
         ->where('writings.id', '=', $id)
         ->get()->first();
 
-
         // dd($writing);
+        $block = Block::where('blocks.template_id', $writing->template_id)->get()->first();
+
+        if($block){
+            if ($block->tags == "") {
+                if ($block->template_id != 1)
+                {
+                    $writingchild = WritingChild::where('writing_id', $id)->get()->first();
+                    $writingchild->update([
+                        'writing_name' => $request->name,
+                        'writing_text' => $block->block_body,
+                    ]);
+                    // return redirect()->route('dashboard.writing.edit', $writing->id);
+                }
+                return redirect()->route('dashboard.writing.edit', $writing->id);
+
+            }
+        }
 
         $blocks = Block::where('blocks.template_id', $writing->template_id)->get();
-
         // dd($blocks);
         $field = [];
 
@@ -116,11 +67,11 @@ class WritingController extends Controller
         }
         // dd($fields);
 
-        return view('app.writing.actions.build', compact('writing', 'fields'));
+        return view('app.writing.actions.rebuild', compact('writing', 'fields'));
 
     }
 
-    public function build_store(Request $request, $id)
+    public function store(Request $request, $id)
     {
         // dd($request->all());
 
@@ -128,6 +79,7 @@ class WritingController extends Controller
         $template = Template::find($writing->template_id);
         $blocks = Block::where('blocks.template_id', '=', $template->id)->get();
 
+        $writingchild = WritingChild::where('writing_id', $id)->delete();
         // dd($template);
         $result = "";
 
@@ -201,61 +153,5 @@ class WritingController extends Controller
         return redirect()->route('dashboard.writing.edit', $writing->id);
 
 
-    }
-
-    public function edit($id)
-    {
-        $writing = Writing::where('writings.id', $id)
-        ->join('catalogs', 'catalogs.id', '=', 'writings.catalog_id')
-        ->join('templates', 'templates.id', '=', 'writings.template_id')
-        ->select('writings.*', 'catalogs.catalog', 'templates.template_name',)
-        ->get()->first();
-
-        $writingchilds = WritingChild::where('writing_id', $id)->get();
-        // dd($writingchilds);
-
-        return view('app.writing.actions.edit', compact('writing', 'writingchilds'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $writing = Writing::find($id);
-        $writingchild = WritingChild::where('writing_children.writing_id', '=', $writing->id)->get();
-
-        $result = $request->except('name', '_token');
-
-        foreach($writingchild as $block){
-
-            $writingchildedit = WritingChild::where('writing_children.id', '=', $result['child_id_'.$block->id])->get()->first();
-
-            $writingchildedit->update([
-                'writing_text' => $result['block_body_'.$block->id],
-            ]);
-
-        }
-
-
-        $writing->update([
-            'name' => $request->name,
-        ]);
-
-
-
-        return redirect()->route('dashboard.writing.edit', $writing->id);
-
-
-    }
-
-    public function user_writing()
-    {
-        # code...
-    }
-
-    public function destroy($id)
-    {
-        $writing = Writing::find($id);
-        $writing->delete();
-
-        return redirect()->back();
     }
 }

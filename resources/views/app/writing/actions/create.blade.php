@@ -23,14 +23,14 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label>Beri nama tulisanmu</label>
-                                        <input name="name" type="text" class="form-control">
+                                        <input name="name" type="text" class="form-control" required>
                                         <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
 
                                     </div>
                                     <div class="form-group">
                                         <label>Pilih katalog tulisanmu</label>
                                         <select class="form-control select2" name="catalog_id" id="catalog_id"
-                                            onchange="catalog()">
+                                            onchange="catalog()" required>
                                             <option hidden selected>Pilih katalog tulisanmu</option>
                                             @foreach ($catalogs as $catalog)
                                             <option value="{{ $catalog->id }}">{{ $catalog->catalog }}</option>
@@ -40,16 +40,16 @@
                                     <div class="form-group">
                                         <label>Pilih tema tulisanmu</label>
                                         <select class="form-control select2" name="template_id" id="template_data"
-                                            onchange="template()">
+                                            onchange="template()" required>
                                             <option disabled selected>Pilih tema tulisanmu</option>
                                         </select>
                                     </div>
-                                    {{-- <div class="form-group">
+                                    <div class="form-group">
                                         <h5>Perkenalan Tema</h5>
 
                                         <label id="template_intro"></label>
 
-                                    </div> --}}
+                                    </div>
                                 </div>
                                 <div class="offset-1 col-7" id="block_data">
                                     {{-- <div id="accordion">
@@ -93,7 +93,7 @@
 <script type="text/javascript">
     function catalog()
     {
-    console.clear();
+    // console.clear();
     document.getElementById("block_data").innerHTML = "";
     document.getElementById("template_data").innerHTML = "";
 
@@ -112,14 +112,24 @@
         document.getElementById("template_data").innerHTML +=
         "<option value="+template[index].id +">"+template[index].template_name+"</option>";
 
+
+
     }
 
 }
     function template() {
 
+
+
     document.getElementById("block_data").innerHTML = "";
 
     var template_id = document.getElementById("template_data").value;
+    var sites = {!! json_encode($templates->toArray()) !!};
+    const template = sites.filter(sites => sites.id == template_id);
+
+    // console.log(template);
+    var intro = document.getElementById("template_intro").innerHTML = template[0].template_intro;
+
 
     var blocks = {!! json_encode($blocks->toArray()) !!};
     const block = blocks.filter(blocks => blocks.template_id == template_id);

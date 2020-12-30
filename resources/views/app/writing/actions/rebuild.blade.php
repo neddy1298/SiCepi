@@ -5,7 +5,7 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Tulisan Baru</h1>
+        <h1>Rebuild Tulisan</h1>
     </div>
 
     <div class="section-body">
@@ -17,7 +17,7 @@
                         <h4>Tulisan Baru -> Pilih Template ( 2/2 )</h4>
                     </div>
 
-                    <form method="POST" action="{{ route('dashboard.writing.build_store', $writing->id) }}">
+                    <form method="POST" action="{{ route('dashboard.writing.rebuild', $writing->id) }}">
                         @csrf
                         <div class="card-body">
                             <div class="row">

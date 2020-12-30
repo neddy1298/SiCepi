@@ -28,13 +28,18 @@ class BlockController extends Controller
     public function store(Request $request, $id)
     {
 
-        $text = explode(" ",$request->block_body);
+        $text = collect(explode("{{", $request->block_body));
+            $text = collect($text)->implode(' ');
+            $text = collect(explode("}}", $text));
+            $text = collect($text)->implode(' ');
+            $text = collect(explode(" ", $text))->unique();
+            // dd($text);
         $tags_id = [];
         foreach ($text as $item) {
 
             $tags = Tag::get();
             foreach ($tags as $tag) {
-                if($item == $tag->tag_body){
+                if($item == $tag->tag_field){
 
                     array_push($tags_id, $item);
 
@@ -72,13 +77,19 @@ class BlockController extends Controller
     public function update(Request $request, $id)
     {
 
-        $text = explode(" ",$request->block_body);
+        // $text = explode(" ",$request->block_body);
+        $text = collect(explode("{{", $request->block_body));
+            $text = collect($text)->implode(' ');
+            $text = collect(explode("}}", $text));
+            $text = collect($text)->implode(' ');
+            $text = collect(explode(" ", $text));
+            // dd($text);
         $tags_id = [];
         foreach ($text as $item) {
 
             $tags = Tag::get();
             foreach ($tags as $tag) {
-                if($item == $tag->tag_body){
+                if($item == $tag->tag_field){
 
                     array_push($tags_id, $item);
 
@@ -86,6 +97,7 @@ class BlockController extends Controller
             }
         }
 
+            // dd($tags_id);
         $tags_id = array_unique($tags_id);
         $tags = implode(' ', array_values($tags_id));
 

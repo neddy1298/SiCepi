@@ -30,7 +30,7 @@
 
                                 <div class="form-group col-lg-6 col-md-12 col-sm-12">
                                     <label for="block_name"><span class="text-danger">*</span> Block Name</label>
-                                    <input id="block_name" type="text" class="form-control" name="block_name">
+                                    <input id="block_name" type="text" class="form-control" name="block_name" required>
                                     <div class="invalid-feedback">
                                     </div>
                                 </div>
@@ -62,7 +62,7 @@
                                     <label for="tag_body"><span class="text-danger">*</span> Block Body</label>
 
                                     <textarea class="form-control summernote-simple" name="block_body"
-                                        id="text_tag_input"></textarea>
+                                        id="text_tag_input" required></textarea>
                                     <small><span class="text-danger">**</span> Pastikan text dan tag diberi
                                         jarak</small><br>
                                     <small><span class="text-danger">***</span> Contoh nama saya @{{name}} dengan email

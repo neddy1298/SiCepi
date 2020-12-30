@@ -34,13 +34,18 @@ class TemplateController extends Controller
 
     public function store(Request $request)
     {
-        $text = explode(" ",$request->block_body);
+        // $text = explode(" ",$request->block_body);
+        $text = collect(explode("{{", $request->block_body));
+        $text = collect($text)->implode('');
+        $text = collect(explode("}}", $text));
+        $text = collect($text)->implode('');
+        $text = collect(explode(" ", $text));
         $tags_id = [];
         foreach ($text as $item) {
 
             $tags = Tag::get();
             foreach ($tags as $tag) {
-                if($item == $tag->tag_body){
+                if($item == $tag->tag_field){
 
                     array_push($tags_id, $item);
 
