@@ -45,7 +45,7 @@ class WritingController extends Controller
     public function create()
     {
         $catalogs = Catalog::get();
-        $templates = Template::get();
+        $templates = Template::where('status', 'Published')->get();
         $blocks = Block::get();
         return view('app.writing.actions.create', compact('catalogs', 'templates', 'blocks'));
 
