@@ -52,7 +52,7 @@ class BlockSeeder extends Seeder
         ],[
             'template_id' => 3,
             'block_name' => 'Sales Letter Sample 1',
-            'tags' => 'company_name product_name user_name',
+            'tags' => '',
             'block_body' => '<p>This is a test letter 1 without any input fields, it will be directly generated after you click next.<br></p>',
         ],];
         foreach ($tags as $tag) {

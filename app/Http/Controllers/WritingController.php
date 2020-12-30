@@ -10,6 +10,7 @@ use App\Models\Block;
 use App\Models\Tag;
 use App\Models\WritingChild;
 use Response;
+use Alert;
 
 class WritingController extends Controller
 {
@@ -80,6 +81,7 @@ class WritingController extends Controller
     public function build(Request $request, $id)
     {
 
+
         $writing = Writing::join('catalogs', 'catalogs.id' ,'=' ,'writings.catalog_id')
         ->join('templates', 'templates.id' ,'=' ,'writings.template_id')
         ->select('writings.*', 'catalogs.catalog' ,'templates.template_name' ,'templates.template_intro')
@@ -143,23 +145,6 @@ class WritingController extends Controller
         foreach($blocks as $block){
 
 
-            // $fields = collect(explode("{{", $block->block_body));
-            //     $fields = collect($fields)->implode('');
-            //     $fields = collect(explode("}}", $fields));
-            //     $fields = collect($fields)->implode('');
-            //     $fields = collect(explode(" ", $fields));
-
-
-            //     dd($fields);
-
-            //     $fields = $block->tags;
-
-
-            //         // $fields = collect(explode(" ", $block->tags));
-            //     // $fields = collect(explode(",}}",$fields));
-
-            //     $result = $block->block_body;
-
                 $fields = collect(explode(" ", $block->tags));
                 // dd($fields);
 
@@ -197,7 +182,7 @@ class WritingController extends Controller
             'field' => $request->except(['_token', 'name'])
         ]);
 
-
+        Alert::success('Berhasil', 'Tulisanmu berhasil dibuat');
         return redirect()->route('dashboard.writing.edit', $writing->id);
 
 
@@ -240,7 +225,7 @@ class WritingController extends Controller
         ]);
 
 
-
+        Alert::success('Berhasil', 'Tulisanmu berhasil diubah');
         return redirect()->route('dashboard.writing.edit', $writing->id);
 
 
@@ -280,6 +265,7 @@ class WritingController extends Controller
         $writing = Writing::find($id);
         $writing->delete();
 
+        Alert::success('Berhasil', 'Tulisan berhasil dihapus');
         return redirect()->back();
     }
 }
