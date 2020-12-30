@@ -10,6 +10,8 @@ use App\Models\Block;
 use App\Models\Tag;
 use App\Models\WritingChild;
 use Response;
+use Alert;
+
 
 class RebuildController extends Controller
 {
@@ -95,23 +97,6 @@ class RebuildController extends Controller
         foreach($blocks as $block){
 
 
-            // $fields = collect(explode("{{", $block->block_body));
-            //     $fields = collect($fields)->implode('');
-            //     $fields = collect(explode("}}", $fields));
-            //     $fields = collect($fields)->implode('');
-            //     $fields = collect(explode(" ", $fields));
-
-
-            //     dd($fields);
-
-            //     $fields = $block->tags;
-
-
-            //         // $fields = collect(explode(" ", $block->tags));
-            //     // $fields = collect(explode(",}}",$fields));
-
-            //     $result = $block->block_body;
-
                 $fields = collect(explode(" ", $block->tags));
                 // dd($fields);
 
@@ -149,7 +134,7 @@ class RebuildController extends Controller
             'field' => $request->except(['_token', 'name'])
         ]);
 
-
+        Alert::success('Berhasil', 'Berhasil rebuild tulisan');
         return redirect()->route('dashboard.writing.edit', $writing->id);
 
 

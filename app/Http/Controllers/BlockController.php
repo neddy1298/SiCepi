@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Template;
 use App\Models\Tag;
 use App\Models\Block;
+use Alert;
+
 
 class BlockController extends Controller
 {
@@ -56,7 +58,7 @@ class BlockController extends Controller
             'block_body' => $request->block_body,
         ]);
 
-
+        Alert::success('Berhasil', 'Block berhasil dibuat');
         return redirect()->route('dashboard.admin.template_edit', $id);
     }
 
@@ -109,7 +111,7 @@ class BlockController extends Controller
             'block_body' => $request->block_body,
         ]);
 
-
+        Alert::success('Berhasil', 'Template berhasil diubah');
         return redirect()->route('dashboard.admin.template_edit', $block->template_id);
     }
 
@@ -118,6 +120,7 @@ class BlockController extends Controller
         $block = Block::find($id);
         $block->delete();
 
+        Alert::success('Berhasil', 'Template berhasil dihapus');
         return redirect()->back();
 
     }

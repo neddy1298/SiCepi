@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Alert;
 
 class AuthController extends Controller
 {
@@ -31,10 +32,11 @@ class AuthController extends Controller
         // dd($credentials);
         if (auth()->attempt($credentials)) {
 
+
             return redirect()->route('dashboard.index');
 
         }else{
-            session()->flash('message', 'Invalid credentials');
+            Alert::error('Login Gagal', 'Perisa email & password kamu');
             return redirect()->back();
         }
     }
@@ -50,13 +52,14 @@ class AuthController extends Controller
             'password' => 'required|required_with:password-confirm|same:password-confirm'
         ]);
 
+
         $user = User::create([
             'name' => trim($request->input('name')),
             'email' => strtolower($request->input('email')),
             'password' => bcrypt($request->input('password')),
         ]);
 
-
+        Alert::success('Berhasil', 'Registrasi berhasil, silahkan login untuk melanjutkan');
         return redirect()->route('login');
     }
     public function logout()

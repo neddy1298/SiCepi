@@ -16,7 +16,9 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <div id="app">
+
         @yield('app')
     </div>
     <script src="{{ mix('js/manifest.js') }}"></script>

@@ -9,6 +9,8 @@ use App\Models\Catalog;
 use App\Models\Tag;
 use App\Models\Block;
 use DataTables;
+use Alert;
+
 
 class TemplateController extends Controller
 {
@@ -76,6 +78,7 @@ class TemplateController extends Controller
             'block_body' => $request->block_body,
         ]);
 
+        Alert::success('Berhasil', 'Template berhasil dibuat');
         return redirect()->route('dashboard.admin.template');
     }
 
@@ -108,6 +111,7 @@ class TemplateController extends Controller
 
             ]);
 
+        Alert::success('Berhasil', 'Block berhasil diubah');
         return redirect()->route('dashboard.admin.template_edit', $id);
     }
 
@@ -117,6 +121,7 @@ class TemplateController extends Controller
         $template = Template::find($id);
         $template->delete();
 
+        Alert::success('Berhasil', 'Block berhasil dihapus');
         return redirect()->back();
     }
 

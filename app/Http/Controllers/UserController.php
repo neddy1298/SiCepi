@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Alert;
 
 class UserController extends Controller
 {
@@ -28,6 +29,7 @@ class UserController extends Controller
 
         $user->update($request->all());
 
+        Alert::success('Berhasil', 'Data berhasil diubah');
         return redirect()->route('dashboard.user.profile');
     }
 
@@ -47,15 +49,18 @@ class UserController extends Controller
 
 
         if (Hash::check($request->old_password, $user->password)) {
+
+            Alert::success('Berhasil', 'Password berhasil diubah');
             $user->update([
                 'password' => bcrypt($request->password)
             ]);
 
+
+        }else{
+            Alert::error('Gagal', 'Password tidak berhasil diubah');
         }
 
         return view('app.user.actions.change_password');
-
-
 
     }
 
@@ -87,6 +92,7 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
+        Alert::success('Berhasil', 'User berhasil dibuat');
         return redirect()->route('dashboard.user.index');
     }
 
@@ -110,6 +116,8 @@ class UserController extends Controller
             'email' => strtolower($request->email),
             'role' => $request->role,
         ]);
+
+        Alert::success('Berhasil', 'Data berhasil diubah');
         return redirect()->route('dashboard.user.index');
     }
 
@@ -118,6 +126,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->delete();
 
+        Alert::success('Berhasil', 'User berhasil dihapus');
         return redirect()->back();
     }
 }

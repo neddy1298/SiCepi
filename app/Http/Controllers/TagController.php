@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
+use Alert;
+
 use Illuminate\Http\Request;
 
 class TagController extends Controller
@@ -41,7 +43,7 @@ class TagController extends Controller
             'promp_text' => $request->promp_text
         ]);
 
-
+        Alert::success('Berhasil', 'Tag berhasil dibuat');
         return redirect()->route('dashboard.admin.tag');
     }
 
@@ -58,6 +60,7 @@ class TagController extends Controller
         $tag = Tag::find($id);
         $tag->update($request->all());
 
+        Alert::success('Berhasil', 'Tag berhasil diubah');
         return redirect()->route('dashboard.admin.tag_edit', $tag->id);
     }
 
@@ -66,6 +69,7 @@ class TagController extends Controller
         $tag = Tag::find($id);
         $tag->delete();
 
+        Alert::success('Berhasil', 'Block berhasil dihapus');
         return redirect()->route('dashboard.admin.tag');
 
     }
