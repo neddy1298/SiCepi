@@ -50,12 +50,22 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     // User
     Route::group(['as' => 'user.'], function () {
 
+        Route::group(['prefix' => 'settings'], function () {
+
+            Route::get('/my_profile',[UserController::class, 'profile'])->name('profile');
+            Route::post('/my_profile/{id}',[UserController::class, 'profile_update'])->name('profile_update');
+            Route::get('/my_password',[UserController::class, 'profile_password'])->name('profile_password');
+            Route::post('/my_password/{id}',[UserController::class, 'profile_password_update'])->name('password_update');
+        });
+
+
         Route::get('/user_list',[UserController::class, 'index'])->name('index');
         Route::get('/user_create',[UserController::class, 'create'])->name('create');
         Route::post('/user_create',[UserController::class, 'store'])->name('store');
         Route::get('/user_edit/{user_id}',[UserController::class, 'edit'])->name('edit');
         Route::post('/user_edit/{user_id}',[UserController::class, 'update'])->name('update');
         Route::get('/user_delete/{user_id}',[UserController::class, 'destroy'])->name('destroy');
+
 
     });
 

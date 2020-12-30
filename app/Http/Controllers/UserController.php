@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,6 +11,52 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function profile()
+    {
+        return view('app.user.profile');
+    }
+
+    public function profile_update(Request $request ,$id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+        ]);
+        $user = User::find($id);
+
+        $user->update($request->all());
+
+        return redirect()->route('dashboard.user.profile');
+    }
+
+    public function profile_password()
+    {
+        return view('app.user.actions.change_password');
+    }
+
+    public function profile_password_update(Request $request, $id)
+    {
+        $request->validate([
+            'old_password' => 'required',
+            'password' => 'required|required_with:password-confirm|same:password-confirm'
+        ]);
+
+        $user = User::find($id);
+
+
+        if (Hash::check($request->old_password, $user->password)) {
+            $user->update([
+                'password' => bcrypt($request->password)
+            ]);
+
+        }
+
+        return view('app.user.actions.change_password');
+
+
+
     }
 
     public function index()

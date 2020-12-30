@@ -23,10 +23,10 @@
         <li class="{{ request()->is('dashboard/settings/*') ? 'active' : '' }} nav-item dropdown">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-user-cog"></i> <span>User Settings</span></a>
             <ul class="dropdown-menu">
-                <li class="{{ request()->is('dashboard/admin/new_template') ? 'active' : '' }}"><a class="nav-link"
-                        href="{{ route('dashboard.admin.template_create') }}">My Profile</a></li>
-                <li class="{{ request()->is('dashboard/admin/list_template') ? 'active' : '' }}"><a class="nav-link"
-                        href="{{ route('dashboard.admin.template') }}">Ubah Password</a></li>
+                <li class="{{ request()->is('dashboard/settings/my_profile') ? 'active' : '' }}"><a class="nav-link"
+                        href="{{ route('dashboard.user.profile') }}">My Profile</a></li>
+                <li class="{{ request()->is('dashboard/settings/my_password') ? 'active' : '' }}"><a class="nav-link"
+                        href="{{ route('dashboard.user.profile_password') }}">Ubah Password</a></li>
             </ul>
         </li>
 
