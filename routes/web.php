@@ -10,6 +10,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BlockController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\QuoteController;
 
 
 
@@ -29,22 +30,28 @@ Route::get('/', [FrontController::class, 'index'])->name('index');
 Route::group(['prefix' => 'topics', 'as' => 'topics.'], function () {
 
     Route::get('/', [FrontController::class, 'topics'])->name('view');
-    Route::get('{url}',[FrontController::class, 'quoteby_topic'])->name('quotes');
+    Route::get('/{topic}',[FrontController::class, 'quoteby_topic'])->name('quotes');
 });
 
 Route::group(['prefix' => 'author', 'as' => 'author.'], function () {
 
     Route::get('/', [FrontController::class, 'author'])->name('view');
-    Route::get('{url}',[FrontController::class, 'quoteby_author'])->name('quotes');
+    Route::get('{author}',[FrontController::class, 'quoteby_author'])->name('quotes');
 });
 
 Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 
     Route::get('/',[FrontController::class, 'login'])->name('login');
-    Route::get('/favorite/{id}',[FrontController::class, 'favorite'])->name('favorite')->middleware('auth');
-    Route::get('/create-quote',[FrontController::class, 'create_quote'])->name('create_quote')->middleware('auth');
+    Route::get('/favorite',[QuoteController::class, 'favorite'])->name('favorite')->middleware('auth');
+    Route::get('/quote',[QuoteController::class, 'user_quote'])->name('quote')->middleware('auth');
+    Route::get('/create-quote',[QuoteController::class, 'create_quote'])->name('create_quote')->middleware('auth');
+    Route::post('/create-quote',[QuoteController::class, 'quote_store'])->name('quote_store')->middleware('auth');
+    Route::get('/edit-quote/{id}',[QuoteController::class, 'edit_quote'])->name('edit_quote')->middleware('auth');
+    Route::post('/edit-quote/{id}',[QuoteController::class, 'quote_update'])->name('quote_update')->middleware('auth');
 });
 
+Route::get('/search', [QuoteController::class, 'search'])->name('quote.search');
+Route::get('/save/{id}', [QuoteController::class, 'save'])->name('save')->middleware('auth');
 
 
 // Auth

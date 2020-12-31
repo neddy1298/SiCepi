@@ -13,30 +13,30 @@
                     <small class="font-weight-bold text-secondary">Cari kutipan yang anda inginkan di sini:</small>
                 </div>
                 <div class="form-group">
-                    <div class="input-group input-group-lg">
-                        <div class="input-group-prepend">
-                            <select name="" id="" class="form-control ">
-                                <option value="">Semua</option>
-                                <option value="">Topik</option>
-                                <option value="">Author</option>
-                            </select>
-                        </div>
-                        <input type="text" class="form-control input-search-quote"
-                            placeholder="Cari kutipan atau dengan Hashtag #">
-                        <!-- <div class="icon-group">
+                    <form action="{{ route('quote.search') }}" method="get">
+                        @csrf
+
+                        <div class="input-group input-group-lg">
+                            <div class="input-group-prepend">
+                                <select name="key" id="" class="form-control ">
+                                    <option value="Semua">Semua</option>
+                                    <option value="Topik">Topik</option>
+                                    <option value="Author">Author</option>
+                                </select>
+                            </div>
+                            <input type="text" class="form-control input-search-quote"
+                                placeholder="Cari kutipan atau dengan Hashtag #" name="search">
+                            <!-- <div class="icon-group">
                             <div class="icon">
                                 <a href="#" class="icon-group-link"><i class="eva eva-search-outline align-middle"></i></a>
                             </div>
                         </div> -->
-                    </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="text-center">
-                    <small>Hashtag Populer Hari Ini:</small> <a href="#" class="badge badge-light badge-pill">Age</a> <a
-                        href="#" class="badge badge-light badge-pill">Alone</a> <a href="#"
-                        class="badge badge-light badge-pill">Amazing</a> <a href="#"
-                        class="badge badge-light badge-pill">Anger</a> <a href="#"
-                        class="badge badge-light badge-pill">Anniversary</a> <a href="#"
-                        class="badge badge-light badge-pill">Architecture</a>
+                    <small>Hashtag Populer Hari Ini:</small>
+                    @include('app.front.layouts.tags')
                 </div>
             </div>
         </div>
@@ -46,287 +46,7 @@
     <div class="container">
         <h3 class="font-weight-bold mb-3">Rekomendasi Quotes Hari ini</h3>
         <div class="masonry-quote mb-3 grid">
-
-            <div class="grid-item">
-                <div class="card card-quote">
-                    <div class="card-body">
-                        <div class="quote-text mb-3">
-                            “Achieving life is not the equivalent of avoiding death.”
-                        </div>
-                        <div class="quote-author row">
-                            <div class="col-auto">
-                                <label class="d-block mb-0"><small>Author</small></label>
-                                <div><a href="#" class="text-dark font-weight-bold">Sicepi</a></div>
-                            </div>
-                            <div class="col-auto ml-auto">
-                                <label class="d-block mb-0"><small>Share</small></label>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="eva eva-copy-outline align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-facebook align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-twitter align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-instagram align-middle"></i></a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="badge badge-secondary badge-pill">Age</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Alone</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Amazing</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Anger</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Anniversary</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Architecture</a>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="card card-quote">
-                    <div class="card-body">
-                        <div class="quote-text mb-3">
-                            "Dare to be true: nothing can need a lie; A fault which needs it most, grows two thereby.”
-                        </div>
-                        <div class="quote-author row">
-                            <div class="col-auto">
-                                <label class="d-block mb-0"><small>Author</small></label>
-                                <div><a href="#" class="text-dark font-weight-bold">Sicepi</a></div>
-                            </div>
-                            <div class="col-auto ml-auto">
-                                <label class="d-block mb-0"><small>Share</small></label>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="eva eva-copy-outline align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-facebook align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-twitter align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-instagram align-middle"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="badge badge-secondary badge-pill">Age</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Alone</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Amazing</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Anger</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Anniversary</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Architecture</a>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="card card-quote">
-                    <div class="card-body">
-                        <div class="quote-text mb-3">
-                            “I took a speed reading course and read 'War and Peace' in twenty minutes. It involves
-                            Russia.”
-                        </div>
-                        <div class="quote-author row">
-                            <div class="col-auto">
-                                <label class="d-block mb-0"><small>Author</small></label>
-                                <div><a href="#" class="text-dark font-weight-bold">Sicepi</a></div>
-                            </div>
-                            <div class="col-auto ml-auto">
-                                <label class="d-block mb-0"><small>Share</small></label>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="eva eva-copy-outline align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-facebook align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-twitter align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-instagram align-middle"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="badge badge-secondary badge-pill">Age</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Alone</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Amazing</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Anger</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Anniversary</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Architecture</a>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="card card-quote">
-                    <div class="card-body">
-                        <div class="quote-text mb-3">
-                            “Love is a canvas furnished by Nature and embroidered by imagination.”
-                        </div>
-                        <div class="quote-author row">
-                            <div class="col-auto">
-                                <label class="d-block mb-0"><small>Author</small></label>
-                                <div><a href="#" class="text-dark font-weight-bold">Sicepi</a></div>
-                            </div>
-                            <div class="col-auto ml-auto">
-                                <label class="d-block mb-0"><small>Share</small></label>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="eva eva-copy-outline align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-facebook align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-twitter align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-instagram align-middle"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="badge badge-secondary badge-pill">Age</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Alone</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Amazing</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Anger</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Anniversary</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Architecture</a>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="card card-quote">
-                    <div class="card-body">
-                        <div class="quote-text mb-3">
-                            “It is amazing what you can accomplish if you do not care who gets the credit.”
-                        </div>
-                        <div class="quote-author row">
-                            <div class="col-auto">
-                                <label class="d-block mb-0"><small>Author</small></label>
-                                <div><a href="#" class="text-dark font-weight-bold">Sicepi</a></div>
-                            </div>
-                            <div class="col-auto ml-auto">
-                                <label class="d-block mb-0"><small>Share</small></label>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="eva eva-copy-outline align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-facebook align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-twitter align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-instagram align-middle"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="badge badge-secondary badge-pill">Age</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Alone</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Amazing</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Anger</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Anniversary</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Architecture</a>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="card card-quote">
-                    <div class="card-body">
-                        <div class="quote-text mb-3">
-                            “I hate quotations. Tell me what you know.”
-                        </div>
-                        <div class="quote-author row">
-                            <div class="col-auto">
-                                <label class="d-block mb-0"><small>Author</small></label>
-                                <div><a href="#" class="text-dark font-weight-bold">Sicepi</a></div>
-                            </div>
-                            <div class="col-auto ml-auto">
-                                <label class="d-block mb-0"><small>Share</small></label>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="eva eva-copy-outline align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-facebook align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-twitter align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-instagram align-middle"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="badge badge-secondary badge-pill">Age</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Alone</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Amazing</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Anger</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Anniversary</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Architecture</a>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="card card-quote">
-                    <div class="card-body">
-                        <div class="quote-text mb-3">
-                            “I don't necessarily agree with everything I say.”
-                        </div>
-                        <div class="quote-author row">
-                            <div class="col-auto">
-                                <label class="d-block mb-0"><small>Author</small></label>
-                                <div><a href="#" class="text-dark font-weight-bold">Sicepi</a></div>
-                            </div>
-                            <div class="col-auto ml-auto">
-                                <label class="d-block mb-0"><small>Share</small></label>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="eva eva-copy-outline align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-facebook align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-twitter align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-instagram align-middle"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="badge badge-secondary badge-pill">Age</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Alone</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Amazing</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Anger</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Anniversary</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Architecture</a>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="card card-quote">
-                    <div class="card-body">
-                        <div class="quote-text mb-3">
-                            “I don't necessarily agree with everything I say.”
-                        </div>
-                        <div class="quote-author row">
-                            <div class="col-auto">
-                                <label class="d-block mb-0"><small>Author</small></label>
-                                <div><a href="#" class="text-dark font-weight-bold">Sicepi</a></div>
-                            </div>
-                            <div class="col-auto ml-auto">
-                                <label class="d-block mb-0"><small>Share</small></label>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="eva eva-copy-outline align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-facebook align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-twitter align-middle"></i></a>
-                                <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                                        class="mdi mdi-instagram align-middle"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="badge badge-secondary badge-pill">Age</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Alone</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Amazing</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Anger</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Anniversary</a> <a href="#"
-                            class="badge badge-secondary badge-pill">Architecture</a>
-                    </div>
-                </div>
-            </div>
-
-
+            @include('app.front.layouts.quotes')
         </div>
         <div class="card">
             <div class="card-body">

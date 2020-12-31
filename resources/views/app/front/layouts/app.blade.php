@@ -12,7 +12,7 @@
     <div id="wrapper">
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="menunav">
             <div class="container">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{{ route('index') }}">
                     <img src="{{ asset('front/images/logo.svg') }}" alt="" width="100">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -32,29 +32,42 @@
                             <a class="nav-link" href="{{ route('author.view') }}">Author</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-primary text-white" href="{{ route('user.create_quote') }}">Buat
-                                Kutipan</a>
-                        </li>
-
-
                     </ul>
                     <ul class="ml-md-auto navbar-nav navbar-right align-items-center">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="eva eva-search-outline align-center"></i>
+
+                        @auth
+                        <div class="dropdown d-inline">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                {{ Auth::user()->name }}
                             </a>
+                            <div class="dropdown-menu" x-placement="bottom-start">
+                                <a class="dropdown-item has-icon text-primary" href="{{ route('dashboard.index') }}"><i
+                                        class="mdi mdi-home"></i> Dashboard</a>
+                                <a class="dropdown-item has-icon text-info" href="{{ route('user.create_quote') }}"><i
+                                        class="mdi mdi-pencil"></i> Buat
+                                    Kutipan</a>
+                                <hr>
+                                <a class="dropdown-item has-icon text-danger" href=" {{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"><i
+                                        class="mdi mdi-logout"></i>
+                                    Logout</a>
+                                <form id="frm-logout" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </div>
+                        </div>
+                        @endauth
+
+                        @guest
+                        <li class="nav-item">
+                            <a href="{{ route('user.login') }}" class="nav-link btn btn-primary text-white">Login</a>
                         </li>
+                        @endguest
+
 
                     </ul>
-                    <div class="form-inline">
-                        @auth
-                        <a href="#" class="btn btn-light btn-sm">{{ Auth::user()->name }}</a>
-                        @endauth
-                        @guest
-                        <a href="{{ route('user.login') }}" class="btn btn-light btn-sm">Login</a>
-                        @endguest
-                    </div>
                 </div>
             </div>
         </nav>

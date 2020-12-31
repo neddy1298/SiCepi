@@ -16,13 +16,13 @@
 
                 </div>
                 <div class="text-center">
-                    <small>Contoh Author:</small>
+                    <small>Contoh Hashtag:</small>
                     @include('app.front.layouts.tags')
 
                 </div>
             </div>
         </div>
-        <h3 class="text-center my-4"><strong>Author:</strong> {{ request()->segment(2) }}</h3>
+        <h3 class="text-center my-4"><strong>{{ $key }}:</strong> {{ $search }}</h3>
         <div class="masonry-quote mb-3 grid">
             @include('app.front.layouts.quotes')
         </div>

@@ -17,13 +17,13 @@
 
                     </div>
                     <div class="list-group list-group-flush">
-                        <a href="#" class="list-group-item list-group-item-action"><img
+                        <a href="{{ route('user.quote') }}" class="list-group-item list-group-item-action"><img
                                 src="{{ asset('front/images/icon.svg') }}" alt="" width="20" class="mr-3"> Kutipan
                             Saya</a>
                         <a href="#" class="list-group-item list-group-item-action"><img
                                 src="{{ asset('front/images/favorite.svg') }}" alt="" width="20" class="mr-3">
                             Tersimpan</a>
-                        <a href="#" class="list-group-item list-group-item-action"><img
+                        <a href="{{ route('user.favorite') }}" class="list-group-item list-group-item-action"><img
                                 src="{{ asset('front/images/heart.svg') }}" alt="" width="20" class="mr-3"> Disukai</a>
                     </div>
                 </div>

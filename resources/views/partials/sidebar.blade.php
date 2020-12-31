@@ -56,8 +56,13 @@
         </li>
         @endif
         <hr>
-        <li>
-            <a class="dropdown-item has-icon text-danger" href=" {{ route('logout') }}"
+        <div class="mt-4 p-3 hide-sidebar-mini">
+            <a href="{{ route('index') }}" class="btn btn-primary btn-lg btn-block btn-icon-split">
+                <i class="fas fa-home"></i>Home</a>
+            </a>
+        </div>
+        <div class="p-3 hide-sidebar-mini">
+            <a class="btn btn-danger btn-lg btn-block btn-icon-split" href=" {{ route('logout') }}"
                 onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
 
                 <i class="fas fa-sign-out-alt"></i> Logout
@@ -65,7 +70,7 @@
             <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
-        </li>
+        </div>
 
     </ul>
 </aside>

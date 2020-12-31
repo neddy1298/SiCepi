@@ -1,7 +1,7 @@
 @extends('app.front.pages.user.main')
 @section('user-content')
 <div class="d-flex align-items-center mb-3">
-    <h4 class="my-0"><strong>Kutipan Favorit:</strong> </h4>
+    <h4 class="my-0"><strong>Kutipan Saya:</strong> </h4>
     <div class="ml-auto">
         <select name="" id="" class="form-control border-0" style="box-shadow: none">
             <option value="">Terbaru</option>
