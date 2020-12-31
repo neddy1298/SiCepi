@@ -32,20 +32,20 @@ class RebuildController extends Controller
         // dd($writing);
         $block = Block::where('blocks.template_id', $writing->template_id)->get()->first();
 
-        if($block){
-            if ($block->tags == "") {
-                if ($block->template_id != 1)
-                {
-                    $writingchild = WritingChild::where('writing_id', $id)->get()->first();
-                    $writingchild->update([
-                        'writing_name' => $request->name,
-                        'writing_text' => $block->block_body,
-                    ]);
-                    // return redirect()->route('dashboard.writing.edit', $writing->id);
-                }
-                return redirect()->route('dashboard.writing.edit', $writing->id);
+        if($writing->field == null){
 
+            if ($block->template_id != 1)
+            {
+                $writingchild = WritingChild::where('writing_id', $id)->get()->first();
+                $writingchild->update([
+                    'writing_name' => $request->name,
+                    'writing_text' => $block->block_body,
+                ]);
+                // return redirect()->route('dashboard.writing.edit', $writing->id);
             }
+            return redirect()->route('dashboard.writing.edit', $writing->id);
+
+
         }
 
         $blocks = Block::where('blocks.template_id', $writing->template_id)->get();
