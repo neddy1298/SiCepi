@@ -33,7 +33,7 @@ class AuthController extends Controller
         if (auth()->attempt($credentials)) {
 
 
-            return redirect()->route('dashboard.index');
+            return redirect()->route('index');
 
         }else{
             Alert::error('Login Gagal', 'Perisa email & password kamu');

@@ -9,6 +9,7 @@ use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BlockController;
+use App\Http\Controllers\FrontController;
 
 
 
@@ -22,6 +23,28 @@ use App\Http\Controllers\BlockController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', [FrontController::class, 'index'])->name('index');
+
+Route::group(['prefix' => 'topics', 'as' => 'topics.'], function () {
+
+    Route::get('/', [FrontController::class, 'topics'])->name('view');
+    Route::get('{url}',[FrontController::class, 'quoteby_topic'])->name('quotes');
+});
+
+Route::group(['prefix' => 'author', 'as' => 'author.'], function () {
+
+    Route::get('/', [FrontController::class, 'author'])->name('view');
+    Route::get('{url}',[FrontController::class, 'quoteby_author'])->name('quotes');
+});
+
+Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+
+    Route::get('/',[FrontController::class, 'login'])->name('login');
+    Route::get('/favorite/{id}',[FrontController::class, 'favorite'])->name('favorite')->middleware('auth');
+    Route::get('/create-quote',[FrontController::class, 'create_quote'])->name('create_quote')->middleware('auth');
+});
+
 
 
 // Auth
