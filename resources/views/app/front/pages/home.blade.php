@@ -6,7 +6,7 @@
             <div class="col-md-8 mx-md-auto">
 
                 <h1 class="text-center">
-                    <img src="{{ asset('images/icon.svg') }}" alt="" class="d-block mx-auto mb-2">
+                    <img src="{{ asset('front/images/icon.svg') }}" alt="" class="d-block mx-auto mb-2">
                     <strong>"Kutipan Indah Untuk Siapa Saja"</strong>
                 </h1>
                 <div class="text-center mb-2">

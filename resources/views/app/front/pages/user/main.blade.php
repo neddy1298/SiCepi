@@ -11,7 +11,8 @@
                                 class="rounded-circle mr-3">
                             <div>
                                 <div class="mb-2"><strong>{{ Auth::user()->name }}</strong></div>
-                                <a href="#" class="btn btn-primary btn-sm">Buat Kutipan</a>
+                                <a href="{{ route('dashboard.user.profile') }}" class="btn btn-primary btn-sm">Profile
+                                    Setting</a>
                             </div>
                         </div>
 
@@ -20,7 +21,7 @@
                         <a href="{{ route('user.quote') }}" class="list-group-item list-group-item-action"><img
                                 src="{{ asset('front/images/icon.svg') }}" alt="" width="20" class="mr-3"> Kutipan
                             Saya</a>
-                        <a href="#" class="list-group-item list-group-item-action"><img
+                        <a href="{{ route('user.save') }}" class="list-group-item list-group-item-action"><img
                                 src="{{ asset('front/images/favorite.svg') }}" alt="" width="20" class="mr-3">
                             Tersimpan</a>
                         <a href="{{ route('user.favorite') }}" class="list-group-item list-group-item-action"><img

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Quote;
 use App\Models\Favorite;
+use App\Models\Saved;
 
 class QuoteController extends Controller
 {
@@ -67,7 +68,36 @@ class QuoteController extends Controller
         return redirect()->back();
     }
 
-    public function save($id)
+    public function save_store($id)
+    {
+        $save = Saved::where('quote_id', $id)->where('user_id', auth()->user()->id)->get();
+
+
+        if($save->isEmpty()){
+
+            $save = Saved::create([
+                'quote_id' => $id,
+                'user_id' => auth()->user()->id,
+            ]);
+        }
+
+        return redirect()->back();
+
+    }
+
+    public function save()
+    {
+        $quotes = Saved::where('saveds.user_id', auth()->user()->id)
+        ->join('quotes', 'quotes.id', '=', 'saveds.quote_id')
+        ->select('quotes.*')
+        ->get();
+
+
+        return view('app.front.pages.user.save', compact('quotes'));
+
+    }
+
+    public function favorite_store($id)
     {
         $favorite = Favorite::where('quote_id', $id)->where('user_id', auth()->user()->id)->get();
 

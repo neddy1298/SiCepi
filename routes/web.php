@@ -42,7 +42,17 @@ Route::group(['prefix' => 'author', 'as' => 'author.'], function () {
 Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 
     Route::get('/',[FrontController::class, 'login'])->name('login');
+
+    // Save
+    Route::get('/save',[QuoteController::class, 'save'])->name('save')->middleware('auth');
+    Route::post('/save/{id}', [QuoteController::class, 'save_store'])->name('save_store')->middleware('auth');
+
+    // Favorite
     Route::get('/favorite',[QuoteController::class, 'favorite'])->name('favorite')->middleware('auth');
+    Route::post('/favorite/{id}', [QuoteController::class, 'favorite_store'])->name('favorite_store')->middleware('auth');
+
+
+
     Route::get('/quote',[QuoteController::class, 'user_quote'])->name('quote')->middleware('auth');
     Route::get('/create-quote',[QuoteController::class, 'create_quote'])->name('create_quote')->middleware('auth');
     Route::post('/create-quote',[QuoteController::class, 'quote_store'])->name('quote_store')->middleware('auth');
@@ -51,6 +61,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 });
 
 Route::get('/search', [QuoteController::class, 'search'])->name('quote.search');
+Route::get('/save/{id}', [QuoteController::class, 'save'])->name('save')->middleware('auth');
 Route::get('/save/{id}', [QuoteController::class, 'save'])->name('save')->middleware('auth');
 
 
