@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Quote;
 use App\Models\Favorite;
 use App\Models\Saved;
+use App\Models\User;
+
+use Alert;
+
 
 class QuoteController extends Controller
 {
@@ -37,6 +41,18 @@ class QuoteController extends Controller
 
     public function quote_store(Request $request)
     {
+        $limit = auth()->user()->quote_limit;
+        if ($limit <= 0 ) {
+            Alert::warning('Gagal', 'Kamu telah mencapai batas pembuatan tulisan');
+            return redirect()->route('user.quote');
+
+        }else{
+            $limitUpdate = User::find(auth()->user()->id);
+            $limitUpdate->update([
+                'quote_limit' => $limitUpdate->quote_limit - 1
+            ]);
+        }
+
         $topics = implode(',', $request->topics);
 
         $quote = Quote::create([
