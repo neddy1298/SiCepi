@@ -52,6 +52,9 @@
                         Tulisan User</a></li>
                 <li class="{{ request()->is('dashboard/admin/tag_*') ? 'active' : '' }}"><a class="nav-link"
                         href="{{ route('dashboard.admin.tag') }}">Tag Management</a></li>
+
+                <li class="{{ request()->is('dashboard/admin/catalog_*') ? 'active' : '' }}"><a class="nav-link"
+                        href="{{ route('dashboard.admin.catalog') }}">Catalog Management</a></li>
             </ul>
         </li>
         @endif

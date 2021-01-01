@@ -5,81 +5,40 @@ namespace App\Http\Controllers;
 use App\Models\Catalog;
 use Illuminate\Http\Request;
 
+use Alert;
+
 class CatalogController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $catalogs = Catalog::latest()->get();
+        return view('app.catalog.view', compact('catalogs'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        Catalog::create($request->all());
+
+        Alert::success('Berhasil', 'Catalog berhasil dibuat');
+        return redirect()->back();
+    }
+    public function update(Request $request, $id)
+    {
+        $catalog = Catalog::find($id);
+
+        $catalog->update($request->all());
+
+        Alert::success('Berhasil', 'Catalog berhasil diubah');
+        return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Catalog  $catalog
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Catalog $catalog)
+    public function destroy($id)
     {
-        //
-    }
+        $catalog = Catalog::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Catalog  $catalog
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Catalog $catalog)
-    {
-        //
-    }
+        $catalog->delete();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Catalog  $catalog
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Catalog $catalog)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Catalog  $catalog
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Catalog $catalog)
-    {
-        //
+        Alert::success('Berhasil', 'Catalog berhasil dihapus');
+        return redirect()->back();
     }
 }

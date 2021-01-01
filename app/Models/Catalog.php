@@ -10,6 +10,6 @@ class Catalog extends Model
     use HasFactory;
 
     protected $fillable = [
-        'catalog'
+        'catalog', 'description'
     ];
 }

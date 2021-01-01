@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BlockController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\CatalogController;
 
 
 
@@ -170,6 +171,12 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
         Route::get('/tag_edit/{tag_id}',[TagController::class, 'edit'])->name('tag_edit');
         Route::post('/tag_edit/{tag_id}',[TagController::class, 'update'])->name('tag_update');
         Route::get('/tag_delete/{tag_id}',[TagController::class, 'destroy'])->name('tag_delete');
+
+        // Catalogs
+        Route::get('/catalog_list',[CatalogController::class, 'index'])->name('catalog');
+        Route::post('/catalog_new',[CatalogController::class, 'store'])->name('catalog_store');
+        Route::post('/catalog_edit/{catalog_id}',[CatalogController::class, 'update'])->name('catalog_update');
+        Route::get('/catalog_delete/{catalog_id}',[CatalogController::class, 'destroy'])->name('catalog_delete');
 
     });
 
