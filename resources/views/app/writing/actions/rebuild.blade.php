@@ -49,23 +49,6 @@
                                             value="{{ $writing->catalog }} -> {{ $writing->template_name }}" disabled>
                                     </div>
                                 </div>
-                                @if ($writing->catalog_id == 1)
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>Quote</label>
-                                        <textarea class="form-control" name="writing" cols="30" rows="10"
-                                            onkeypress="quote()" id="quote_text"></textarea>
-
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>Tampilan quote</label>
-
-                                        <blockquote id="tampilan_quote"></blockquote>
-                                    </div>
-                                </div>
-                                @else
                                 @foreach ($fields as $field)
 
                                 <div class="col-12">
@@ -82,8 +65,6 @@
                                 </div>
 
                                 @endforeach
-
-                                @endif
                             </div>
                         </div>
                         <div class="card-footer text-right">
@@ -100,11 +81,4 @@
     </div>
 </section>
 
-<script>
-    function quote() {
-        document.getElementById('tampilan_quote').innerHTML = "";
-        var quote = document.getElementById('quote_text').value;
-        document.getElementById('tampilan_quote').innerHTML = quote;
-    }
-</script>
 @endsection

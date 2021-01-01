@@ -69,7 +69,6 @@
                                     </div>
                                 </div>
 
-                                @if ($template->catalog_id != 1)
 
                                 <div class="form-group col-12 mt-5 mb-3">
                                     <h5> Default Block</h5>
@@ -99,7 +98,7 @@
                                 </div>
                                 @endforeach
 
-                                @endif
+
 
                                 <div class="form-group offset-10 col-1">
                                     <a href="{{ route('dashboard.admin.template') }}"

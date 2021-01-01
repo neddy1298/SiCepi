@@ -58,13 +58,10 @@
                     <script>
                         function copy(id){
 
-
                             document.getElementById("quoteText_{{ $quote->id }}").select();
                             document.execCommand('copy');
 
                             // console.log(dummy);
-
-
                         }
                     </script>
                 </div>

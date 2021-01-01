@@ -38,26 +38,6 @@
 
                                 @foreach ($writingchilds as $writingchild)
 
-                                @if ($writing->catalog_id == 1)
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>{{ $writing->writing_name }}</label>
-                                        <input type="hidden" name="child_id_{{ $writingchild->id }}"
-                                            value="{{ $writingchild->id }}">
-                                        <textarea class="form-control" name="block_body_{{ $writingchild->id }}"
-                                            cols="30" rows="10" onkeyup="quote()"
-                                            id="block_body">{{ $writingchild->writing_text }}</textarea>
-
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>Tampilan quote</label>
-
-                                        <blockquote id="tampilan_quote">{{ $writingchild->writing_text }}</blockquote>
-                                    </div>
-                                </div>
-                                @else
                                 <input type="hidden" name="child_id_{{ $writingchild->id }}"
                                     value="{{ $writingchild->id }}">
                                 <div class="form-group col-12">
@@ -70,7 +50,6 @@
                                     </div>
                                 </div>
 
-                                @endif
                                 @endforeach
 
                             </div>
@@ -88,11 +67,4 @@
 
     </div>
 </section>
-<script>
-    function quote() {
-        document.getElementById('tampilan_quote').innerHTML = "";
-        var quote = document.getElementById('block_body').value;
-        document.getElementById('tampilan_quote').innerHTML = quote;
-    }
-</script>
 @endsection

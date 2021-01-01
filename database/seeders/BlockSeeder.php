@@ -15,7 +15,7 @@ class BlockSeeder extends Seeder
     public function run()
     {
         $tags = [[
-            'template_id' => 2,
+            'template_id' => 1,
             'block_name' => 'Sales Letter 1',
             'tags' => 'product_name business_field product_features email_address user_name company_name',
             'block_body' => '<p>Dear Sir/Madam,</p>
@@ -27,7 +27,7 @@ class BlockSeeder extends Seeder
             <p>{{user_name}}</p>
             <p>{{company_name}}</p>',
         ],[
-            'template_id' => 2,
+            'template_id' => 1,
             'block_name' => 'Sales Letter 2',
             'tags' => 'product_name company_industry product_features user_name company_name',
             'block_body' => '<p>Dear Sir/Madam,</p>
@@ -39,7 +39,7 @@ class BlockSeeder extends Seeder
             <p>{{user_name}}</p>
             <p>{{company_name}}</p>',
         ],[
-            'template_id' => 2,
+            'template_id' => 1,
             'block_name' => 'Sales Letter 3',
             'tags' => 'company_name product_name user_name',
             'block_body' => '<p>Dear customer,</p>
@@ -50,7 +50,7 @@ class BlockSeeder extends Seeder
             <p>{{user_name}}</p>
             <p>{{company_name}}</p>',
         ],[
-            'template_id' => 3,
+            'template_id' => 2,
             'block_name' => 'Sales Letter Sample 1',
             'tags' => '',
             'block_body' => '<p>This is a test letter 1 without any input fields, it will be directly generated after you click next.<br></p>',

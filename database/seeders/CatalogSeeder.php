@@ -13,14 +13,10 @@ class CatalogSeeder extends Seeder
      */
     public function run()
     {
-        $quote = [
-            'catalog' => 'Quote'
-        ];
         $sales = [
             'catalog' => 'Sales Letter'
         ];
 
-        Catalog::create($quote);
         Catalog::create($sales);
     }
 }

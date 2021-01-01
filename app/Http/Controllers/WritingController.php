@@ -8,6 +8,7 @@ use App\Models\Catalog;
 use App\Models\Template;
 use App\Models\Block;
 use App\Models\Tag;
+use App\Models\User;
 use App\Models\WritingChild;
 use Response;
 use Alert;
@@ -56,20 +57,31 @@ class WritingController extends Controller
     {
         // dd($request->all());
 
+        $limit = auth()->user()->writing_limit;
+        if ($limit <= 0 ) {
+            Alert::warning('Gagal', 'Kamu telah mencapai batas pembuatan tulisan');
+            return redirect()->route('dashboard.user_index');
+
+        }else{
+            $limitUpdate = User::find(auth()->user()->id);
+            $limitUpdate->update([
+                'writing_limit' => $limitUpdate->writing_limit - 1
+            ]);
+        }
+        // dd($limit);
         $writing = Writing::create($request->all());
 
         $block = Block::where('blocks.template_id', $writing->template_id)->get()->first();
         // dd($block);
         if($block){
             if ($block->tags == "") {
-                if ($block->template_id != 1)
-                {
-                    $writingchild = WritingChild::create([
-                        'writing_id' => $writing->id,
-                        'writing_name' => $block->block_name,
-                        'writing_text' => $block->block_body,
-                    ]);
-                }
+
+                $writingchild = WritingChild::create([
+                    'writing_id' => $writing->id,
+                    'writing_name' => $block->block_name,
+                    'writing_text' => $block->block_body,
+                ]);
+
                 return redirect()->route('dashboard.writing.edit', $writing->id);
             }
         }
@@ -133,47 +145,39 @@ class WritingController extends Controller
         // dd($template);
         $result = "";
 
-        if ($template->id == 1) {
-            $writingchild = WritingChild::create([
-                'writing_id' => $id,
-                'writing_name' => 'Quote',
-                'writing_text' => $request->writing,
-            ]);
 
-        }else{
 
         foreach($blocks as $block){
 
 
-                $fields = collect(explode(" ", $block->tags));
-                // dd($fields);
+            $fields = collect(explode(" ", $block->tags));
+            // dd($fields);
 
 
-                // $result = $block->block_body;
-                $result = collect(explode("{{", $block->block_body));
-                $result = collect($result)->implode('');
-                $result = collect(explode("}}", $result));
-                $result = collect($result)->implode(' ');
+            // $result = $block->block_body;
+            $result = collect(explode("{{", $block->block_body));
+            $result = collect($result)->implode('');
+            $result = collect(explode("}}", $result));
+            $result = collect($result)->implode(' ');
 
-                // dd($result);
-
-
-                foreach ($fields as $field) {
-
-                    $result = str_replace($field,$request->$field, $result);
-                // dd($result);
+            // dd($result);
 
 
-                }
+            foreach ($fields as $field) {
 
+                $result = str_replace($field,$request->$field, $result);
+            // dd($result);
 
-                $writingchild = WritingChild::create([
-                    'writing_id' => $id,
-                    'writing_name' => $block->block_name,
-                    'writing_text' => $result,
-                ]);
 
             }
+
+
+            $writingchild = WritingChild::create([
+                'writing_id' => $id,
+                'writing_name' => $block->block_name,
+                'writing_text' => $result,
+            ]);
+
         }
         // dd($result);
 
@@ -264,6 +268,12 @@ class WritingController extends Controller
     {
         $writing = Writing::find($id);
         $writing->delete();
+
+        $limitUpdate = User::find(auth()->user()->id);
+        $limitUpdate->update([
+            'writing_limit' => $limitUpdate->writing_limit + 1
+        ]);
+
 
         Alert::success('Berhasil', 'Tulisan berhasil dihapus');
         return redirect()->back();
