@@ -15,6 +15,7 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "realrashid/sweet-alert": "^3.2",
+        "xendit/xendit-php": "^2.6",
         "yajra/laravel-datatables-oracle": "^9.15"
     },
     "require-dev": {

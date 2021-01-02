@@ -13,9 +13,22 @@
                 </div>
             </div>
             <div class="quote-author row">
-                @auth
+
                 <div class="col-auto ml-auto">
                     <label class="d-block mb-0"><small>Tools</small></label>
+
+                    @guest
+                    <div class="row">
+
+                        <button type="submit" class="btn btn-light btn-sm btn-rounded" data-toggle="modal"
+                            data-target="#modalGuest"><i
+                                class="mdi mdi-content-save-all-outline align-middle"></i></button>
+                        <button type="submit" class="btn btn-light btn-sm btn-rounded" data-toggle="modal"
+                            data-target="#modalGuest"><i class="mdi mdi-heart-outline align-middle"></i></button>
+                    </div>
+                    @endguest
+
+                    @auth
                     <div class="row">
                         <form action="{{ route('user.save_store' , $quote->id) }}" method="post">
                             @csrf
@@ -31,16 +44,18 @@
 
 
 
+
+
                     @if ($quote->user_id == Auth::user()->id)
 
                     <a href="{{ route('user.edit_quote' , $quote->id) }}" class="btn btn-light btn-sm btn-rounded"><i
                             class="mdi mdi-pencil-outline align-middle"></i></a>
                     @endif
+                    @endauth
 
 
 
                 </div>
-                @endauth
                 <div class="col-auto ml-auto">
                     <label class="d-block mb-0"><small>Share</small></label>
                     <a href="#" class="btn btn-light btn-sm btn-rounded" onclick="copy('copy_{{ $quote->id }}')">
@@ -74,5 +89,34 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalGuest" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <h4 class="modal-title text-primary" id="exampleModalLongTitle">Uppss.. <br> sepertinya kamu belum
+                    memiliki akun</h4>
+                <div class="mt-5 mb-4">
+                    <small class="font-weight-bold text-secondary">Untuk dapat menyimpan dan mengedit tulisan kamu perlu
+                        masuk akun kamu..</small>
+                </div>
+                <div class="mb-2">
+                    <a href="{{ route('login') }}" class="btn btn-primary" style="width:200px">LOGIN</a>
+                </div>
+
+                <div class="mt-3 mb-2">
+                    <small class="font-weight-bold text-secondary">daftar bila belum memiliki akun</small>
+                </div>
+                <div class="mt-3 mb-2">
+                    <a href="{{ route('register') }}" class="btn btn-info" style="width:200px">DAFTAR</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @endforeach

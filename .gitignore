@@ -1,3 +1,5 @@
+/app/Http/Controllers/Api
+/routes/api
 /node_modules
 /public/hot
 /public/storage
