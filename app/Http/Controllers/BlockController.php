@@ -24,7 +24,7 @@ class BlockController extends Controller
 
         // dd($template);
 
-        return view('app.block.actions.create', compact('tags', 'template'));
+        return view('dashboard.app.block.actions.create', compact('tags', 'template'));
     }
 
     public function store(Request $request, $id)
@@ -73,7 +73,7 @@ class BlockController extends Controller
 
         // dd($block);
 
-        return view('app.block.actions.edit', compact('tags', 'block'));
+        return view('dashboard.app.block.actions.edit', compact('tags', 'block'));
     }
 
     public function update(Request $request, $id)

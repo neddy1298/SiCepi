@@ -13,11 +13,11 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('app.dashboard');
+        return view('dashboard.app.dashboard');
     }
 
     public function pricing()
     {
-        return view('app.pricing.view');
+        return view('dashboard.app.pricing.view');
     }
 }

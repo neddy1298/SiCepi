@@ -81,11 +81,11 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::group(['prefix' => 'error'], function () {
 
         Route::get('403', function(){
-            return view('app.error.403');
+            return view('dashboard.app.error.403');
         });
 
         Route::get('404', function(){
-            return view('app.error.404');
+            return view('dashboard.app.error.404');
         });
     });
 

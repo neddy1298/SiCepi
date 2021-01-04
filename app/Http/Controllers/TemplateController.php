@@ -23,14 +23,14 @@ class TemplateController extends Controller
     {
         $templates = Template::join('catalogs', 'catalogs.id', '=', 'templates.catalog_id')
         ->select('templates.*', 'catalogs.catalog')->latest()->get();
-        return view('app.template.view', compact('templates'));
+        return view('dashboard.app.template.view', compact('templates'));
     }
 
     public function create()
     {
         $catalogs = Catalog::get();
         $tags = Tag::get();
-        return view('app.template.actions.create', compact('catalogs', 'tags'));
+        return view('dashboard.app.template.actions.create', compact('catalogs', 'tags'));
 
     }
 
@@ -91,7 +91,7 @@ class TemplateController extends Controller
         $blocks = Block::where('blocks.template_id', $id)->get();
         $catalogs = Catalog::get();
 
-        return view('app.template.actions.edit', compact('template', 'blocks', 'catalogs'));
+        return view('dashboard.app.template.actions.edit', compact('template', 'blocks', 'catalogs'));
     }
 
     public function update(Request $request, $id)

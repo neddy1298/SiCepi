@@ -13,7 +13,7 @@ class CatalogController extends Controller
     public function index()
     {
         $catalogs = Catalog::latest()->get();
-        return view('app.catalog.view', compact('catalogs'));
+        return view('dashboard.app.catalog.view', compact('catalogs'));
     }
     public function store(Request $request)
     {

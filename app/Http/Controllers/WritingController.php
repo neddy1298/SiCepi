@@ -28,7 +28,7 @@ class WritingController extends Controller
 
     public function index()
     {
-        return view('app.writing.view');
+        return view('dashboard.app.writing.view');
     }
 
     public function user_index()
@@ -41,7 +41,7 @@ class WritingController extends Controller
 
         // dd($writing);
 
-        return view('app.writing.view', compact('writings'));
+        return view('dashboard.app.writing.view', compact('writings'));
     }
 
     public function create()
@@ -49,7 +49,7 @@ class WritingController extends Controller
         $catalogs = Catalog::get();
         $templates = Template::where('status', 'Published')->get();
         $blocks = Block::get();
-        return view('app.writing.actions.create', compact('catalogs', 'templates', 'blocks'));
+        return view('dashboard.app.writing.actions.create', compact('catalogs', 'templates', 'blocks'));
 
     }
 
@@ -131,7 +131,7 @@ class WritingController extends Controller
         }
         // dd($fields);
 
-        return view('app.writing.actions.build', compact('writing', 'fields'));
+        return view('dashboard.app.writing.actions.build', compact('writing', 'fields'));
 
     }
 
@@ -204,7 +204,7 @@ class WritingController extends Controller
         $writingchilds = WritingChild::where('writing_id', $id)->get();
         // dd($writingchilds);
 
-        return view('app.writing.actions.edit', compact('writing', 'writingchilds'));
+        return view('dashboard.app.writing.actions.edit', compact('writing', 'writingchilds'));
     }
 
     public function update(Request $request, $id)
@@ -243,7 +243,7 @@ class WritingController extends Controller
         ->select('writings.*', 'templates.template_name', 'catalogs.catalog')
         ->latest()->get();
 
-        return view('app.writing.user_view', compact('writings'));
+        return view('dashboard.app.writing.user_view', compact('writings'));
     }
 
     public function user_writing_detail($id)
@@ -262,7 +262,7 @@ class WritingController extends Controller
 
         // dd($blocks);
 
-        return view('app.writing.user_view_detail', compact('writing', 'blocks'));
+        return view('dashboard.app.writing.user_view_detail', compact('writing', 'blocks'));
     }
 
     public function destroy($id)

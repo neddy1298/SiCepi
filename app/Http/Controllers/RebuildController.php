@@ -74,7 +74,7 @@ class RebuildController extends Controller
         }
         // dd($fields);
 
-        return view('app.writing.actions.rebuild', compact('writing', 'fields'));
+        return view('dashboard.app.writing.actions.rebuild', compact('writing', 'fields'));
 
     }
 

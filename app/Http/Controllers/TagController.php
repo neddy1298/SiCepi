@@ -17,12 +17,12 @@ class TagController extends Controller
     public function index()
     {
         $tags = Tag::latest()->get();
-        return view('app.tag.view', compact('tags'));
+        return view('dashboard.app.tag.view', compact('tags'));
     }
 
     public function create()
     {
-        return view('app.tag.actions.create');
+        return view('dashboard.app.tag.actions.create');
     }
 
     public function store(Request $request)
@@ -50,7 +50,7 @@ class TagController extends Controller
     public function edit($id)
     {
         $tag = Tag::find($id);
-        return view('app.tag.actions.edit', compact('tag'));
+        return view('dashboard.app.tag.actions.edit', compact('tag'));
     }
 
     public function update(Request $request, $id)

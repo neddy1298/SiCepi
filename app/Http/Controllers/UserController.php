@@ -16,7 +16,7 @@ class UserController extends Controller
 
     public function profile()
     {
-        return view('app.user.profile');
+        return view('dashboard.app.user.profile');
     }
 
     public function profile_update(Request $request ,$id)
@@ -35,7 +35,7 @@ class UserController extends Controller
 
     public function profile_password()
     {
-        return view('app.user.actions.change_password');
+        return view('dashboard.app.user.actions.change_password');
     }
 
     public function profile_password_update(Request $request, $id)
@@ -60,7 +60,7 @@ class UserController extends Controller
             Alert::error('Gagal', 'Password tidak berhasil diubah');
         }
 
-        return view('app.user.actions.change_password');
+        return view('dashboard.app.user.actions.change_password');
 
     }
 
@@ -68,12 +68,12 @@ class UserController extends Controller
     {
         $users = User::latest()->get();
 
-        return view('app.user.view', compact('users'));
+        return view('dashboard.app.user.view', compact('users'));
     }
 
     public function create()
     {
-        return view('app.user.actions.create');
+        return view('dashboard.app.user.actions.create');
     }
 
     public function store(Request $request)
@@ -99,7 +99,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('app.user.actions.edit', compact('user'));
+        return view('dashboard.app.user.actions.edit', compact('user'));
     }
 
     public function update(Request $request, $id)

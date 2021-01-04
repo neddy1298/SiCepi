@@ -32,11 +32,11 @@ class QuoteController extends Controller
         $key = $request->key;
         $search = $request->search;
 
-        return view('app.front.pages.search', compact('quotes', 'key', 'search'));
+        return view('front.pages.search', compact('quotes', 'key', 'search'));
     }
     public function create_quote()
     {
-        return view('app.front.pages.user.create_quote');
+        return view('front.pages.user.create_quote');
     }
 
     public function quote_store(Request $request)
@@ -68,7 +68,7 @@ class QuoteController extends Controller
     public function edit_quote($id)
     {
         $quote = Quote::find($id);
-        return view('app.front.pages.user.edit_quote', compact('quote'));
+        return view('front.pages.user.edit_quote', compact('quote'));
     }
 
     public function quote_update(Request $request, $id)
@@ -109,7 +109,7 @@ class QuoteController extends Controller
         ->get();
 
 
-        return view('app.front.pages.user.save', compact('quotes'));
+        return view('front.pages.user.save', compact('quotes'));
 
     }
 
@@ -138,7 +138,7 @@ class QuoteController extends Controller
         ->get();
 
 
-        return view('app.front.pages.user.favorite', compact('quotes'));
+        return view('front.pages.user.favorite', compact('quotes'));
 
     }
 
@@ -146,6 +146,6 @@ class QuoteController extends Controller
     {
         $quotes = Quote::where('quotes.user_id', auth()->user()->id)->get();
 
-        return view('app.front.pages.user.user_quote', compact('quotes'));
+        return view('front.pages.user.user_quote', compact('quotes'));
     }
 }
