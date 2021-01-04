@@ -72,9 +72,13 @@ class WritingController extends Controller
         // dd($limit);
         $writing = Writing::create($request->all());
 
-        $block = Block::where('blocks.template_id', $writing->template_id)->get()->first();
-        // dd($block);
-        if($block){
+        $blocks = Block::where('blocks.template_id', $writing->template_id)->get();
+        // dd($blocks);
+
+        if($blocks->count() == 1){
+            $block = Block::where('blocks.template_id', $writing->template_id)->get()->first();
+
+            // dd($block);
             if ($block->tags == "") {
 
                 $writingchild = WritingChild::create([
@@ -85,6 +89,21 @@ class WritingController extends Controller
 
                 return redirect()->route('dashboard.writing.edit', $writing->id);
             }
+        }else{
+            $block = Block::where('blocks.template_id', $writing->template_id)->get()->first();
+
+            if ($block->tags == "") {
+                foreach ($blocks as $block) {
+
+                    $writingchild = WritingChild::create([
+                        'writing_id' => $writing->id,
+                        'writing_name' => $block->block_name,
+                        'writing_text' => $block->block_body,
+                    ]);
+                }
+                return redirect()->route('dashboard.writing.edit', $writing->id);
+            }
+
         }
 
         return redirect()->route('dashboard.writing.build', $writing->id);

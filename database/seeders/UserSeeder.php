@@ -28,5 +28,6 @@ class UserSeeder extends Seeder
         ];
         User::create($user);
         User::create($admin);
+        User::factory()->count(10)->create();
     }
 }

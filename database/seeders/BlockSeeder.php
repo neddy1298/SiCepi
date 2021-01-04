@@ -54,6 +54,56 @@ class BlockSeeder extends Seeder
             'block_name' => 'Sales Letter Sample 1',
             'tags' => '',
             'block_body' => '<p>This is a test letter 1 without any input fields, it will be directly generated after you click next.<br></p>',
+        ],[
+            'template_id' => 3,
+            'block_name' => 'Example from Crazy Egg',
+            'tags' => '',
+            'block_body' => '<p>Show Me My Heatmap</p>',
+        ],[
+            'template_id' => 3,
+            'block_name' => 'Example from Manpacks',
+            'tags' => '',
+            'block_body' => '<p>Build a Manpack</p>',
+        ],[
+            'template_id' => 3,
+            'block_name' => 'Example from GiftRocket',
+            'tags' => '',
+            'block_body' => '<p>Send a GiftRocket</p>',
+        ],[
+            'template_id' => 3,
+            'block_name' => 'Example from Contently',
+            'tags' => '',
+            'block_body' => '<p>Talk to Us</p>',
+        ],[
+            'template_id' => 3,
+            'block_name' => 'Example from Less Accounting',
+            'tags' => '',
+            'block_body' => '<p>Let’s Do It!</p>',
+        ],[
+            'template_id' => 3,
+            'block_name' => 'Example from Square',
+            'tags' => '',
+            'block_body' => '<p>Get Free Card Reader</p>',
+        ],[
+            'template_id' => 3,
+            'block_name' => 'Example from Basecamp',
+            'tags' => '',
+            'block_body' => '<p>Give Basecamp a Try</p>',
+        ],[
+            'template_id' => 3,
+            'block_name' => 'Example from My Perfect Resume',
+            'tags' => '',
+            'block_body' => '<p>Create My Resume</p>',
+        ],[
+            'template_id' => 3,
+            'block_name' => 'Example from Point Blank SEO',
+            'tags' => '',
+            'block_body' => '<p>Be Awesome</p>',
+        ],[
+            'template_id' => 3,
+            'block_name' => 'Example from KISSmetrics',
+            'tags' => '',
+            'block_body' => '<p>Log In With Google</p>',
         ],];
         foreach ($tags as $tag) {
             Block::create($tag);

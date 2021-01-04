@@ -38,7 +38,11 @@
                                         <td class="text-center" width="10%">1</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->role }}</td>
+                                        @if ($user->is_admin == 1)
+                                        <td>Admin</td>
+                                        @else
+                                        <td>User</td>
+                                        @endif
                                         <td width="20%">
                                             <div>
                                                 <a href="{{ route('dashboard.user.edit', $user->id) }}"

@@ -13,7 +13,7 @@ class CatalogSeeder extends Seeder
      */
     public function run()
     {
-        $sales = [[
+        $catalogs = [[
             'catalog' => 'Sales Letter',
             'description' => 'Sales Letter'
         ],[
@@ -48,8 +48,8 @@ class CatalogSeeder extends Seeder
             'description' => 'Testimonials'
         ],];
 
-        foreach ($sales as $sale) {
-            Catalog::create($sale);
+        foreach ($catalogs as $catalog) {
+            Catalog::create($catalog);
         }
     }
 }

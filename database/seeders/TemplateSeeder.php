@@ -14,20 +14,27 @@ class TemplateSeeder extends Seeder
      */
     public function run()
     {
-        $sales = [
+        $templates = [[
             'catalog_id' => 1,
             'template_name' => 'Sales Letter Sample Group 1',
             'template_intro' => 'Here are some sales letters that demonstrate how this automatic writing system work.',
             'status' => 'Not Published'
-        ];
-        $sales2 = [
+        ],[
             'catalog_id' => 1,
             'template_name' => 'Sales Letter Sample Group 2',
             'template_intro' => 'Another sales template another sales template',
             'status' => 'Published'
-        ];
+        ],[
+            'catalog_id' => 2,
+            'template_name' => 'Basic sample of CTA',
+            'template_intro' => 'Here is the 10 static examples of CTA',
+            'status' => 'Published'
+        ]];
 
-        Template::create($sales);
-        Template::create($sales2);
+        foreach ($templates as $template) {
+
+            Template::create($template);
+        }
+
     }
 }
