@@ -30,6 +30,11 @@
             </ul>
         </li>
 
+        <li class="{{ request()->is('dashboard/pricing') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('dashboard.pricing') }}"><i class="fas fa-dollar-sign"></i>
+                <span>Beli Tulisan</span></a></li>
+
+
         @if (Auth::user()->is_admin == 1)
 
 

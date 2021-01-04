@@ -138,6 +138,10 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
 
     });
 
+    Route::group(['prefix' => 'pricing'], function () {
+        Route::get('/', [DashboardController::class, 'pricing'])->name('pricing');
+    });
+
 
     // Writing Management
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']], function () {

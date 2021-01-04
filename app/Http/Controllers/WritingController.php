@@ -59,8 +59,9 @@ class WritingController extends Controller
 
         $limit = auth()->user()->writing_limit;
         if ($limit <= 0 ) {
-            Alert::warning('Gagal', 'Kamu telah mencapai batas pembuatan tulisan');
-            return redirect()->route('dashboard.user_index');
+            Alert::warning('Gagal', 'Kamu telah mencapai batas pembuatan tulisan, beli tulisan untuk menambah tulisanmu');
+            // Alert::html('Html Title', 'Html Code', 'Type');
+            return redirect()->route('dashboard.pricing');
 
         }else{
             $limitUpdate = User::find(auth()->user()->id);

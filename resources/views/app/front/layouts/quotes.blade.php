@@ -111,7 +111,7 @@
                     <small class="font-weight-bold text-secondary">daftar bila belum memiliki akun</small>
                 </div>
                 <div class="mt-3 mb-2">
-                    <a href="{{ route('register') }}" class="btn btn-info" style="width:200px">DAFTAR</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary-outline" style="width:200px">DAFTAR</a>
                 </div>
             </div>
         </div>

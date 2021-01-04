@@ -1,5 +1,5 @@
 /app/Http/Controllers/Api
-/routes/api
+/routes/api.php
 /node_modules
 /public/hot
 /public/storage

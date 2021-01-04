@@ -11,7 +11,8 @@
 
     <div class="section-body">
 
-        <h2 class="section-title">Tulisan Saya</h2>
+        <h2 class="section-title">Tulisan Saya
+            ( {{ $writings->count() }} / {{ $writings->count() + auth()->user()->writing_limit }} )</h2>
         <div class="row">
             @foreach ($writings as $writing)
             <div class="col-12 col-md-6 col-lg-3">

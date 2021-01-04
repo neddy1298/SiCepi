@@ -10,8 +10,14 @@ class DashboardController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function index()
     {
         return view('app.dashboard');
+    }
+
+    public function pricing()
+    {
+        return view('app.pricing.view');
     }
 }
