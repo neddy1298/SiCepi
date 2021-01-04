@@ -1,4 +1,4 @@
-@extends('app.table')
+@extends('dashboard.app.table')
 
 @section('content')
 <section class="section">
