@@ -16,7 +16,7 @@
 
                 </div>
                 <div class="text-center">
-                    <small>Contoh Author:</small>
+                    <small>Contoh Topik:</small>
                     @include('front.layouts.tags')
 
                 </div>
