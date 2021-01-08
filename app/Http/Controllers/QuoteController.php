@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Models\Quote;
 use App\Models\Favorite;
-// use App\Models\Saved;
 use App\Models\User;
 
 use Alert;
@@ -105,13 +104,7 @@ class QuoteController extends Controller
     // Save Quote
     public function save()
     {
-        // $saved = Saved::where('saveds.user_id', auth()->user()->id)->get();
-
-
-
         $quotes = Quote::where('quotes.user_id', auth()->user()->id)->where('saved_from', '!=', null)->get();
-
-        // dd($saved);
 
 
         return view('front.pages.user.user_quote.save', compact('quotes'));
