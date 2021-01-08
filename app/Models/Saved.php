@@ -10,6 +10,6 @@ class Saved extends Model
     use HasFactory;
 
     protected $fillable = [
-        'quote_id', 'user_id'
+        'user_id', 'quote_id',
     ];
 }

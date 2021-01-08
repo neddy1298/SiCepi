@@ -1,7 +1,7 @@
-@extends('front.pages.user.main')
+@extends('front.layouts.main')
 @section('user-content')
 <div class="card">
-    <form action="{{ route('user.quote_update', $quote->id) }}" method="post">
+    <form action="{{ route('user.save_update', $quote->id) }}" method="post">
         @csrf
         <div class="card-header d-flex">
             <h5>Buat Kutipan</h5>
@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label for="">Author</label>
-                <input type="text" class="form-control" name="author" value="{{ Auth::user()->name }}">
+                <input type="text" class="form-control" name="author" value="{{ $quote->author }}">
             </div>
             <div class="form-group">
                 <label for="">Isi Kutipan / Quote</label>

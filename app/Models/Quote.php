@@ -10,6 +10,6 @@ class Quote extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'quote', 'topics', 'author',
+        'user_id', 'quote', 'topics', 'author', 'saved_from',
     ];
 }

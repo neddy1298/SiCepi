@@ -47,10 +47,14 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
     // Save
     Route::get('/save',[QuoteController::class, 'save'])->name('save')->middleware('auth');
     Route::post('/save/{id}', [QuoteController::class, 'save_store'])->name('save_store')->middleware('auth');
+    Route::get('/save/{id}', [QuoteController::class, 'save_destroy'])->name('save_destroy')->middleware('auth');
+    // Route::get('/save/edit/{id}', [QuoteController::class, 'save_edit'])->name('save_edit')->middleware('auth');
+    // Route::post('/save/edit/{id}', [QuoteController::class, 'save_update'])->name('save_update')->middleware('auth');
 
     // Favorite
     Route::get('/favorite',[QuoteController::class, 'favorite'])->name('favorite')->middleware('auth');
     Route::post('/favorite/{id}', [QuoteController::class, 'favorite_store'])->name('favorite_store')->middleware('auth');
+    Route::get('/favorite/{id}', [QuoteController::class, 'favorite_destroy'])->name('favorite_destroy')->middleware('auth');
 
 
 

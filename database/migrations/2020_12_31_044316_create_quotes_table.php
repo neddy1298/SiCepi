@@ -19,9 +19,12 @@ class CreateQuotesTable extends Migration
             $table->string('author');
             $table->string('quote');
             $table->string('topics');
+            $table->unsignedBigInteger('saved_from')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('saved_from')->references('id')->on('users')->onDelete('cascade');
+
         });
     }
 

@@ -9,12 +9,13 @@ class FrontController extends Controller
 {
     public function login()
     {
-        return view('front.pages.user.login');
+        return view('front.layouts.login');
     }
 
     public function index()
     {
         $quotes = Quote::join('users', 'users.id', '=', 'quotes.user_id')
+        ->where('users.is_admin', 1)
         ->select('quotes.*', 'users.name as user_name')
         ->get();
 

@@ -1,4 +1,4 @@
-@extends('front.pages.user.main')
+@extends('front.layouts.main')
 @section('user-content')
 <div class="d-flex align-items-center mb-3">
     <h4 class="my-0"><strong>Kutipan Tersimpan:</strong> </h4>
@@ -13,6 +13,8 @@
 <div class="masonry-quote mb-3 grid grid-3">
 
     @include('front.layouts.quotes');
+    {{--  --}}
+
 
 </div>
 @endsection

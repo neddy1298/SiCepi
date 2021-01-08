@@ -30,16 +30,32 @@
 
                     @auth
                     <div class="row">
+                        @if(!request()->is('user/save'))
                         <form action="{{ route('user.save_store' , $quote->id) }}" method="post">
                             @csrf
                             <button type="submit" class="btn btn-light btn-sm btn-rounded"><i
                                     class="mdi mdi-content-save-all-outline align-middle"></i></button>
                         </form>
+                        @else
+                        <form action="{{ route('user.save_destroy' , $quote->id) }}" method="get">
+                            @csrf
+                            <button type="submit" class="btn btn-light btn-sm btn-rounded"><i
+                                    class="mdi mdi-delete-forever align-middle"></i></button>
+                        </form>
+                        @endif
+                        @if(!request()->is('user/favorite'))
                         <form action="{{ route('user.favorite_store' , $quote->id) }}" method="post">
                             @csrf
                             <button type="submit" class="btn btn-light btn-sm btn-rounded"><i
                                     class="mdi mdi-heart-outline align-middle"></i></button>
                         </form>
+                        @else
+                        <form action="{{ route('user.favorite_destroy' , $quote->id) }}" method="get">
+                            @csrf
+                            <button type="submit" class="btn btn-light btn-sm btn-rounded"><i
+                                    class="mdi mdi-heart align-middle"></i></button>
+                        </form>
+                        @endif
                     </div>
 
 

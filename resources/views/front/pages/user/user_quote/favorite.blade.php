@@ -1,4 +1,4 @@
-@extends('front.pages.user.main')
+@extends('front.layouts.main')
 @section('user-content')
 <div class="d-flex align-items-center mb-3">
     <h4 class="my-0"><strong>Kutipan Favorit:</strong> </h4>
