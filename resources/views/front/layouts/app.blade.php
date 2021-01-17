@@ -33,7 +33,21 @@
                         <li class="nav-item {{ request()->segment(1) == "author" ? "active" : "" }}">
                             <a class="nav-link" href="{{ route('author.view') }}">Author</a>
                         </li>
-
+                        <li>
+                            <div class="dropdown d-inline">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    Kategori
+                                </a>
+                                <div class="dropdown-menu" x-placement="bottom-start">
+                                    <a class="dropdown-item has-icon" href="{{ route('dashboard.index') }}">Quote</a>
+                                    @foreach ($Category as $category)
+                                    <a class="dropdown-item has-icon"
+                                        href="{{ route('dashboard.index') }}">{{$category->catalog}}</a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                     <ul class="ml-md-auto navbar-nav navbar-right align-items-center">
 

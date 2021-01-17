@@ -19,10 +19,14 @@ class FrontController extends Controller
         ->select('quotes.*', 'users.name as user_name')
         ->get();
 
-        // $favorites = Favorite::where('favorites.user_id', auth()->user()->id)->get();
-        // dd($quotes);
+        foreach ($quotes as $quote) {
+            foreach (explode(',',$quote->topics) as $topic) {
+                $topics[] = $topic;
+            }
+        }
+        $topics = array_unique($topics);
 
-        return view('front.pages.home', compact('quotes'));
+        return view('front.pages.home', compact('quotes', 'topics'));
     }
 
     public function topics()

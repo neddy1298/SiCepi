@@ -11,6 +11,10 @@
                     <div><a href="{{ route('author.quotes', $quote->author) }}"
                             class="text-dark font-weight-bold">{{ $quote->author }}</a></div>
                 </div>
+                <div class="col-auto">
+                    <label class="d-block mb-0"><small>Publish by</small></label>
+                    <div class="text-dark font-weight-bold">SiCEPI</div>
+                </div>
             </div>
             <div class="quote-author row">
 
