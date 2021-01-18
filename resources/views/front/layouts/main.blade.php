@@ -33,6 +33,9 @@
                             Tersimpan</a>
                         <a href="{{ route('user.favorite') }}" class="list-group-item list-group-item-action"><img
                                 src="{{ asset('front/images/heart.svg') }}" alt="" width="20" class="mr-3"> Disukai</a>
+                        <a href="{{ route('user.purchase') }}" class="list-group-item list-group-item-action"><img
+                                src="" alt="" width="20" class="mr-3"> Beli
+                            Tulisan</a>
                     </div>
                 </div>
             </div>

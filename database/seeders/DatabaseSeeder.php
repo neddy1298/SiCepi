@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TagSeeder::class);
         $this->call(BlockSeeder::class);
         $this->call(QuoteSeeder::class);
+        $this->call(PromoCodeSeeder::class);
     }
 }

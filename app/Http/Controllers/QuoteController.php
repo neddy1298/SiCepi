@@ -13,6 +13,7 @@ use App\Models\Block;
 use App\Models\Tag;
 use App\Models\Writing;
 use App\Models\WritingChild;
+use App\Models\PromoCode;
 
 use Alert;
 
@@ -474,6 +475,28 @@ class QuoteController extends Controller
         $favorite->delete();
 
         Alert::success('Berhasil', 'Berhasil menghapus quote dari list favorite kamu');
+        return redirect()->back();
+    }
+
+    // Purchase
+    public function purchase()
+    {
+        return view('front.pages.user.purchase.view');
+    }
+
+    public function purchase_store(Request $request)
+    {
+        $promo_code = PromoCode::where('code', '=', $request->code)->get()->first();
+        if(!$promo_code){
+            Alert::error('Gagal', 'Gagal mengaktifkan kode promo, Periksa kembali kode promo kamu');
+            return redirect()->back();
+        }
+        $user = User::find(auth()->user()->id);
+        $user->update([
+            'writing_limit' => $user->writing_limit + $promo_code->value
+        ]);
+
+        Alert::success('Berhasil', 'Berhasil mengaktifkan kode promo');
         return redirect()->back();
     }
 }

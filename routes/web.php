@@ -84,6 +84,8 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('/edit-other/{id}',[QuoteController::class, 'edit_other'])->name('edit_other')->middleware('auth');
     Route::post('/edit-other/{id}',[QuoteController::class, 'update_other'])->name('other_update')->middleware('auth');
 
+    Route::get('/purchase',[QuoteController::class, 'purchase'])->name('purchase')->middleware('auth');
+    Route::post('/purchase',[QuoteController::class, 'purchase_store'])->name('purchase_store')->middleware('auth');
 
 });
 
