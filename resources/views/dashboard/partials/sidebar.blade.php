@@ -2,23 +2,38 @@
     <div class="sidebar-brand">
         <a href="">{{ config('app.name') }}</a>
     </div>
+
     <div class="sidebar-brand sidebar-brand-sm">
         <a href="#">{{ strtoupper(substr(config('app.name'), 0, 2)) }}</a>
     </div>
     <ul class="sidebar-menu">
+        @if (Auth::user()->is_admin == 1)
         <li class="menu-header">Dashboard</li>
         <li class="{{ request()->is('dashboard') ? 'active' : '' }}"><a class="nav-link"
                 href="{{ route('dashboard.index') }}"><i class="fas fa-columns"></i> <span>Dashboard</span></a></li>
 
-
+        @endif
         <li class="menu-header">User Panel</li>
-        <li class="{{ request()->is('dashboard/writing/*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('dashboard.writing.create') }}"><i class="fas fa-pencil-alt"></i>
-                <span>Tulisan Baru</span></a></li>
+
 
         <li class="{{ request()->is('dashboard/my_writing') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('dashboard.user_index') }}"><i class="fas fa-bookmark"></i>
                 <span>Tulisan Saya</span></a></li>
+
+
+
+        <li class="{{ request()->is('dashboard/writing/*') ? 'active' : '' }} nav-item dropdown">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-pencil-alt"></i> <span>Buat Kutipan</span></a>
+            <ul class="dropdown-menu">
+                <li class="{{ request()->is('dashboard/writing/simple/*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('dashboard.writing.create_quote') }}">
+                        <span>Buat Kutipan Baru</span></a></li>
+
+                <li class="{{ request()->is('dashboard/writing') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('dashboard.writing.create') }}">
+                        <span>Buat Kutipan Advance</span></a></li>
+            </ul>
+        </li>
 
         <li class="{{ request()->is('dashboard/settings/*') ? 'active' : '' }} nav-item dropdown">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-user-cog"></i> <span>User Settings</span></a>

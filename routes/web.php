@@ -10,6 +10,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BlockController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\CatalogController;
 
@@ -40,6 +41,12 @@ Route::group(['prefix' => 'author', 'as' => 'author.'], function () {
     Route::get('{author}',[FrontController::class, 'quoteby_author'])->name('quotes');
 });
 
+Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
+    Route::get('{category}', [CategoryController::class, 'index'])->name('view');
+    Route::get('detail/{id}',[CategoryController::class, 'detail'])->name('detail');
+    Route::post('detail/{id}',[CategoryController::class, 'writing_save'])->name('writing_save');
+});
+
 Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 
     Route::get('/',[FrontController::class, 'login'])->name('login');
@@ -57,12 +64,27 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('/favorite/{id}', [QuoteController::class, 'favorite_destroy'])->name('favorite_destroy')->middleware('auth');
 
 
-
     Route::get('/quote',[QuoteController::class, 'user_quote'])->name('quote')->middleware('auth');
+    Route::get('/other-quote',[QuoteController::class, 'user_other_quote'])->name('quote_other')->middleware('auth');
+
+
+    // Create Quote
     Route::get('/create-quote',[QuoteController::class, 'create_quote'])->name('create_quote')->middleware('auth');
     Route::post('/create-quote',[QuoteController::class, 'quote_store'])->name('quote_store')->middleware('auth');
     Route::get('/edit-quote/{id}',[QuoteController::class, 'edit_quote'])->name('edit_quote')->middleware('auth');
     Route::post('/edit-quote/{id}',[QuoteController::class, 'quote_update'])->name('quote_update')->middleware('auth');
+
+    // Create Other
+    Route::get('/create-other',[QuoteController::class, 'create_other'])->name('create_other')->middleware('auth');
+    Route::post('/create-other',[QuoteController::class, 'other_store'])->name('other_store')->middleware('auth');
+
+    Route::get('/fill-other/{id}',[QuoteController::class, 'build_other'])->name('build_other');
+    Route::post('/fill-other/{id}',[QuoteController::class, 'build_other_store'])->name('build_other_store');
+
+    Route::get('/edit-other/{id}',[QuoteController::class, 'edit_other'])->name('edit_other')->middleware('auth');
+    Route::post('/edit-other/{id}',[QuoteController::class, 'update_other'])->name('other_update')->middleware('auth');
+
+
 });
 
 Route::get('/search', [QuoteController::class, 'search'])->name('quote.search');
@@ -97,6 +119,10 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
 
     // Writing
     Route::group(['prefix' => 'writing', 'as' => 'writing.'], function () {
+
+        // Create Quote
+        Route::get('/simple',[WritingController::class, 'create_quote'])->name('create_quote');
+
         // Create
         Route::get('/',[WritingController::class, 'index'])->name('index');
         Route::get('/new',[WritingController::class, 'create'])->name('create');

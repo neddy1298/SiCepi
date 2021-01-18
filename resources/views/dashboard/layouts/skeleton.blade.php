@@ -26,6 +26,7 @@
     <script src="{{ mix('js/app.js') }}"></script>
     @stack('javascript')
     @yield('js')
+
     <script src="{{ asset('plugin') }}/summernote/dist/summernote-bs4.js"></script>
     <script src="{{ asset('plugin') }}/jquery_upload_preview/assets/js/jquery.uploadPreview.min.js"></script>
     <script src="{{ asset('js') }}/page/features-post-create.js"></script>

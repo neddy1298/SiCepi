@@ -44,6 +44,12 @@ class WritingController extends Controller
         return view('dashboard.app.writing.view', compact('writings'));
     }
 
+    public function create_quote()
+    {
+        return view('dashboard.app.writing.actions.create_other');
+
+    }
+
     public function create()
     {
         $catalogs = Catalog::get();

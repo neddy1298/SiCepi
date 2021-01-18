@@ -18,9 +18,16 @@
 
                     </div>
                     <div class="list-group list-group-flush">
+                        <a href="{{ route('user.create_quote') }}" class="list-group-item list-group-item-action">
+                            <img src="" alt="" width="20" class="mr-3"> Buat Kutipan</a>
+                        <a href="{{ route('user.create_other') }}" class="list-group-item list-group-item-action">
+                            <img src="" alt="" width="20" class="mr-3"> Lainnya</a>
                         <a href="{{ route('user.quote') }}" class="list-group-item list-group-item-action"><img
                                 src="{{ asset('front/images/icon.svg') }}" alt="" width="20" class="mr-3"> Kutipan
                             Saya</a>
+                        <a href="{{ route('user.quote_other') }}" class="list-group-item list-group-item-action"><img
+                                src="" alt="" width="20" class="mr-3"> Kutipan
+                            Lainnya</a>
                         <a href="{{ route('user.save') }}" class="list-group-item list-group-item-action"><img
                                 src="{{ asset('front/images/favorite.svg') }}" alt="" width="20" class="mr-3">
                             Tersimpan</a>
