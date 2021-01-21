@@ -45,9 +45,16 @@
             </ul>
         </li>
 
-        <li class="{{ request()->is('dashboard/pricing') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('dashboard.pricing') }}"><i class="fas fa-dollar-sign"></i>
-                <span>Beli Tulisan</span></a></li>
+        <li class="{{ request()->is('dashboard/pricing*') ? 'active' : '' }} nav-item dropdown">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-dollar-sign"></i> <span>Pricing</span></a>
+            <ul class="dropdown-menu">
+                <li class="{{ request()->is('dashboard/pricing') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('dashboard.pricing') }}">
+                        <span>Buat Promo Code</span></a></li>
+                <li class="{{ request()->is('dashboard/pricing/user') ? 'active' : '' }}"><a class="nav-link"
+                        href="{{ route('dashboard.pricing_user') }}">Histori Pembelian</a></li>
+            </ul>
+        </li>
 
 
         @if (Auth::user()->is_admin == 1)

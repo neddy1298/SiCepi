@@ -3,83 +3,57 @@
 namespace App\Http\Controllers;
 
 use App\Models\PromoCode;
+use App\Models\PurchaseHistory;
 use Illuminate\Http\Request;
+use Alert;
 
 class PromoCodeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     public function index()
     {
-        //
+        $codes = PromoCode::latest()->get();
+        return view('dashboard.app.pricing.view', compact('codes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        PromoCode::create($request->all());
+
+        Alert::success('Berhasil', 'Berhasil membuat promo code');
+
+        return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\PromoCode  $promoCode
-     * @return \Illuminate\Http\Response
-     */
-    public function show(PromoCode $promoCode)
+    public function update(Request $request, $id)
     {
-        //
+        $code = PromoCode::find($id);
+        $code->update($request->all());
+
+        Alert::success('Berhasil', 'Berhasil merubah promo code');
+
+        return redirect()->back();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\PromoCode  $promoCode
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(PromoCode $promoCode)
+    public function destroy($id)
     {
-        //
+        $code = PromoCode::find($id);
+        $code->delete();
+
+        Alert::success('Berhasil', 'Berhasil menghapus promo code');
+        return redirect()->back();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PromoCode  $promoCode
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, PromoCode $promoCode)
+    public function user_history()
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\PromoCode  $promoCode
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(PromoCode $promoCode)
-    {
-        //
+        $codes = PurchaseHistory::join('users', 'users.id', '=', 'purchase_histories.user_id')
+        ->select('purchase_histories.*', 'users.name')->get();
+        return view('dashboard.app.pricing.history', compact('codes'));
     }
 }

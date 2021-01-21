@@ -13,6 +13,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\PromoCodeController;
 
 
 
@@ -173,7 +174,11 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     });
 
     Route::group(['prefix' => 'pricing'], function () {
-        Route::get('/', [DashboardController::class, 'pricing'])->name('pricing');
+        Route::get('/', [PromoCodeController::class, 'index'])->name('pricing');
+        Route::post('/', [PromoCodeController::class, 'store'])->name('pricing_store');
+        Route::post('/{id}', [PromoCodeController::class, 'update'])->name('pricing_update');
+        Route::get('/delete/{id}', [PromoCodeController::class, 'destroy'])->name('pricing_delete');
+        Route::get('/user', [PromoCodeController::class, 'user_history'])->name('pricing_user');
     });
 
 

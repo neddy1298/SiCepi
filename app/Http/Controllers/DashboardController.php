@@ -15,9 +15,4 @@ class DashboardController extends Controller
     {
         return view('dashboard.app.dashboard');
     }
-
-    public function pricing()
-    {
-        return view('dashboard.app.pricing.view');
-    }
 }
