@@ -59,8 +59,11 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu" x-placement="bottom-start">
+                                @if (Auth::user()->is_admin)
+
                                 <a class="dropdown-item has-icon text-primary" href="{{ route('dashboard.index') }}"><i
                                         class="mdi mdi-home"></i> Dashboard</a>
+                                @endif
                                 <a class="dropdown-item has-icon text-info" href="{{ route('user.create_quote') }}"><i
                                         class="mdi mdi-pencil"></i> Buat
                                     Kutipan</a>
