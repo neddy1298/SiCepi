@@ -7,6 +7,10 @@
     <title>SiCEPI</title>
     <link rel="stylesheet" href="{{ asset('front/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('plugin') }}/summernote/dist/summernote-bs4.css">
+
+    @stack('css')
+
+
 </head>
 
 <body>
@@ -115,6 +119,8 @@
     </div>
     <script src="{{ asset('front/js/app.js') }}"></script>
     <script src="{{ asset('plugin') }}/summernote/dist/summernote-bs4.js"></script>
+
+    @stack('js')
     @yield('script')
 </body>
 

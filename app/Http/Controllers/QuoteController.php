@@ -14,6 +14,7 @@ use App\Models\Tag;
 use App\Models\Writing;
 use App\Models\WritingChild;
 use App\Models\PromoCode;
+use App\Models\PurchaseHistory;
 
 use Alert;
 
@@ -518,7 +519,21 @@ class QuoteController extends Controller
             'writing_limit' => $user->writing_limit + $promo_code->value
         ]);
 
+        PurchaseHistory::create([
+            'code' => $promo_code->code,
+            'value' => $promo_code->value,
+            'user_id' => auth()->user()->id,
+        ]);
+
         Alert::success('Berhasil', 'Berhasil mengaktifkan kode promo');
         return redirect()->back();
+    }
+
+    public function purchase_history()
+    {
+        $histories = PurchaseHistory::where('user_id', auth()->user()->id)->get();
+
+        return view('front.pages.user.purchase.history', compact('histories'));
+
     }
 }

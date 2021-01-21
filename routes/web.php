@@ -87,6 +87,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 
     Route::get('/purchase',[QuoteController::class, 'purchase'])->name('purchase')->middleware('auth');
     Route::post('/purchase',[QuoteController::class, 'purchase_store'])->name('purchase_store')->middleware('auth');
+    Route::get('/purchase_history',[QuoteController::class, 'purchase_history'])->name('purchase_history')->middleware('auth');
 
 });
 

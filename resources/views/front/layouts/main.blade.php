@@ -36,6 +36,9 @@
                         <a href="{{ route('user.purchase') }}" class="list-group-item list-group-item-action"><img
                                 src="" alt="" width="20" class="mr-3"> Beli
                             Tulisan</a>
+                        <a href="{{ route('user.purchase_history') }}"
+                            class="list-group-item list-group-item-action"><img src="" alt="" width="20" class="mr-3">
+                            Histori Pembelian</a>
                     </div>
                 </div>
             </div>
