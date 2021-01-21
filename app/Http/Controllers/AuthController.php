@@ -32,7 +32,9 @@ class AuthController extends Controller
         // dd($credentials);
         if (auth()->attempt($credentials)) {
 
-
+            if(auth()->user()->is_admin == 1){
+                return redirect()->route('dashboard.index');
+            }
             return redirect()->route('index');
 
         }else{

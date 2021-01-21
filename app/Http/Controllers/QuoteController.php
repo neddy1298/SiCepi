@@ -91,6 +91,28 @@ class QuoteController extends Controller
         return view('front.pages.user.user_quote.other_quote', compact('writings'));
     }
 
+    public function user_other_quote_detail($id)
+    {
+
+        $writing = Writing::join('templates', 'templates.id', '=', 'writings.template_id')
+        ->join('catalogs', 'catalogs.id', '=', 'writings.catalog_id')
+        ->join('users', 'users.id', '=', 'writings.user_id')
+        ->select('writings.*', 'templates.template_name', 'catalogs.catalog', 'users.name as user_name')
+        ->where('writings.id', $id)
+        ->get()->first();
+
+
+
+        $blocks = WritingChild::where('writing_id', $id)->get();
+        // dd($blocks);
+        // dd($writings);
+
+
+        return view('front.pages.user.user_quote.other_quote_detail', compact('writing','blocks'));
+    }
+
+
+
     // Create Other
     public function create_other()
     {

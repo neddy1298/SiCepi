@@ -44,7 +44,7 @@ Route::group(['prefix' => 'author', 'as' => 'author.'], function () {
 Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
     Route::get('{category}', [CategoryController::class, 'index'])->name('view');
     Route::get('detail/{id}',[CategoryController::class, 'detail'])->name('detail');
-    Route::post('detail/{id}',[CategoryController::class, 'writing_save'])->name('writing_save');
+    Route::post('detail/{id}',[CategoryController::class, 'writing_save'])->name('writing_save')->middleware('auth');
 });
 
 Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
@@ -66,6 +66,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 
     Route::get('/quote',[QuoteController::class, 'user_quote'])->name('quote')->middleware('auth');
     Route::get('/other-quote',[QuoteController::class, 'user_other_quote'])->name('quote_other')->middleware('auth');
+    Route::get('/other-quote-detail/{id}',[QuoteController::class, 'user_other_quote_detail'])->name('quote_other_detail')->middleware('auth');
 
 
     // Create Quote
@@ -78,8 +79,8 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('/create-other',[QuoteController::class, 'create_other'])->name('create_other')->middleware('auth');
     Route::post('/create-other',[QuoteController::class, 'other_store'])->name('other_store')->middleware('auth');
 
-    Route::get('/fill-other/{id}',[QuoteController::class, 'build_other'])->name('build_other');
-    Route::post('/fill-other/{id}',[QuoteController::class, 'build_other_store'])->name('build_other_store');
+    Route::get('/fill-other/{id}',[QuoteController::class, 'build_other'])->name('build_other')->middleware('auth');
+    Route::post('/fill-other/{id}',[QuoteController::class, 'build_other_store'])->name('build_other_store')->middleware('auth');
 
     Route::get('/edit-other/{id}',[QuoteController::class, 'edit_other'])->name('edit_other')->middleware('auth');
     Route::post('/edit-other/{id}',[QuoteController::class, 'update_other'])->name('other_update')->middleware('auth');
