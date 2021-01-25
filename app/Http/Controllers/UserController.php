@@ -19,6 +19,11 @@ class UserController extends Controller
         return view('dashboard.app.user.profile');
     }
 
+    public function profile_front()
+    {
+        return view('front.pages.user.profile.view');
+    }
+
     public function profile_update(Request $request ,$id)
     {
         $request->validate([
@@ -30,12 +35,17 @@ class UserController extends Controller
         $user->update($request->all());
 
         Alert::success('Berhasil', 'Data berhasil diubah');
-        return redirect()->route('dashboard.user.profile');
+        return redirect()->back();
     }
 
     public function profile_password()
     {
         return view('dashboard.app.user.actions.change_password');
+    }
+
+    public function profile_password_front()
+    {
+        return view('front.pages.user.profile.password');
     }
 
     public function profile_password_update(Request $request, $id)
@@ -60,7 +70,7 @@ class UserController extends Controller
             Alert::error('Gagal', 'Password tidak berhasil diubah');
         }
 
-        return view('dashboard.app.user.actions.change_password');
+        return redirect()->back();
 
     }
 

@@ -10,9 +10,18 @@
                             <img src="{{ asset('front/images/user/user2--square.png') }}" alt="" width="50"
                                 class="rounded-circle mr-3">
                             <div>
+
                                 <div class="mb-2"><strong>{{ Auth::user()->name }}</strong></div>
-                                <a href="{{ route('dashboard.user.profile') }}" class="btn btn-primary btn-sm">Profile
-                                    Setting</a>
+                                <a href="#" class="nav-link dropdown-toggle btn btn-primary btn-sm"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Profile Setting
+                                </a>
+                                <div class="dropdown-menu" x-placement="bottom-start">
+                                    <a class="dropdown-item has-icon" href="{{ route('user.profile') }}">My
+                                        Profile</a>
+                                    <a class="dropdown-item has-icon" href="{{ route('user.profile_password') }}">Ubah
+                                        Password</a>
+                                </div>
                             </div>
                         </div>
 

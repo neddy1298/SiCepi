@@ -52,6 +52,10 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 
     Route::get('/',[FrontController::class, 'login'])->name('login');
 
+    // User Setting
+    Route::get('/my_profile',[UserController::class, 'profile_front'])->name('profile');
+    Route::get('/my_password',[UserController::class, 'profile_password_front'])->name('profile_password');
+
     // Save
     Route::get('/save',[QuoteController::class, 'save'])->name('save')->middleware('auth');
     Route::post('/save/{id}', [QuoteController::class, 'save_store'])->name('save_store')->middleware('auth');
@@ -150,7 +154,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
 
 
     // User
-    Route::group(['as' => 'user.'], function () {
+    Route::group(['as' => 'user.', 'middleware' => 'admin'], function () {
 
         Route::group(['prefix' => 'settings'], function () {
 
