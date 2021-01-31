@@ -51,9 +51,22 @@
         @if (Auth::user()->is_admin == 1)
 
         <li class="menu-header">Admin Panel</li>
+
+        <li class="{{ request()->is('dashboard/popular/*') ? 'active' : '' }} nav-item dropdown">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-user-cog"></i> <span>Popular</span></a>
+            <ul class="dropdown-menu">
+                <li class="{{ request()->is('dashboard/popular/author') ? 'active' : '' }}"><a class="nav-link"
+                        href="{{ route('dashboard.popular.index_author') }}">Author Popular</a></li>
+                <li class="{{ request()->is('dashboard/popular/topic') ? 'active' : '' }}"><a class="nav-link"
+                        href="{{ route('dashboard.popular.index_topic') }}">Topic Popular</a></li>
+            </ul>
+        </li>
+
         <li class="{{ request()->is('dashboard/pricing') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('dashboard.pricing') }}">
-                <i class="fas fa-dollar-sign"></i> <span>Buat Promo Code</span></a></li>
+                <i class="fas fa-dollar-sign"></i> <span>Buat Promo Code</span></a>
+        </li>
+
         <li class="{{ request()->is('dashboard/pricing/user') ? 'active' : '' }}"><a class="nav-link"
                 href="{{ route('dashboard.pricing_user') }}"><i class="fas fa-undo"></i> Histori Pembelian</a>
         </li>

@@ -14,6 +14,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\PromoCodeController;
+use App\Http\Controllers\PopularController;
 
 
 
@@ -188,6 +189,21 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
         Route::post('/{id}', [PromoCodeController::class, 'update'])->name('pricing_update');
         Route::get('/delete/{id}', [PromoCodeController::class, 'destroy'])->name('pricing_delete');
         Route::get('/user', [PromoCodeController::class, 'user_history'])->name('pricing_user');
+    });
+
+    Route::group(['prefix' => 'popular', 'as' => 'popular.'], function () {
+
+        // Author
+        Route::get('author', [PopularController::class, 'index_author'])->name('index_author');
+        Route::post('author', [PopularController::class, 'store_author'])->name('store_author');
+        Route::post('author/{id}', [PopularController::class, 'update_author'])->name('update_author');
+        Route::get('author/{id}', [PopularController::class, 'destroy_author'])->name('destroy_author');
+
+        // Topic
+        Route::get('topic', [PopularController::class, 'index_topic'])->name('index_topic');
+        Route::post('topic', [PopularController::class, 'store_topic'])->name('store_topic');
+        Route::post('topic/{id}', [PopularController::class, 'update_topic'])->name('update_topic');
+        Route::get('topic/{id}', [PopularController::class, 'destroy_topic'])->name('destroy_topic');
     });
 
 
