@@ -45,22 +45,19 @@
             </ul>
         </li>
 
-        <li class="{{ request()->is('dashboard/pricing*') ? 'active' : '' }} nav-item dropdown">
-            <a href="#" class="nav-link has-dropdown"><i class="fas fa-dollar-sign"></i> <span>Pricing</span></a>
-            <ul class="dropdown-menu">
-                <li class="{{ request()->is('dashboard/pricing') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('dashboard.pricing') }}">
-                        <span>Buat Promo Code</span></a></li>
-                <li class="{{ request()->is('dashboard/pricing/user') ? 'active' : '' }}"><a class="nav-link"
-                        href="{{ route('dashboard.pricing_user') }}">Histori Pembelian</a></li>
-            </ul>
-        </li>
+
 
 
         @if (Auth::user()->is_admin == 1)
 
-
         <li class="menu-header">Admin Panel</li>
+        <li class="{{ request()->is('dashboard/pricing') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('dashboard.pricing') }}">
+                <i class="fas fa-dollar-sign"></i> <span>Buat Promo Code</span></a></li>
+        <li class="{{ request()->is('dashboard/pricing/user') ? 'active' : '' }}"><a class="nav-link"
+                href="{{ route('dashboard.pricing_user') }}"><i class="fas fa-undo"></i> Histori Pembelian</a>
+        </li>
+
         <li class="{{ request()->is('dashboard/user_*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('dashboard.user.index') }}"><i class="fas fa-users"></i>
                 <span>List User</span></a></li>
