@@ -54,9 +54,9 @@
                     <div class="col-md-6">
                         <h3 class="font-weight-bold">Penulis Populer</h3>
                         <div class="column-link-group">
-                            @foreach ($quotes->unique('author') as $quote)
-                            <a href="{{ route('author.quotes', $quote->author) }}"
-                                class="column-link-list">{{ $quote->author }}</a>
+                            @foreach ($PopularAuthors as $PopularAuthor)
+                            <a href="{{ route('author.quotes', $PopularAuthor->name) }}"
+                                class="column-link-list">{{ $PopularAuthor->name }}</a>
                             @endforeach
                         </div>
 
@@ -64,8 +64,9 @@
                     <div class="col-md-6">
                         <h3 class="font-weight-bold">Topik Populer</h3>
                         <div class="column-link-group">
-                            @foreach ($topics as $topic)
-                            <a href="{{ route('topics.quotes', $topic) }}" class="column-link-list">{{ $topic }}</a>
+                            @foreach ($PopularTopics as $PopularTopic)
+                            <a href="{{ route('topics.quotes', $PopularTopic->name) }}"
+                                class="column-link-list">{{ $PopularTopic->name }}</a>
                             @endforeach
                         </div>
                     </div>
