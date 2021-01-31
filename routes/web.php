@@ -43,6 +43,7 @@ Route::group(['prefix' => 'author', 'as' => 'author.'], function () {
 });
 
 Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
+    Route::get('quote', [CategoryController::class, 'quote'])->name('quote');
     Route::get('{category}', [CategoryController::class, 'index'])->name('view');
     Route::get('detail/{id}',[CategoryController::class, 'detail'])->name('detail');
     Route::post('detail/{id}',[CategoryController::class, 'writing_save'])->name('writing_save')->middleware('auth');
@@ -110,7 +111,11 @@ Route::namespace('Auth')->group(function () {
     Route::post('/logout',[AuthController::class, 'logout'])->name('logout');
   });
 
-// Dashboard
+
+////////////////
+// Dashboard ///
+////////////////
+
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
 
     Route::group(['prefix' => 'error'], function () {

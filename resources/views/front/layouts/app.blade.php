@@ -45,7 +45,7 @@
                                 Kategori
                             </a>
                             <div class="dropdown-menu" x-placement="bottom-start">
-                                <a class="dropdown-item has-icon" href="{{ route('dashboard.index') }}">Quote</a>
+                                <a class="dropdown-item has-icon" href="{{ route('category.view', 'quote') }}">Quote</a>
                                 @foreach ($Category as $category)
                                 <a class="dropdown-item has-icon"
                                     href="{{ route('category.view', $category->id) }}">{{$category->catalog}}</a>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Writing;
 use App\Models\WritingChild;
 use App\Models\Catalog;
+use App\Models\Quote;
 use Alert;
 
 class CategoryController extends Controller
@@ -24,22 +25,21 @@ class CategoryController extends Controller
         return view('front.pages.category.view', compact('writings','category'));
     }
 
-    public function detail($id)
+    public function quote()
     {
-        $writing = Writing::join('templates', 'templates.id', '=', 'writings.template_id')
-        ->join('catalogs', 'catalogs.id', '=', 'writings.catalog_id')
-        ->join('users', 'users.id', '=', 'writings.user_id')
-        ->select('writings.*', 'templates.template_name', 'catalogs.catalog', 'users.name as user_name')
-        ->where('writings.id', $id)
-        ->get()->first();
+        $quotes = Quote::join('users', 'users.id', '=', 'quotes.user_id')
+        ->where('users.is_admin', 1)
+        ->select('quotes.*', 'users.name as user_name')
+        ->get();
 
+        foreach ($quotes as $quote) {
+            foreach (explode(',',$quote->topics) as $topic) {
+                $topics[] = $topic;
+            }
+        }
+        $topics = array_unique($topics);
 
-
-        $blocks = WritingChild::where('writing_id', $id)->get();
-        // dd($blocks);
-        // dd($writings);
-
-        return view('front.pages.category.detail', compact('writing','blocks'));
+        return view('front.pages.category.quote', compact('quotes', 'topics'));
     }
 
     public function writing_save($id)

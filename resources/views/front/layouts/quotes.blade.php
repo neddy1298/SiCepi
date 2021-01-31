@@ -18,7 +18,7 @@
             </div>
             <div class="quote-author row">
 
-                <div class="col-auto ml-auto">
+                <div class="col-auto align-left ml-2">
                     <label class="d-block mb-0"><small>Tools</small></label>
 
                     @guest
@@ -77,28 +77,8 @@
 
                 </div>
                 <div class="col-auto ml-auto">
-                    <label class="d-block mb-0"><small>Share</small></label>
-                    <a href="#" class="btn btn-light btn-sm btn-rounded" onclick="copy('copy_{{ $quote->id }}')">
-                        <i class="mdi mdi-content-copy align-middle"></i>
-                    </a>
-                    <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                            class="mdi mdi-facebook align-middle"></i></a>
-                    <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                            class="mdi mdi-twitter align-middle"></i></a>
-                    <a href="#" class="btn btn-light btn-sm btn-rounded"><i
-                            class="mdi mdi-instagram align-middle"></i></a>
-
-                    <input type="text" id="quoteText_{{ $quote->id }}" value="{{ $quote->quote }}" hidden>
-
-                    <script>
-                        function copy(id){
-
-                            document.getElementById("quoteText_{{ $quote->id }}").select();
-                            document.execCommand('copy');
-
-                            // console.log(dummy);
-                        }
-                    </script>
+                    <label class="d-block mb-0"><small>Kategori</small></label>
+                    <a href="{{ route('category.view', 'quote') }}" class="badge badge-secondary badge-pill">Quote</a>
                 </div>
             </div>
         </div>
