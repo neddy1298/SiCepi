@@ -7,12 +7,13 @@
             </div>
             <div class="quote-author row mb-4">
                 <div class="col-auto">
-                    <label class="d-block mb-0"><small>Author</small></label>
-                    <div class="text-dark font-weight-bold">{{ $writing->user_name }}</div>
-                </div>
-                <div class="col-auto">
                     <label class="d-block mb-0"><small>Publish by</small></label>
                     <div class="text-dark font-weight-bold">SiCEPI</div>
+                </div>
+                <div class="col-auto ml-auto">
+                    <label class="d-block mb-0"><small>Kategori</small></label>
+                    <a href="{{ route('category.view', $writing->catalog_id) }}"
+                        class="badge badge-secondary badge-pill">{{ $writing->catalog }}</a>
                 </div>
             </div>
         </div>

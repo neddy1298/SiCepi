@@ -19,7 +19,7 @@
         </div>
         <h3 class="text-center my-4"><strong>Kategori: </strong>{{ $writing->catalog }}</h3>
         <h3 class="text-center my-4"><strong>Nama Kutipan: </strong>{{ $writing->name }}</h3>
-        <h3 class="text-center my-4"><strong>By: </strong>{{ $writing->user_name }}</h3>
+        <h3 class="text-center my-4"><strong>Publish By: </strong>SICEPI</h3>
 
 
         <form class="text-right mb-3" action="{{ route('category.writing_save', $writing->id) }}" method="post">

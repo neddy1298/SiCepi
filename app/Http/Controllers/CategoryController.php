@@ -25,6 +25,24 @@ class CategoryController extends Controller
         return view('front.pages.category.view', compact('writings','category'));
     }
 
+    public function detail($id)
+    {
+        $writing = Writing::join('templates', 'templates.id', '=', 'writings.template_id')
+        ->join('catalogs', 'catalogs.id', '=', 'writings.catalog_id')
+        ->join('users', 'users.id', '=', 'writings.user_id')
+        ->select('writings.*', 'templates.template_name', 'catalogs.catalog', 'users.name as user_name')
+        ->where('writings.id', $id)
+        ->get()->first();
+
+
+
+        $blocks = WritingChild::where('writing_id', $id)->get();
+        // dd($blocks);
+        // dd($writings);
+
+        return view('front.pages.category.detail', compact('writing','blocks'));
+    }
+
     public function quote()
     {
         $quotes = Quote::join('users', 'users.id', '=', 'quotes.user_id')
