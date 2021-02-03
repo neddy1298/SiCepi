@@ -10,6 +10,11 @@
                     <label class="d-block mb-0"><small>Publish by</small></label>
                     <div class="text-dark font-weight-bold">SiCEPI</div>
                 </div>
+                <div class="col-auto ml-auto">
+                    <label class="d-block mb-0"><small>Kategori</small></label>
+                    <a href="{{ route('category.view', $writing->catalog_id) }}"
+                        class="badge badge-primary badge-pill">{{ $writing->catalog }}</a>
+                </div>
             </div>
             <div class="quote-author row">
 
@@ -30,10 +35,11 @@
 
                 </div>
             </div>
-            <div class="col-auto ml-auto">
-                <label class="d-block mb-0"><small>Kategori</small></label>
-                <a href="{{ route('category.view', 'quote') }}" class="badge badge-secondary badge-pill">Quote</a>
-            </div>
+        </div>
+        <div class="card-footer">
+            @foreach (explode(',',$writing->topics) as $item)
+            <a href="{{ route('topics.quotes', $item) }}" class="badge badge-secondary badge-pill">{{ $item }}</a>
+            @endforeach
         </div>
     </div>
 </div>

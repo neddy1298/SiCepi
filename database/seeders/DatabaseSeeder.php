@@ -16,11 +16,10 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         $this->call(UserSeeder::class);
-        $this->call(CatalogSeeder::class);
-        $this->call(TemplateSeeder::class);
-        $this->call(TagSeeder::class);
-        $this->call(BlockSeeder::class);
-        $this->call(QuoteSeeder::class);
+        $this->call(WritingSeeder::class);
         $this->call(PromoCodeSeeder::class);
+        $this->call(TopicSeeder::class);
+        $this->call(AuthorSeeder::class);
+        $this->call(CategorySeeder::class);
     }
 }

@@ -4,17 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\WritingController;
-use App\Http\Controllers\RebuildController;
-use App\Http\Controllers\TemplateController;
-use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\BlockController;
 use App\Http\Controllers\FrontController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\QuoteController;
-use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\PromoCodeController;
 use App\Http\Controllers\PopularController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\TopicController;
 
 
 
@@ -136,20 +133,12 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::group(['prefix' => 'writing', 'as' => 'writing.'], function () {
 
         // Create Quote
-        Route::get('/simple',[WritingController::class, 'create_quote'])->name('create_quote');
+        Route::get('/simple',[WritingController::class, 'create'])->name('create_quote');
 
-        // Create
+        //
         Route::get('/',[WritingController::class, 'index'])->name('index');
         Route::get('/new',[WritingController::class, 'create'])->name('create');
         Route::post('/fill',[WritingController::class, 'store'])->name('store');
-        Route::get('/fill/{id}',[WritingController::class, 'build'])->name('build');
-        Route::post('/fill/{id}',[WritingController::class, 'build_store'])->name('build_store');
-
-        // Rebuild
-        Route::get('/rebuild/{id}',[RebuildController::class, 'edit'])->name('rebuild');
-        Route::post('/rebuild/{id}',[RebuildController::class, 'store'])->name('rebuild');
-
-        // Edit
         Route::get('/edit/{writing_id}',[WritingController::class, 'edit'])->name('edit');
         Route::post('/edit/{writing_id}',[WritingController::class, 'update'])->name('update');
         Route::get('/delete/{writing_id}',[WritingController::class, 'destroy'])->name('delete');
@@ -191,61 +180,25 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
         Route::get('/user', [PromoCodeController::class, 'user_history'])->name('pricing_user');
     });
 
-    Route::group(['prefix' => 'popular', 'as' => 'popular.'], function () {
+    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+
+        // Category
+        Route::get('category', [CategoryController::class, 'index'])->name('index_category');
+        Route::post('category', [CategoryController::class, 'store'])->name('store_category');
+        Route::post('category/{id}', [CategoryController::class, 'update'])->name('update_category');
+        Route::get('category/{id}', [CategoryController::class, 'destroy'])->name('destroy_category');
 
         // Author
-        Route::get('author', [PopularController::class, 'index_author'])->name('index_author');
-        Route::post('author', [PopularController::class, 'store_author'])->name('store_author');
-        Route::post('author/{id}', [PopularController::class, 'update_author'])->name('update_author');
-        Route::get('author/{id}', [PopularController::class, 'destroy_author'])->name('destroy_author');
+        Route::get('author', [AuthorController::class, 'index'])->name('index_author');
+        Route::post('author', [AuthorController::class, 'store'])->name('store_author');
+        Route::post('author/{id}', [AuthorController::class, 'update'])->name('update_author');
+        Route::get('author/{id}', [AuthorController::class, 'destroy'])->name('destroy_author');
 
         // Topic
-        Route::get('topic', [PopularController::class, 'index_topic'])->name('index_topic');
-        Route::post('topic', [PopularController::class, 'store_topic'])->name('store_topic');
-        Route::post('topic/{id}', [PopularController::class, 'update_topic'])->name('update_topic');
-        Route::get('topic/{id}', [PopularController::class, 'destroy_topic'])->name('destroy_topic');
-    });
-
-
-    // Writing Management
-    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']], function () {
-
-        // New Template
-        Route::get('/new_template',[TemplateController::class, 'create'])->name('template_create');
-        Route::post('/new_template',[TemplateController::class, 'store'])->name('template_store');
-        Route::get('/template_edit/{template_id}',[TemplateController::class, 'edit'])->name('template_edit');
-        Route::post('/template_edit/{template_id}',[TemplateController::class, 'update'])->name('template_update');
-        Route::get('/template_hapus/{template_id}',[TemplateController::class, 'destroy'])->name('template_destroy');
-
-            // Block
-            Route::get('/new_block/{template_id}',[BlockController::class, 'create'])->name('block_create');
-            Route::post('/new_block/{template_id}',[BlockController::class, 'store'])->name('block_store');
-            Route::get('/edit_block/{block_id}',[BlockController::class, 'edit'])->name('block_edit');
-            Route::post('/edit_block/{block_id}',[BlockController::class, 'update'])->name('block_update');
-            Route::get('/delete_block/{block_id}',[BlockController::class, 'destroy'])->name('block_delete');
-
-
-        // List Template
-        Route::get('/list_template',[TemplateController::class, 'index'])->name('template');
-
-        // User Writing
-        Route::get('/list_user_writing',[WritingController::class, 'user_writing'])->name('user_writing');
-        Route::get('/list_user_writing/{id}',[WritingController::class, 'user_writing_detail'])->name('user_writing_detail');
-
-        // Tag Management
-        Route::get('/tag_list',[TagController::class, 'index'])->name('tag');
-        Route::get('/tag_new',[TagController::class, 'create'])->name('tag_create');
-        Route::post('/tag_new',[TagController::class, 'store'])->name('tag_store');
-        Route::get('/tag_edit/{tag_id}',[TagController::class, 'edit'])->name('tag_edit');
-        Route::post('/tag_edit/{tag_id}',[TagController::class, 'update'])->name('tag_update');
-        Route::get('/tag_delete/{tag_id}',[TagController::class, 'destroy'])->name('tag_delete');
-
-        // Catalogs
-        Route::get('/catalog_list',[CatalogController::class, 'index'])->name('catalog');
-        Route::post('/catalog_new',[CatalogController::class, 'store'])->name('catalog_store');
-        Route::post('/catalog_edit/{catalog_id}',[CatalogController::class, 'update'])->name('catalog_update');
-        Route::get('/catalog_delete/{catalog_id}',[CatalogController::class, 'destroy'])->name('catalog_delete');
-
+        Route::get('topic', [TopicController::class, 'index'])->name('index_topic');
+        Route::post('topic', [TopicController::class, 'store'])->name('store_topic');
+        Route::post('topic/{id}', [TopicController::class, 'update'])->name('update_topic');
+        Route::get('topic/{id}', [TopicController::class, 'destroy'])->name('destroy_topic');
     });
 
 });

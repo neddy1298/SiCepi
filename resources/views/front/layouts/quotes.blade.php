@@ -100,7 +100,7 @@
                 <h4 class="modal-title text-primary" id="exampleModalLongTitle">Uppss.. <br> sepertinya kamu belum
                     memiliki akun</h4>
                 <div class="mt-5 mb-4">
-                    <small class="font-weight-bold text-secondary">Untuk dapat menyimpan dan mengedit tulisan kamu perlu
+                    <small class="font-weight-bold text-secondary">Untuk dapat menyimpan dan mengedit Kutipan kamu perlu
                         masuk akun kamu..</small>
                 </div>
                 <div class="mb-2">

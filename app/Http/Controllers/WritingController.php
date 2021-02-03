@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
-use App\Models\Writing;
-use App\Models\Catalog;
-use App\Models\Template;
-use App\Models\Block;
-use App\Models\Tag;
+
+use App\Models\Category;
+use App\Models\Author;
+use App\Models\Topic;
 use App\Models\User;
-use App\Models\WritingChild;
+use App\Models\Writing;
+
 use Response;
 use Alert;
 
@@ -28,34 +28,27 @@ class WritingController extends Controller
 
     public function index()
     {
-        return view('dashboard.app.writing.view');
+        $writings = Writing::where('writings.user_id', auth()->user()->id)
+        ->get();
+        return view('dashboard.app.writing.view', compact('writings'));
     }
 
     public function user_index()
     {
         $writings = Writing::where('writings.user_id', auth()->user()->id)
-        ->join('catalogs', 'catalogs.id' ,'=' ,'writings.catalog_id')
-        ->join('templates', 'templates.id' ,'=' ,'writings.template_id')
-        ->select('writings.*', 'catalogs.catalog' ,'templates.template_name')
         ->get();
 
-        // dd($writing);
+        // dd($writings);
 
         return view('dashboard.app.writing.view', compact('writings'));
     }
 
-    public function create_quote()
-    {
-        return view('dashboard.app.writing.actions.create_other');
-
-    }
-
     public function create()
     {
-        $catalogs = Catalog::get();
-        $templates = Template::where('status', 'Published')->get();
-        $blocks = Block::get();
-        return view('dashboard.app.writing.actions.create', compact('catalogs', 'templates', 'blocks'));
+        $categories = Category::get();
+        $authors = Author::get();
+        $topics = Topic::get();
+        return view('dashboard.app.writing.actions.create', compact('categories', 'topics', 'authors'));
 
     }
 
@@ -63,201 +56,75 @@ class WritingController extends Controller
     {
         // dd($request->all());
 
-        $limit = auth()->user()->writing_limit;
+        $limit = auth()->user()->limit;
         if ($limit <= 0 ) {
-            Alert::warning('Gagal', 'Kamu telah mencapai batas pembuatan tulisan, beli tulisan untuk menambah tulisanmu');
+            Alert::warning('Gagal', 'Kamu telah mencapai batas pembuatan Kutipan, beli Kutipan untuk menambah Kutipanmu');
             // Alert::html('Html Title', 'Html Code', 'Type');
             return redirect()->route('dashboard.pricing');
 
         }else{
             $limitUpdate = User::find(auth()->user()->id);
             $limitUpdate->update([
-                'writing_limit' => $limitUpdate->writing_limit - 1
+                'limit' => $limitUpdate->limit - 1
             ]);
         }
-        // dd($limit);
-        $writing = Writing::create($request->all());
-
-        $blocks = Block::where('blocks.template_id', $writing->template_id)->get();
-        // dd($blocks);
-
-        if($blocks->count() == 1){
-            $block = Block::where('blocks.template_id', $writing->template_id)->get()->first();
-
-            // dd($block);
-            if ($block->tags == "") {
-
-                $writingchild = WritingChild::create([
-                    'writing_id' => $writing->id,
-                    'writing_name' => $block->block_name,
-                    'writing_text' => $block->block_body,
-                ]);
-
-                return redirect()->route('dashboard.writing.edit', $writing->id);
-            }
-        }else{
-            $block = Block::where('blocks.template_id', $writing->template_id)->get()->first();
-
-            if ($block->tags == "") {
-                foreach ($blocks as $block) {
-
-                    $writingchild = WritingChild::create([
-                        'writing_id' => $writing->id,
-                        'writing_name' => $block->block_name,
-                        'writing_text' => $block->block_body,
-                    ]);
-                }
-                return redirect()->route('dashboard.writing.edit', $writing->id);
-            }
-
-        }
-
-        return redirect()->route('dashboard.writing.build', $writing->id);
-
-    }
-
-    public function build(Request $request, $id)
-    {
-
-
-        $writing = Writing::join('catalogs', 'catalogs.id' ,'=' ,'writings.catalog_id')
-        ->join('templates', 'templates.id' ,'=' ,'writings.template_id')
-        ->select('writings.*', 'catalogs.catalog' ,'templates.template_name' ,'templates.template_intro')
-        ->where('writings.id', '=', $id)
-        ->get()->first();
-
-
-        // dd($writing);
-
-        $blocks = Block::where('blocks.template_id', $writing->template_id)->get();
-
-        // dd($blocks);
-        $field = [];
-
-
-
-        foreach ($blocks as $block) {
-
-            array_push($field, $block->tags);
-        }
-
-
-            // Filtering Data
-            $block = implode(' ', array_values($field));
-            $block = collect(explode(" ", $block))->unique();
-            $block = collect($block)->implode(' ');
-            $blocks = collect(explode(" ", $block));
-
-
-        $fields = [];
-        foreach ($blocks as $block) {
-
-            array_push($fields ,Tag::where('tags.tag_field', 'like', "%{$block}%")->get()->first());
-        }
-        // dd($fields);
-
-        return view('dashboard.app.writing.actions.build', compact('writing', 'fields'));
-
-    }
-
-    public function build_store(Request $request, $id)
-    {
         // dd($request->all());
+        $topics = implode(',', $request->topics);
 
-        $writing = Writing::find($id);
-        $template = Template::find($writing->template_id);
-        $blocks = Block::where('blocks.template_id', '=', $template->id)->get();
-
-        // dd($template);
-        $result = "";
-
-
-
-        foreach($blocks as $block){
-
-
-            $fields = collect(explode(" ", $block->tags));
-            // dd($fields);
-
-
-            // $result = $block->block_body;
-            $result = collect(explode("{{", $block->block_body));
-            $result = collect($result)->implode('');
-            $result = collect(explode("}}", $result));
-            $result = collect($result)->implode(' ');
-
-            // dd($result);
-
-
-            foreach ($fields as $field) {
-
-                $result = str_replace($field,$request->$field, $result);
-            // dd($result);
-
-
-            }
-
-
-            $writingchild = WritingChild::create([
-                'writing_id' => $id,
-                'writing_name' => $block->block_name,
-                'writing_text' => $result,
-            ]);
-
-        }
-        // dd($result);
-
-        $writing->update([
+        $writing = Writing::create([
+            'user_id' => $request->user_id,
             'name' => $request->name,
-            'field' => $request->except(['_token', 'name'])
+            'text' => $request->text,
+            'category' => $request->category,
+            'topics' => $topics,
+            'author' => $request->author,
         ]);
 
-        Alert::success('Berhasil', 'Tulisanmu berhasil dibuat');
-        return redirect()->route('dashboard.writing.edit', $writing->id);
-
+        return redirect()->route('dashboard.writing.index');
 
     }
 
     public function edit($id)
     {
-        $writing = Writing::where('writings.id', $id)
-        ->join('catalogs', 'catalogs.id', '=', 'writings.catalog_id')
-        ->join('templates', 'templates.id', '=', 'writings.template_id')
-        ->select('writings.*', 'catalogs.catalog', 'templates.template_name',)
-        ->get()->first();
+        $writing = Writing::find($id);
+        $authors = Author::get();
+        $topics = Topic::get();
+        $categories = Category::get();
 
-        $writingchilds = WritingChild::where('writing_id', $id)->get();
-        // dd($writingchilds);
-
-        return view('dashboard.app.writing.actions.edit', compact('writing', 'writingchilds'));
+        return view('dashboard.app.writing.actions.edit', compact('writing','authors','topics','categories'));
     }
 
     public function update(Request $request, $id)
     {
-        $writing = Writing::find($id);
-        $writingchild = WritingChild::where('writing_children.writing_id', '=', $writing->id)->get();
 
-        $result = $request->except('name', '_token');
+        // dd($request->all());
 
-        foreach($writingchild as $block){
+        $limit = auth()->user()->limit;
+        if ($limit <= 0 ) {
+            Alert::warning('Gagal', 'Kamu telah mencapai batas pembuatan Kutipan, beli Kutipan untuk menambah Kutipanmu');
+            // Alert::html('Html Title', 'Html Code', 'Type');
+            return redirect()->route('dashboard.pricing');
 
-            $writingchildedit = WritingChild::where('writing_children.id', '=', $result['child_id_'.$block->id])->get()->first();
-
-            $writingchildedit->update([
-                'writing_text' => $result['block_body_'.$block->id],
+        }else{
+            $limitUpdate = User::find(auth()->user()->id);
+            $limitUpdate->update([
+                'limit' => $limitUpdate->limit - 1
             ]);
-
         }
 
+        $writing = Writing::find($id);
+        $writing->update($request->all());
+        // dd($writing);
 
-        $writing->update([
-            'name' => $request->name,
-        ]);
+        if ($request->topics) {
+            $topics = implode(',', $request->topics);
+            $writing->update([
+                'topics' => $topics
+            ]);
+        }
 
-
-        Alert::success('Berhasil', 'Tulisanmu berhasil diubah');
-        return redirect()->route('dashboard.writing.edit', $writing->id);
-
+        Alert::success('Berhasil', 'Kutipan berhasil diubah');
+        return redirect()->back();
 
     }
 
@@ -297,11 +164,11 @@ class WritingController extends Controller
 
         $limitUpdate = User::find(auth()->user()->id);
         $limitUpdate->update([
-            'writing_limit' => $limitUpdate->writing_limit + 1
+            'limit' => $limitUpdate->limit + 1
         ]);
 
 
-        Alert::success('Berhasil', 'Tulisan berhasil dihapus');
+        Alert::success('Berhasil', 'Kutipan berhasil dihapus');
         return redirect()->back();
     }
 }

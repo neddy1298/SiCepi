@@ -2,7 +2,7 @@
 @section('user-content')
 <div class="card">
     <div class="card-header">
-        <h4>Tulisan Baru -> Edit Tulisan ( 2/2 )</h4>
+        <h4>Kutipan Baru -> Edit Kutipan ( 2/2 )</h4>
     </div>
 
     <form method="POST" action="{{ route('user.other_update', $writing->id) }}">
@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Nama tulisanmu</label>
+                        <label>nama kutipanmu</label>
                         <input name="name" type="text" class="form-control" value="{{ $writing->name }}">
                     </div>
                 </div>
@@ -20,6 +20,21 @@
                         <label>Tema katalog</label>
                         <input type="text" class="form-control"
                             value="{{ $writing->catalog }} -> {{ $writing->template_name }}" disabled>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="">Pilih Topik</label>
+                        <select name="topics[]" id="" class="select2" multiple="multiple" data-placeholder="Pilih Topik"
+                            data-width="100%">
+                            <option value="Age">Age</option>
+                            <option value="Alone">Alone</option>
+                            <option value="Amazing">Amazing</option>
+                            <option value="Anger">Anger</option>
+                            <option value="Anniversary">Anniversary</option>
+                            <option value="Architecture">Architecture</option>
+                        </select>
                     </div>
                 </div>
 

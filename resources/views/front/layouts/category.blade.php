@@ -13,13 +13,14 @@
                 <div class="col-auto ml-auto">
                     <label class="d-block mb-0"><small>Kategori</small></label>
                     <a href="{{ route('category.view', $writing->catalog_id) }}"
-                        class="badge badge-secondary badge-pill">{{ $writing->catalog }}</a>
+                        class="badge badge-primary badge-pill">{{ $writing->catalog }}</a>
                 </div>
             </div>
         </div>
         <div class="card-footer">
-            <a href="{{ route('category.view', $writing->catalog_id) }}"
-                class="badge badge-secondary badge-pill">{{ $writing->catalog }}</a>
+            @foreach (explode(',',$writing->topics) as $item)
+            <a href="{{ route('topics.quotes', $item) }}" class="badge badge-secondary badge-pill">{{ $item }}</a>
+            @endforeach
         </div>
     </div>
 </div>
@@ -34,7 +35,7 @@
                 <h4 class="modal-title text-primary" id="exampleModalLongTitle">Uppss.. <br> sepertinya kamu belum
                     memiliki akun</h4>
                 <div class="mt-5 mb-4">
-                    <small class="font-weight-bold text-secondary">Untuk dapat menyimpan dan mengedit tulisan kamu perlu
+                    <small class="font-weight-bold text-secondary">Untuk dapat menyimpan dan mengedit Kutipan kamu perlu
                         masuk akun kamu..</small>
                 </div>
                 <div class="mb-2">

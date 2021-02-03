@@ -49,7 +49,7 @@
                                                             class="fas fa-eye"></i>View</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a href="#" class="dropdown-item has-icon text-danger"
-                                                        data-confirm="Hapus Tulisan?|Kamu yakin ingin menghapus {{ $writing->name }}"
+                                                        data-confirm="Hapus Kutipan?|Kamu yakin ingin menghapus {{ $writing->name }}"
                                                         data-confirm-yes="window.location.href='{{ route('dashboard.writing.delete', $writing->id) }}'">
                                                         <i class="far fa-trash-alt"></i> Delete</a>
                                                 </div>

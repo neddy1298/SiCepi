@@ -16,23 +16,14 @@
         <li class="menu-header">User Panel</li>
 
 
-        <li class="{{ request()->is('dashboard/my_writing') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('dashboard.user_index') }}"><i class="fas fa-bookmark"></i>
-                <span>Tulisan Saya</span></a></li>
+        <li class="{{ request()->is('dashboard/writing') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('dashboard.writing.index') }}"><i class="fas fa-bookmark"></i>
+                <span>Kutipan Saya</span></a></li>
 
 
-
-        <li class="{{ request()->is('dashboard/writing/*') ? 'active' : '' }} nav-item dropdown">
-            <a href="#" class="nav-link has-dropdown"><i class="fas fa-pencil-alt"></i> <span>Buat Kutipan</span></a>
-            <ul class="dropdown-menu">
-                <li class="{{ request()->is('dashboard/writing/simple/*') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('dashboard.writing.create_quote') }}">
-                        <span>Buat Kutipan Baru</span></a></li>
-
-                <li class="{{ request()->is('dashboard/writing') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('dashboard.writing.create') }}">
-                        <span>Buat Kutipan Advance</span></a></li>
-            </ul>
+        <li class="{{ request()->is('dashboard/writing/new') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('dashboard.writing.create') }}"><i class="fas fa-pencil-alt"></i>
+                <span>Buat Kutipan</span></a>
         </li>
 
         <li class="{{ request()->is('dashboard/settings/*') ? 'active' : '' }} nav-item dropdown">
@@ -52,13 +43,18 @@
 
         <li class="menu-header">Admin Panel</li>
 
-        <li class="{{ request()->is('dashboard/popular/*') ? 'active' : '' }} nav-item dropdown">
-            <a href="#" class="nav-link has-dropdown"><i class="fas fa-user-cog"></i> <span>Popular</span></a>
+        <li class="{{ request()->is('dashboard/admin/*') ? 'active' : '' }} nav-item dropdown">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-book"></i> <span>Master Data</span></a>
             <ul class="dropdown-menu">
-                <li class="{{ request()->is('dashboard/popular/author') ? 'active' : '' }}"><a class="nav-link"
-                        href="{{ route('dashboard.popular.index_author') }}">Author Popular</a></li>
-                <li class="{{ request()->is('dashboard/popular/topic') ? 'active' : '' }}"><a class="nav-link"
-                        href="{{ route('dashboard.popular.index_topic') }}">Topic Popular</a></li>
+                <li class="{{ request()->is('dashboard/admin/category') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('dashboard.admin.index_category') }}">Kategori</a>
+                </li>
+                <li class="{{ request()->is('dashboard/admin/author') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('dashboard.admin.index_author') }}">Author</a>
+                </li>
+                <li class="{{ request()->is('dashboard/admin/topic') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('dashboard.admin.index_topic') }}">Topik</a>
+                </li>
             </ul>
         </li>
 
@@ -74,26 +70,6 @@
         <li class="{{ request()->is('dashboard/user_*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('dashboard.user.index') }}"><i class="fas fa-users"></i>
                 <span>List User</span></a></li>
-
-        <li class="{{ request()->is('dashboard/admin/*') ? 'active' : '' }} nav-item dropdown">
-            <a href="#" class="nav-link has-dropdown"><i class="fas fa-book"></i> <span>Management Tulisan</span></a>
-            <ul class="dropdown-menu">
-                <li class="{{ request()->is('dashboard/admin/new_template') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('dashboard.admin.template_create') }}">Buat
-                        Template</a></li>
-                <li class="{{ request()->is('dashboard/admin/list_template') ? 'active' : '' }}"><a class="nav-link"
-                        href="{{ route('dashboard.admin.template') }}">List Template</a></li>
-
-                <li class="{{ request()->is('dashboard/admin/list_user_*') ? 'active' : '' }}"><a class="nav-link"
-                        href="{{ route('dashboard.admin.user_writing') }}">List
-                        Tulisan User</a></li>
-                <li class="{{ request()->is('dashboard/admin/tag_*') ? 'active' : '' }}"><a class="nav-link"
-                        href="{{ route('dashboard.admin.tag') }}">Tag Management</a></li>
-
-                <li class="{{ request()->is('dashboard/admin/catalog_*') ? 'active' : '' }}"><a class="nav-link"
-                        href="{{ route('dashboard.admin.catalog') }}">Catalog Management</a></li>
-            </ul>
-        </li>
         @endif
         <hr>
         <div class="mt-4 p-3 hide-sidebar-mini">

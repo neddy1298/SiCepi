@@ -22,8 +22,7 @@ class User extends Authenticatable
         'email',
         'role',
         'password',
-        'quote_limit',
-        'writing_limit',
+        'limit',
     ];
 
     /**

@@ -2,7 +2,7 @@
 @section('user-content')
 <div class="card">
     <div class="card-header d-flex">
-        <h5>Tulisan Baru -> Pilih Template ( 1/2 )</h5>
+        <h5>Kutipan Baru -> Pilih Template ( 1/2 )</h5>
     </div>
     <form method="post" action="{{ route('user.other_store') }}">
         @csrf
@@ -10,25 +10,39 @@
             <div class="row">
                 <div class="col-12">
                     <div class="form-group">
-                        <label>Beri nama tulisanmu</label>
+                        <label>Beri nama kutipanmu</label>
                         <input name="name" type="text" class="form-control" required>
                         <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
 
                     </div>
+
                     <div class="form-group">
-                        <label>Pilih katalog tulisanmu</label>
+                        <label for="">Pilih Topik</label>
+                        <select name="topics[]" id="" class="select2" multiple="multiple" data-placeholder="Pilih Topik"
+                            data-width="100%" required>
+                            <option value="Age">Age</option>
+                            <option value="Alone">Alone</option>
+                            <option value="Amazing">Amazing</option>
+                            <option value="Anger">Anger</option>
+                            <option value="Anniversary">Anniversary</option>
+                            <option value="Architecture">Architecture</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pilih katalog Kutipanmu</label>
                         <select class="form-control" name="catalog_id" id="catalog_id" onchange="catalog()" required>
-                            <option selected>Pilih katalog tulisanmu</option>
+                            <option selected>Pilih katalog Kutipanmu</option>
                             @foreach ($catalogs as $catalog)
                             <option value="{{ $catalog->id }}">{{ $catalog->catalog }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Pilih tema tulisanmu</label>
+                        <label>Pilih tema Kutipanmu</label>
                         <select class="form-control" name="template_id" id="template_data" onchange="template()"
                             required>
-                            <option disabled selected>Pilih tema tulisanmu</option>
+                            <option disabled selected>Pilih tema Kutipanmu</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -63,7 +77,7 @@
 
 
     document.getElementById("template_data").innerHTML +=
-        "<option hidden selected>Pilih tema tulisanmu</option>";
+        "<option hidden selected>Pilih tema Kutipanmu</option>";
 
     for (let index = 0; index < template.length; index++) {
 

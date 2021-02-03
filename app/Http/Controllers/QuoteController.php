@@ -126,20 +126,30 @@ class QuoteController extends Controller
     // Store Created Other
     public function other_store(Request $request)
     {
-        $limit = auth()->user()->writing_limit;
+        $limit = auth()->user()->limit;
         if ($limit <= 0 ) {
-            Alert::warning('Gagal', 'Kamu telah mencapai batas pembuatan tulisan, beli tulisan untuk menambah tulisanmu');
+            Alert::warning('Gagal', 'Kamu telah mencapai batas pembuatan Kutipan, beli Kutipan untuk menambah Kutipanmu');
             // Alert::html('Html Title', 'Html Code', 'Type');
             return redirect()->route('dashboard.pricing');
 
         }else{
             $limitUpdate = User::find(auth()->user()->id);
             $limitUpdate->update([
-                'writing_limit' => $limitUpdate->writing_limit - 1
+                'limit' => $limitUpdate->limit - 1
             ]);
         }
         // dd($limit);
-        $writing = Writing::create($request->all());
+        $topics = implode(',', $request->topics);
+
+        $writing = Writing::create([
+            'name'=> $request->name,
+            'topics'=> $topics,
+            'catalog_id'=> $request->catalog_id,
+            'template_id'=> $request->template_id,
+            'user_id'=> $request->user_id,
+            'field' => $request->field,
+        ]);
+        // $writing = Writing::create($request->all());
 
         $blocks = Block::where('blocks.template_id', $writing->template_id)->get();
         // dd($blocks);
@@ -274,7 +284,7 @@ class QuoteController extends Controller
             'field' => $request->except(['_token', 'name'])
         ]);
 
-        Alert::success('Berhasil', 'Tulisanmu berhasil dibuat');
+        Alert::success('Berhasil', 'Kutipanmu berhasil dibuat');
         return redirect()->route('user.edit_other', $writing->id);
 
 
@@ -303,6 +313,7 @@ class QuoteController extends Controller
     public function update_other(Request $request, $id)
     {
         $writing = Writing::find($id);
+
         $writingchild = WritingChild::where('writing_children.writing_id', '=', $writing->id)->get();
 
         $result = $request->except('name', '_token');
@@ -317,13 +328,21 @@ class QuoteController extends Controller
 
         }
 
+        if ($request->topics) {
+
+            $topics = implode(',', $request->topics);
+
+            $writing->update([
+                'topics'=> $topics,
+            ]);
+        }
 
         $writing->update([
             'name' => $request->name,
         ]);
 
 
-        Alert::success('Berhasil', 'Tulisanmu berhasil diubah');
+        Alert::success('Berhasil', 'Kutipanmu berhasil diubah');
         return redirect()->back();
 
 
@@ -340,7 +359,7 @@ class QuoteController extends Controller
     {
         $limit = auth()->user()->quote_limit;
         if ($limit <= 0 ) {
-            Alert::warning('Gagal', 'Kamu telah mencapai batas pembuatan tulisan');
+            Alert::warning('Gagal', 'Kamu telah mencapai batas pembuatan Kutipan');
             return redirect()->route('user.quote');
 
         }else{
@@ -388,7 +407,7 @@ class QuoteController extends Controller
 
             $limit = auth()->user()->quote_limit;
             if ($limit <= 0 ) {
-                Alert::warning('Gagal', 'Kamu telah mencapai batas pembuatan tulisan. Silahkan upgrade untuk dapat membuat & menyimpan lebih banyak quote');
+                Alert::warning('Gagal', 'Kamu telah mencapai batas pembuatan Kutipan. Silahkan upgrade untuk dapat membuat & menyimpan lebih banyak quote');
                 return redirect()->back();
 
             }
@@ -516,7 +535,7 @@ class QuoteController extends Controller
         }
         $user = User::find(auth()->user()->id);
         $user->update([
-            'writing_limit' => $user->writing_limit + $promo_code->value
+            'limit' => $user->limit + $promo_code->value
         ]);
 
         PurchaseHistory::create([

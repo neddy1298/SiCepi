@@ -3,87 +3,44 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Writing;
-use App\Models\WritingChild;
-use App\Models\Catalog;
-use App\Models\Quote;
+use App\Models\Category;
 use Alert;
 
 class CategoryController extends Controller
 {
-    public function index($id)
+    public function index()
     {
-        $writings = Writing::where('writings.catalog_id', $id)->where('writings.user_id', 1)
-        ->join('catalogs', 'catalogs.id' ,'=' ,'writings.catalog_id')
-        ->join('users', 'users.id' ,'=' ,'writings.user_id')
-        ->select('writings.*', 'catalogs.catalog', 'users.name as user_name')
-        ->get();
+        $categories = Category::get();
 
-        $category = Catalog::find($id);
-        // dd($writings);
-
-        return view('front.pages.category.view', compact('writings','category'));
+        return view('dashboard.app.master_data.category.view', compact('categories'));
     }
 
-    public function detail($id)
+    public function store(Request $request)
     {
-        $writing = Writing::join('templates', 'templates.id', '=', 'writings.template_id')
-        ->join('catalogs', 'catalogs.id', '=', 'writings.catalog_id')
-        ->join('users', 'users.id', '=', 'writings.user_id')
-        ->select('writings.*', 'templates.template_name', 'catalogs.catalog', 'users.name as user_name')
-        ->where('writings.id', $id)
-        ->get()->first();
+        Category::create($request->all());
 
 
-
-        $blocks = WritingChild::where('writing_id', $id)->get();
-        // dd($blocks);
-        // dd($writings);
-
-        return view('front.pages.category.detail', compact('writing','blocks'));
-    }
-
-    public function quote()
-    {
-        $quotes = Quote::join('users', 'users.id', '=', 'quotes.user_id')
-        ->where('users.is_admin', 1)
-        ->select('quotes.*', 'users.name as user_name')
-        ->get();
-
-        foreach ($quotes as $quote) {
-            foreach (explode(',',$quote->topics) as $topic) {
-                $topics[] = $topic;
-            }
-        }
-        $topics = array_unique($topics);
-
-        return view('front.pages.category.quote', compact('quotes', 'topics'));
-    }
-
-    public function writing_save($id)
-    {
-        $writing = Writing::find($id);
-        $blocks = WritingChild::where('writing_children.writing_id', $id)->get();
-
-
-        $writing = Writing::create([
-            'name' => $writing->name,
-            'template_id' => $writing->template_id,
-            'catalog_id' => $writing->catalog_id,
-            'user_id' => auth()->user()->id,
-            'field' => $writing->field,
-        ]);
-
-        foreach ($blocks as $block) {
-            WritingChild::create([
-                'writing_id' => $writing->id,
-                'writing_name' => $block->writing_name,
-                'writing_text' => $block->writing_text,
-            ]);
-        }
-
-        Alert::success('Berhasil', 'Kitupan berhasil disimpan');
+        Alert::success('Berhasil', 'Berhasil membuat kategori baru');
         return redirect()->back();
-        // dd($block);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $category = Category::find($id);
+
+        Alert::success('Berhasil', 'Berhasil merubah kategori');
+        $category->update($request->all());
+
+        return redirect()->back();
+    }
+
+    public function destroy($id)
+    {
+        $category = Category::find($id);
+
+        $category->delete();
+
+        Alert::success('Berhasil', 'Berhasil menghapus kategori');
+        return redirect()->back();
     }
 }

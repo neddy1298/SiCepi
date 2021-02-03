@@ -24,7 +24,8 @@
 
         <form class="text-right mb-3" action="{{ route('category.writing_save', $writing->id) }}" method="post">
             @csrf
-            <input type="submit" class="btn btn-primary" value="Simpan Kutipan">
+            <button type="submit" class="btn btn-light btn-sm btn-rounded"><i
+                    class="mdi mdi-content-save-all-outline align-middle"></i></button>
         </form>
 
         <div class="masonry-quote mb-3">
@@ -54,7 +55,7 @@
                                 memiliki akun</h4>
                             <div class="mt-5 mb-4">
                                 <small class="font-weight-bold text-secondary">Untuk dapat menyimpan dan mengedit
-                                    tulisan kamu perlu
+                                    Kutipan kamu perlu
                                     masuk akun kamu..</small>
                             </div>
                             <div class="mb-2">

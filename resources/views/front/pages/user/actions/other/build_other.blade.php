@@ -2,7 +2,7 @@
 @section('user-content')
 <div class="card">
     <div class="card-header d-flex">
-        <h5>Tulisan Baru -> Pilih Template ( 2/2 )</h5>
+        <h5>Kutipan Baru -> Pilih Template ( 2/2 )</h5>
     </div>
     <form method="POST" action="{{ route('user.build_other_store', $writing->id) }}">
         @csrf
@@ -16,7 +16,7 @@
                             2. Kamu dapat merubah text setelah membuild template; <br>
                             3. Kamu dapat membuat ulang template; <br>
                             <strong>
-                                4. Jika kamu membuat ulang template tulisanmu akan tereset menjadi
+                                4. Jika kamu membuat ulang template Kutipanmu akan tereset menjadi
                                 tampilan awal template;
                             </strong>
                         </p>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Nama tulisanmu</label>
+                        <label>nama kutipanmu</label>
                         <input name="name" type="text" class="form-control" value="{{ $writing->name }}">
                     </div>
                 </div>

@@ -10,6 +10,6 @@ class Writing extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'catalog_id', 'template_id', 'user_id', 'field'
+        'user_id', 'name', 'text', 'category', 'topics', 'author', 'saved_from',
     ];
 }

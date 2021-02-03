@@ -18,7 +18,7 @@ class TemplateSeeder extends Seeder
             'catalog_id' => 1,
             'template_name' => 'Sales Letter Sample Group 1',
             'template_intro' => 'Here are some sales letters that demonstrate how this automatic writing system work.',
-            'status' => 'Not Published'
+            'status' => 'Published'
         ],[
             'catalog_id' => 1,
             'template_name' => 'Sales Letter Sample Group 2',
