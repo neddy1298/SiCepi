@@ -321,7 +321,9 @@ class FrontWritingController extends Controller
         ]);
 
         PurchaseHistory::create([
+            'name' => $promo_code->name,
             'code' => $promo_code->code,
+            'price' => $promo_code->price,
             'value' => $promo_code->value,
             'user_id' => auth()->user()->id,
         ]);

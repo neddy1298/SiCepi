@@ -25,16 +25,20 @@
                             <table class="table table-striped" id="template-table">
                                 <thead>
                                     <tr>
+                                        <th>Nama Paket</th>
                                         <th>Code</th>
                                         <th>Value</th>
+                                        <th>Harga</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($codes as $code)
                                     <tr>
+                                        <td>{{ $code->name }}</td>
                                         <td>{{ $code->code }}</td>
                                         <td>{{ $code->value }}</td>
+                                        <td>Rp. {{ $code->price }}</td>
                                         <td width="20%">
                                             <div>
                                                 <button class="btn btn-warning" data-toggle="modal"
@@ -76,17 +80,31 @@
 
 
                     <div class="form-group">
+                        <label for="catalog"><span class="text-danger">*</span> Name</label>
+                        <input id="catalog" type="text" class="form-control" name="name" required>
+                        <div class=" invalid-feedback">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="catalog"><span class="text-danger">*</span> Promo Code</label>
                         <input id="catalog" type="text" class="form-control" name="code" required>
-                        <div class="invalid-feedback">
+                        <div class=" invalid-feedback">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="description"><span class="text-danger">*</span> Value</label>
-                        <input id="catalog" type="number" class="form-control" name="value" value="{{ $code->code }}"
-                            required>
-                        <div class="invalid-feedback">
+                        <input id="catalog" type="number" class="form-control" name="value" required>
+                        <div class=" invalid-feedback">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description"><span class="text-danger">*</span> Price</label>
+                        <input id="catalog" type="number" class="form-control" name="price" required>
+                        <div class=" invalid-feedback">
 
                         </div>
                     </div>
@@ -117,6 +135,14 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
+                        <label for="catalog"><span class="text-danger">*</span> Name</label>
+                        <input id="catalog" type="text" class="form-control" name="name" value="{{ $code->name }}"
+                            required>
+                        <div class="invalid-feedback">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="catalog"><span class="text-danger">*</span> Promo Code</label>
                         <input id="catalog" type="text" class="form-control" name="code" value="{{ $code->code }}"
                             required>
@@ -127,6 +153,15 @@
                     <div class="form-group">
                         <label for="description"><span class="text-danger">*</span> Value</label>
                         <input id="catalog" type="number" class="form-control" name="value" value="{{ $code->value }}"
+                            required>
+                        <div class="invalid-feedback">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description"><span class="text-danger">*</span> Price</label>
+                        <input id="catalog" type="number" class="form-control" name="price" value="{{ $code->price }}"
                             required>
                         <div class="invalid-feedback">
 

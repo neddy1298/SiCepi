@@ -12,8 +12,9 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Code</th>
+                        <th>Nama Paket</th>
                         <th>Value</th>
+                        <th>price</th>
                         <th>Tanggal Penggunaan</th>
                     </tr>
                 </thead>
@@ -22,8 +23,9 @@
 
                     <tr>
                         <td></td>
-                        <td>{{ $history->code }}</td>
+                        <td>{{ $history->name }}</td>
                         <td>{{ $history->value }}</td>
+                        <td>Rp.{{ $history->price }}</td>
                         <td>{{ $history->created_at }}</td>
                     </tr>
                     @endforeach

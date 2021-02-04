@@ -22,17 +22,21 @@
                                 <thead>
                                     <tr>
                                         <th>User Name</th>
+                                        <th>Nama Paket</th>
                                         <th>Code</th>
                                         <th>Value</th>
-                                        <th>Purchase Time</th>
+                                        <th>Harga</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($codes as $code)
                                     <tr>
+                                        <td>{{ $code->user_name }}</td>
                                         <td>{{ $code->name }}</td>
                                         <td>{{ $code->code }}</td>
                                         <td>{{ $code->value }}</td>
+                                        <td>Rp. {{ $code->price }}</td>
                                         <td>{{ $code->created_at }}</td>
                                     </tr>
                                     @endforeach

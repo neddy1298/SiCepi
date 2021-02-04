@@ -53,7 +53,7 @@ class PromoCodeController extends Controller
     public function user_history()
     {
         $codes = PurchaseHistory::join('users', 'users.id', '=', 'purchase_histories.user_id')
-        ->select('purchase_histories.*', 'users.name')->get();
+        ->select('purchase_histories.*', 'users.name as user_name')->get();
         return view('dashboard.app.pricing.history', compact('codes'));
     }
 }
