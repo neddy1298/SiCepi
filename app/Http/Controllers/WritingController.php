@@ -138,25 +138,6 @@ class WritingController extends Controller
         return view('dashboard.app.writing.user_view', compact('writings'));
     }
 
-    public function user_writing_detail($id)
-    {
-        $writing = Writing::join('templates', 'templates.id', '=', 'writings.template_id')
-        ->join('catalogs', 'catalogs.id', '=', 'writings.catalog_id')
-        ->join('users', 'users.id', '=', 'writings.user_id')
-        ->select('writings.*', 'templates.template_name', 'catalogs.catalog', 'users.email')
-        ->where('writings.id', $id)
-        ->get()->first();
-
-        // dd($writing);
-
-
-        $blocks = WritingChild::where('writing_id', $id)->get();
-
-        // dd($blocks);
-
-        return view('dashboard.app.writing.user_view_detail', compact('writing', 'blocks'));
-    }
-
     public function destroy($id)
     {
         $writing = Writing::find($id);

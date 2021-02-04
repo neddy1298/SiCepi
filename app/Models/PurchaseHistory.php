@@ -10,6 +10,6 @@ class PurchaseHistory extends Model
     use HasFactory;
 
     protected $fillable = [
-        'code', 'value', 'user_id'
+        'code', 'name', 'price', 'value', 'user_id'
     ];
 }

@@ -47,8 +47,8 @@
                     <div class="col-md-12">
                         <h3 class="font-weight-bold">Author Populer</h3>
                         <div class="column-link-group column-5">
-                            @foreach ($PopularAuthors as $PopularAuthor)
-                            <a href="{{ route('topics.quotes', $PopularAuthor->name) }}"
+                            @foreach ($Authors as $PopularAuthor)
+                            <a href="{{ route('topics.writing', $PopularAuthor->name) }}"
                                 class="column-link-list">{{ $PopularAuthor->name }}</a>
                             @endforeach
 

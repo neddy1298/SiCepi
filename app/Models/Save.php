@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Favorite extends Model
+class Save extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'writing_id', 'user_id'
+        'user_id', 'writing_id'
     ];
 }

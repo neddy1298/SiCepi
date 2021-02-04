@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Quote;
+use App\Models\Writing;
 
 class FrontController extends Controller
 {
@@ -14,19 +14,19 @@ class FrontController extends Controller
 
     public function index()
     {
-        $quotes = Quote::join('users', 'users.id', '=', 'quotes.user_id')
+        $writings = Writing::join('users', 'users.id', '=', 'writings.user_id')
         ->where('users.is_admin', 1)
-        ->select('quotes.*', 'users.name as user_name')
+        ->select('writings.*', 'users.name as user_name')
         ->get();
 
-        foreach ($quotes as $quote) {
-            foreach (explode(',',$quote->topics) as $topic) {
+        foreach ($writings as $writing) {
+            foreach (explode(',',$writing->topics) as $topic) {
                 $topics[] = $topic;
             }
         }
         $topics = array_unique($topics);
 
-        return view('front.pages.home', compact('quotes', 'topics'));
+        return view('front.pages.home', compact('writings', 'topics'));
     }
 
     public function topics()
@@ -34,11 +34,11 @@ class FrontController extends Controller
         return view('front.pages.topics.view');
     }
 
-    public function quoteby_topic($topic)
+    public function by_topic($topic)
     {
-        $quotes = Quote::where('topics', 'like', "%{$topic}%")->latest()->get();
+        $writings = Writing::where('topics', 'like', "%{$topic}%")->latest()->get();
 
-        return view('front.pages.topics.quotes', compact('quotes'));
+        return view('front.pages.topics.writing', compact('writings'));
     }
 
     public function author()
@@ -46,11 +46,18 @@ class FrontController extends Controller
         return view('front.pages.author.view');
     }
 
-    public function quoteby_author($author)
+    public function by_author($author)
     {
-        $quotes = Quote::where('author', 'like', "%{$author}%")->latest()->get();
+        $writings = Writing::where('author', 'like', "%{$author}%")->latest()->get();
 
-        return view('front.pages.author.quotes', compact('quotes'));
+        return view('front.pages.author.writing', compact('writings'));
+    }
+
+    public function by_category($category)
+    {
+        $writings = Writing::where('category', 'like', "%{$category}%")->latest()->get();
+
+        return view('front.pages.category.view', compact('writings'));
     }
 
 

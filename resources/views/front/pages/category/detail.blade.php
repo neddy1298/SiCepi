@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <h3 class="text-center my-4"><strong>Kategori: </strong>{{ $writing->catalog }}</h3>
+        <h3 class="text-center my-4"><strong>Kategori: </strong>{{ $writing->category }}</h3>
         <h3 class="text-center my-4"><strong>Nama Kutipan: </strong>{{ $writing->name }}</h3>
         <h3 class="text-center my-4"><strong>Publish By: </strong>SICEPI</h3>
 

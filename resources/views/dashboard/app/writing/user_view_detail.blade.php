@@ -35,7 +35,7 @@
                             </div>
                             <div class="form-group col-lg-6 col-md-12 col-sm-12 mb-5">
                                 <span for="tag_body">Generate From : <a
-                                        href="{{ route('dashboard.admin.template_edit', $writing->template_id) }}">{{ $writing->catalog }}
+                                        href="{{ route('dashboard.admin.template_edit', $writing->template_id) }}">{{ $writing->category }}
                                         ->
                                         {{ $writing->template_name }}</a></span>
                             </div>

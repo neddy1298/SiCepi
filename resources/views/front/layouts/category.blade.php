@@ -12,14 +12,14 @@
                 </div>
                 <div class="col-auto ml-auto">
                     <label class="d-block mb-0"><small>Kategori</small></label>
-                    <a href="{{ route('category.view', $writing->catalog_id) }}"
-                        class="badge badge-primary badge-pill">{{ $writing->catalog }}</a>
+                    <a href="{{ route('category.category', $writing->category) }}"
+                        class="badge badge-primary badge-pill">{{ $writing->category }}</a>
                 </div>
             </div>
         </div>
         <div class="card-footer">
             @foreach (explode(',',$writing->topics) as $item)
-            <a href="{{ route('topics.quotes', $item) }}" class="badge badge-secondary badge-pill">{{ $item }}</a>
+            <a href="{{ route('topics.writing', $item) }}" class="badge badge-secondary badge-pill">{{ $item }}</a>
             @endforeach
         </div>
     </div>

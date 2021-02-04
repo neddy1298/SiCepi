@@ -10,6 +10,6 @@ class PromoCode extends Model
     use HasFactory;
 
     protected $fillable = [
-        'code', 'value'
+        'code', 'name', 'price', 'value'
     ];
 }

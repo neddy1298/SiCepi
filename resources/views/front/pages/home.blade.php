@@ -13,7 +13,7 @@
                     <small class="font-weight-bold text-secondary">Cari kutipan yang anda inginkan di sini:</small>
                 </div>
                 <div class="form-group">
-                    <form action="{{ route('quote.search') }}" method="get">
+                    <form action="{{ route('writing.search') }}" method="get">
                         @csrf
 
                         <div class="input-group input-group-lg">
@@ -46,7 +46,7 @@
     <div class="container">
         <h3 class="font-weight-bold mb-3">Rekomendasi Kutipan Hari ini</h3>
         <div class="masonry-quote mb-3 grid">
-            @include('front.layouts.quotes')
+            @include('front.layouts.writings')
         </div>
         <div class="card">
             <div class="card-body">
@@ -54,8 +54,8 @@
                     <div class="col-md-6">
                         <h3 class="font-weight-bold">Penulis Populer</h3>
                         <div class="column-link-group">
-                            @foreach ($PopularAuthors as $PopularAuthor)
-                            <a href="{{ route('author.quotes', $PopularAuthor->name) }}"
+                            @foreach ($Authors as $PopularAuthor)
+                            <a href="{{ route('author.writing', $PopularAuthor->name) }}"
                                 class="column-link-list">{{ $PopularAuthor->name }}</a>
                             @endforeach
                         </div>
@@ -64,8 +64,8 @@
                     <div class="col-md-6">
                         <h3 class="font-weight-bold">Topik Populer</h3>
                         <div class="column-link-group">
-                            @foreach ($PopularTopics as $PopularTopic)
-                            <a href="{{ route('topics.quotes', $PopularTopic->name) }}"
+                            @foreach ($Topics as $PopularTopic)
+                            <a href="{{ route('topics.writing', $PopularTopic->name) }}"
                                 class="column-link-list">{{ $PopularTopic->name }}</a>
                             @endforeach
                         </div>

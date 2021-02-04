@@ -59,14 +59,14 @@ class WritingSeeder extends Seeder
         ],[
             'user_id' => 1,
             'name' => 'test7',
-            'category' => 'Quote',
+            'category' => 'Sales Letter',
             'text' => "Fine art is that in which the hand, the head, and the heart of man go together.",
             'topics' => "Art,Fine,FineArt,Go,Hand,Head,Heart,Man,Together,Which",
             'author' => "John Ruskin",
         ],[
             'user_id' => 1,
             'name' => 'test8',
-            'category' => 'Quote',
+            'category' => 'Sales Letter',
             'text' => "If people think nature is their friend, then they sure don't need an enemy.",
             'topics' => "Enemy,Friend,Nature,Need,People,Sure,Then,Think",
             'author' => "Kurt Vonnegut",

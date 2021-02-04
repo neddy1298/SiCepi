@@ -16,13 +16,12 @@ class CreateFavoritesTable extends Migration
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('quote_id');
+            $table->unsignedBigInteger('writing_id');
 
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('quote_id')->references('id')->on('users')->onDelete('cascade');
-
+            $table->foreign('writing_id')->references('id')->on('writings')->onDelete('cascade');
         });
     }
 

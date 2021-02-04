@@ -17,9 +17,9 @@
                 </div>
             </div>
         </div>
-        <h3 class="text-center my-4"><strong>Kategori:</strong> {{ ($category->catalog ?? $category) }}</h3>
+        <h3 class="text-center my-4"><strong>Kategori:</strong> {{ request()->segment(2) }}</h3>
         <div class="masonry-quote mb-3 grid">
-            @include('front.layouts.category')
+            @include('front.layouts.writings')
         </div>
     </div>
 </div>

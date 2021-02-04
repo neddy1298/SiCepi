@@ -37,7 +37,7 @@
                                     <tr>
 
                                         <td>{{ $writing->updated_at }}</td>
-                                        <td>{{ $writing->catalog }} -> {{ $writing->template_name }}</td>
+                                        <td>{{ $writing->category }} -> {{ $writing->template_name }}</td>
                                         <td>{{ $writing->name }}</td>
                                         <td>
                                             <div class="dropdown dropright">

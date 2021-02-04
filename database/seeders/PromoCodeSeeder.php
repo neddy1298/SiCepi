@@ -15,8 +15,10 @@ class PromoCodeSeeder extends Seeder
     public function run()
     {
         $code = [
+            'name' => 'Paket Basic',
             'code' => 'free',
             'value' => 10,
+            'price' => 10000,
         ];
         PromoCode::create($code);
     }

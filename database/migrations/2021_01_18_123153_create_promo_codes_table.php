@@ -15,8 +15,10 @@ class CreatePromoCodesTable extends Migration
     {
         Schema::create('promo_codes', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('code');
             $table->integer('value');
+            $table->integer('price');
             $table->timestamps();
         });
     }

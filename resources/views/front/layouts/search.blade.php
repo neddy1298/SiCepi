@@ -1,4 +1,4 @@
-<form action="{{ route('quote.search') }}" method="get">
+<form action="{{ route('writing.search') }}" method="get">
     @csrf
     <div class="input-group ">
         <div class="input-group-prepend">

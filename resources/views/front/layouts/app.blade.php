@@ -45,10 +45,9 @@
                                 Kategori
                             </a>
                             <div class="dropdown-menu" x-placement="bottom-start">
-                                <a class="dropdown-item has-icon" href="{{ route('category.view', 'quote') }}">Quote</a>
-                                @foreach ($Category as $category)
+                                @foreach ($Categories as $category)
                                 <a class="dropdown-item has-icon"
-                                    href="{{ route('category.view', $category->id) }}">{{$category->catalog}}</a>
+                                    href="{{ route('category.category', $category->name) }}">{{$category->name}}</a>
                                 @endforeach
                             </div>
 
@@ -68,7 +67,7 @@
                                 <a class="dropdown-item has-icon text-primary" href="{{ route('dashboard.index') }}"><i
                                         class="mdi mdi-home"></i> Dashboard</a>
                                 @endif
-                                <a class="dropdown-item has-icon text-info" href="{{ route('user.create_quote') }}"><i
+                                <a class="dropdown-item has-icon text-info" href="{{ route('user.create') }}"><i
                                         class="mdi mdi-pencil"></i> Buat
                                     Kutipan</a>
                                 <hr>

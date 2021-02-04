@@ -24,7 +24,7 @@
         </div>
         <h3 class="text-center my-4"><strong>Topik:</strong> {{ request()->segment(2) }}</h3>
         <div class="masonry-quote mb-3 grid">
-            @include('front.layouts.quotes')
+            @include('front.layouts.writings')
         </div>
     </div>
 </div>
