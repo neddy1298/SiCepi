@@ -41,10 +41,11 @@
 
                             <div class="form-group">
                                 <label>Role</label>
-                                <select class="form-control" name="role">
-                                    <option value="{{ $user->role }}" disabled>{{ $user->role }}</option>
-                                    <option value="User">User</option>
-                                    <option value="Admin">Admin</option>
+                                <select class="form-control" name="is_admin">
+                                    <option value="{{ $user->is_admin }}" hidden>
+                                        {{ ($user->is_admin == 1)?'Admin':'User' }}</option>
+                                    <option value="0">User</option>
+                                    <option value="1">Admin</option>
                                 </select>
                             </div>
 

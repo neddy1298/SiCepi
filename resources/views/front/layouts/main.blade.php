@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-body p-3">
                         <div class="d-flex align-items-center">
-                            <img src="{{ asset('front/images/user/user2--square.png') }}" alt="" width="50"
+                            <img src="{{ asset('assets') }}/upload/user/{{Auth::user()->image}}" alt="" width="50"
                                 class="rounded-circle mr-3">
                             <div>
 
@@ -27,6 +27,8 @@
 
                     </div>
                     <div class="list-group list-group-flush">
+                        <label class="list-group-item list-group-item-action text-center">quota:
+                            {{ Auth::user()->limit }} / </label>
                         <a href="{{ route('user.create') }}" class="list-group-item list-group-item-action">
                             <img src="" alt="" width="20" class="mr-3"> Buat Kutipan</a>
                         <a href="{{ route('user.writing') }}" class="list-group-item list-group-item-action"><img
@@ -39,7 +41,7 @@
                                 src="{{ asset('front/images/heart.svg') }}" alt="" width="20" class="mr-3"> Disukai</a>
                         <a href="{{ route('user.purchase') }}" class="list-group-item list-group-item-action"><img
                                 src="" alt="" width="20" class="mr-3"> Beli
-                            Kutipan</a>
+                            Quote Tulisan</a>
                         <a href="{{ route('user.purchase_history') }}"
                             class="list-group-item list-group-item-action"><img src="" alt="" width="20" class="mr-3">
                             Histori Pembelian</a>

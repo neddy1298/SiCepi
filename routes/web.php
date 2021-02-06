@@ -90,6 +90,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 });
 
 Route::get('/search', [FrontWritingController::class, 'search'])->name('writing.search');
+Route::get('/detail/{writing_id}',[FrontWritingController::class, 'show'])->name('writing.detail');
 Route::get('/save/{id}', [FrontWritingController::class, 'save'])->name('save')->middleware('auth');
 Route::get('/save/{id}', [FrontWritingController::class, 'save'])->name('save')->middleware('auth');
 
@@ -125,6 +126,8 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
 
     // Writing
     Route::group(['prefix' => 'writing', 'as' => 'writing.'], function () {
+
+
 
         // Create Quote
         Route::get('/simple',[WritingController::class, 'create'])->name('create');

@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_admin')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('image')->default('default.png');
             $table->integer('limit')->default(3);
             $table->rememberToken();
             $table->timestamps();

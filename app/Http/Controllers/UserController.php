@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Alert;
+use File;
+use Image;
 
 class UserController extends Controller
 {
@@ -33,6 +35,25 @@ class UserController extends Controller
         $user = User::find($id);
 
         $user->update($request->all());
+
+
+
+        if ($request->file('image')) {
+
+            $foto = $request->file('image');
+            $namaFile = \Carbon\Carbon::now()->timestamp . '_' . uniqid() . '.' . $foto->getClientOriginalExtension();
+
+            $destinationPath = public_path('assets/upload/user');
+            File::exists($destinationPath) or File::makeDirectory($destinationPath, 0777, true, true);
+            $img = Image::make($foto->path());
+
+            $img->resize(466, 493)->save($destinationPath.'/'.$namaFile);
+
+            $user->update([
+                'image' => $namaFile
+            ]);
+        }
+
 
         Alert::success('Berhasil', 'Data berhasil diubah');
         return redirect()->back();
@@ -117,23 +138,25 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'role' => 'required',
+            'is_admin' => 'required',
         ]);
+
 
         $user = User::find($id);
         $user->update([
             'name' => ucfirst(trim($request->name)),
             'email' => strtolower($request->email),
-            'role' => $request->role,
+            'is_admin' => $request->is_admin,
         ]);
 
         Alert::success('Berhasil', 'Data berhasil diubah');
-        return redirect()->route('dashboard.user.index');
+        return redirect()->back();
     }
 
     public function destroy($id)
     {
         $user = User::find($id);
+        File::delete(public_path('assets/upload/user/') . $user->image);
         $user->delete();
 
         Alert::success('Berhasil', 'User berhasil dihapus');

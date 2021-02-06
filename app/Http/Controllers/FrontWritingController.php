@@ -99,6 +99,14 @@ class FrontWritingController extends Controller
         return redirect()->route('user.writing');
     }
 
+
+
+    public function show($id)
+    {
+        $writing = Writing::find($id);
+        return view('front.pages.writings.view', compact('writing'));
+    }
+
     // Edit kutipan
     public function edit($id)
     {

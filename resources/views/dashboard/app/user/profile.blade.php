@@ -13,7 +13,8 @@
 
         <h2 class="section-title">My Profile</h2>
 
-        <form action=" {{ route('dashboard.user.profile_update', Auth::user()->id) }}" method="POST">
+        <form action=" {{ route('dashboard.user.profile_update', Auth::user()->id) }}" method="POST"
+            enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-8 col-sm-12 col-md-12 col-lg-8">

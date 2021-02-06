@@ -3,7 +3,12 @@
     <div class="card card-quote">
         <div class="card-body">
             <div class="quote-text mb-3">
-                “{{ $writing->text }}”
+                @if($writing->category == 'Quote')
+                " {{ $writing->text }} "
+                @else
+                {!! substr($writing->text, 0,50) !!}... <a href="{{ route('writing.detail', $writing->id) }}">read
+                    more</a>
+                @endif
             </div>
             <div class="quote-author row mb-4">
                 @if($writing->category == 'Quote')

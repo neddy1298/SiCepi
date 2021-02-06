@@ -25,7 +25,7 @@
                             <table class="table table-striped" id="user-table">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">No</th>
+                                        <th class="text-center">Avatar</th>
                                         <th>Nama</th>
                                         <th>Email</th>
                                         <th>Role</th>
@@ -35,7 +35,10 @@
                                 <tbody>
                                     @foreach ($users as $user)
                                     <tr>
-                                        <td class="text-center" width="10%">1</td>
+                                        <td class="text-center" width="10%">
+                                            <img alt="image" src="{{ asset('assets') }}/upload/user/{{ $user->image }}"
+                                                class="rounded-circle mr-1" width="40%">
+                                        </td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         @if ($user->is_admin == 1)

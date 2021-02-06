@@ -1,7 +1,8 @@
 @extends('front.layouts.main')
 @section('user-content')
 <div class="card">
-    <form action="{{ route('dashboard.user.profile_update', Auth::user()->id) }}" method="post">
+    <form action="{{ route('dashboard.user.profile_update', Auth::user()->id) }}" method="post"
+        enctype="multipart/form-data">
         @csrf
         <div class="card-header d-flex">
             <h5>My Profile</h5>
@@ -14,6 +15,10 @@
             <div class="form-group">
                 <label for="">Email</label>
                 <input type="text" class="form-control" name="email" value="{{ Auth::user()->email }}">
+            </div>
+            <div class="form-group">
+                <label for="">Profile Picture</label>
+                <input type="file" class="form-control" name="image">
             </div>
             <div class="form-group">
                 <div class="text-right">

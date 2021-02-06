@@ -29,6 +29,7 @@ class UserFactory extends Factory
             'is_admin' => 0,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'limit' => 3,
+            'image' => 'default.png',
             'remember_token' => Str::random(10),
         ];
     }
