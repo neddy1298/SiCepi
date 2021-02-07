@@ -27,7 +27,7 @@ class PackageController extends Controller
     {
         Package::create($request->all());
 
-        Alert::success('Berhasil', 'Berhasil membuat promo code');
+        Alert::success('Berhasil', 'Berhasil membuat paket');
 
         return redirect()->back();
     }
@@ -37,7 +37,7 @@ class PackageController extends Controller
         $package = Package::find($id);
         $package->update($request->all());
 
-        Alert::success('Berhasil', 'Berhasil merubah promo code');
+        Alert::success('Berhasil', 'Berhasil merubah paket');
 
         return redirect()->back();
     }
@@ -47,7 +47,7 @@ class PackageController extends Controller
         $package = Package::find($id);
         $package->delete();
 
-        Alert::success('Berhasil', 'Berhasil menghapus promo code');
+        Alert::success('Berhasil', 'Berhasil menghapus paket');
         return redirect()->back();
     }
 
@@ -73,7 +73,7 @@ class PackageController extends Controller
     public function user_history()
     {
         $packages = PurchaseHistory::join('users', 'users.id', '=', 'purchase_histories.user_id')
-        ->select('purchase_histories.*', 'users.name as user_name')->get();
+        ->select('purchase_histories.*', 'users.name as user_name', 'users.email')->get();
         return view('dashboard.app.pricing.history', compact('packages'));
     }
 }

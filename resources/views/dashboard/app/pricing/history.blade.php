@@ -34,7 +34,7 @@
                                     <tr>
                                         <td>{{ $package->code }} <br> {{ $package->created_at->format("d/m/Y | H:i") }}
                                         </td>
-                                        <td>{{ $package->user_name }}</td>
+                                        <td>{{ $package->user_name }} <br> ({{ $package->email }})</td>
                                         <td>{{ $package->name }} <br> ({{ $package->value }} quota)</td>
                                         <td>Rp. {{ $package->price }} <br> {{ $package->method }}</td>
                                         <td>{{ $package->status }}</td>

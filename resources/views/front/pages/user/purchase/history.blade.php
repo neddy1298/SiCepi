@@ -12,6 +12,7 @@
                 <thead>
                     <tr>
                         <th>Code</th>
+                        <th>User</th>
                         <th>Produk</th>
                         <th>Harga</th>
                         <th>Status</th>
@@ -27,6 +28,7 @@
                             <br>
                             {{ $history->created_at->format("d/m/Y | H:i") }}
                         </td>
+                        <td>{{ $history->user_name }} <br> ({{ $history->email }})</td>
                         <td>{{ $history->name }} <br> ({{ $history->value }} Quota)</td>
                         <td>Rp.{{ $history->price }} <br> {{ $history->method }}</td>
                         @if ($history->status == "Menunggu Konfirmasi")
