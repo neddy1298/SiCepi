@@ -14,7 +14,7 @@
             <div class="form-group">
                 <label for="">Beri Nama Kutipanmu</label>
                 <input type="text" name="name" class="form-control" data-width="100%" required
-                    value="{{ $writing->name }}">
+                    value="{{ $writing->name }}" disabled>
             </div>
             <div class="form-group">
                 <label for="">Pilih Kategori</label>
@@ -36,7 +36,7 @@
             </div>
             <div class="form-group">
                 <label for="">Pilih Topik</label>
-                <select name="topics[]" id="" class="select2" multiple="multiple" data-width="100%">
+                <select name="topics[]" id="" class="select2" multiple="multiple" data-width="100%" disabled>
                     <option selected>{{ $writing->topics }}</option>
                     @foreach ($Topics as $topic)
                     <option value="{{ $topic->name }}">{{ $topic->name }}</option>
