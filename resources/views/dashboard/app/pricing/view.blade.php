@@ -26,27 +26,25 @@
                                 <thead>
                                     <tr>
                                         <th>Nama Paket</th>
-                                        <th>Code</th>
                                         <th>Value</th>
                                         <th>Harga</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($codes as $code)
+                                    @foreach ($packages as $package)
                                     <tr>
-                                        <td>{{ $code->name }}</td>
-                                        <td>{{ $code->code }}</td>
-                                        <td>{{ $code->value }}</td>
-                                        <td>Rp. {{ $code->price }}</td>
+                                        <td>{{ $package->name }}</td>
+                                        <td>{{ $package->value }}</td>
+                                        <td>Rp. {{ $package->price }}</td>
                                         <td width="20%">
                                             <div>
                                                 <button class="btn btn-warning" data-toggle="modal"
-                                                    data-target="#editCode_{{ $code->id }}"><i
+                                                    data-target="#editCode_{{ $package->id }}"><i
                                                         class="fas fa-pencil-alt"></i></button>
                                                 <button class="btn btn-danger"
-                                                    data-confirm="Hapus User?|Kamu yakin ingin menghapus: {{ $code->code }}"
-                                                    data-confirm-yes="window.location.href='{{ route('dashboard.pricing_delete', $code->id) }}'">
+                                                    data-confirm="Hapus User?|Kamu yakin ingin menghapus: {{ $package->name }}"
+                                                    data-confirm-yes="window.location.href='{{ route('dashboard.pricing_delete', $package->id) }}'">
                                                     <i class="fas fa-trash"></i></button>
 
                                             </div>
@@ -87,13 +85,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="catalog"><span class="text-danger">*</span> Promo Code</label>
-                        <input id="catalog" type="text" class="form-control" name="code" required>
-                        <div class=" invalid-feedback">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <label for="description"><span class="text-danger">*</span> Value</label>
                         <input id="catalog" type="number" class="form-control" name="value" required>
                         <div class=" invalid-feedback">
@@ -119,10 +110,10 @@
     </div>
 </div>
 
-@foreach ($codes as $code)
+@foreach ($packages as $package)
 
 {{-- Edit --}}
-<div class="modal fade" tabindex="-1" role="dialog" id="editCode_{{ $code->id }}">
+<div class="modal fade" tabindex="-1" role="dialog" id="editCode_{{ $package->id }}">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -131,20 +122,12 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('dashboard.pricing_update', $code->id) }}" method="post">
+            <form action="{{ route('dashboard.pricing_update', $package->id) }}" method="post">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="catalog"><span class="text-danger">*</span> Name</label>
-                        <input id="catalog" type="text" class="form-control" name="name" value="{{ $code->name }}"
-                            required>
-                        <div class="invalid-feedback">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="catalog"><span class="text-danger">*</span> Promo Code</label>
-                        <input id="catalog" type="text" class="form-control" name="code" value="{{ $code->code }}"
+                        <input id="catalog" type="text" class="form-control" name="name" value="{{ $package->name }}"
                             required>
                         <div class="invalid-feedback">
                         </div>
@@ -152,8 +135,8 @@
 
                     <div class="form-group">
                         <label for="description"><span class="text-danger">*</span> Value</label>
-                        <input id="catalog" type="number" class="form-control" name="value" value="{{ $code->value }}"
-                            required>
+                        <input id="catalog" type="number" class="form-control" name="value"
+                            value="{{ $package->value }}" required>
                         <div class="invalid-feedback">
 
                         </div>
@@ -161,8 +144,8 @@
 
                     <div class="form-group">
                         <label for="description"><span class="text-danger">*</span> Price</label>
-                        <input id="catalog" type="number" class="form-control" name="price" value="{{ $code->price }}"
-                            required>
+                        <input id="catalog" type="number" class="form-control" name="price"
+                            value="{{ $package->price }}" required>
                         <div class="invalid-feedback">
 
                         </div>

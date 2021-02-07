@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\PromoCode;
+use App\Models\Package;
 
-class PromoCodeSeeder extends Seeder
+class PackageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,12 +14,11 @@ class PromoCodeSeeder extends Seeder
      */
     public function run()
     {
-        $code = [
+        $package = [
             'name' => 'Paket Basic',
-            'code' => 'free',
             'value' => 10,
             'price' => 10000,
         ];
-        PromoCode::create($code);
+        Package::create($package);
     }
 }

@@ -59,7 +59,6 @@ class WritingController extends Controller
         $limit = auth()->user()->limit;
         if ($limit <= 0 ) {
             Alert::warning('Gagal', 'Kamu telah mencapai batas pembuatan Kutipan, beli Kutipan untuk menambah Kutipanmu');
-            // Alert::html('Html Title', 'Html Code', 'Type');
             return redirect()->route('dashboard.pricing');
 
         }else{
@@ -102,7 +101,7 @@ class WritingController extends Controller
         $limit = auth()->user()->limit;
         if ($limit <= 0 ) {
             Alert::warning('Gagal', 'Kamu telah mencapai batas pembuatan Kutipan, beli Kutipan untuk menambah Kutipanmu');
-            // Alert::html('Html Title', 'Html Code', 'Type');
+
             return redirect()->route('dashboard.pricing');
 
         }else{

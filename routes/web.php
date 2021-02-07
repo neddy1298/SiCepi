@@ -7,7 +7,7 @@ use App\Http\Controllers\WritingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\FrontWritingController;
-use App\Http\Controllers\PromoCodeController;
+use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PopularController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AuthorController;
@@ -84,7 +84,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 
 
     Route::get('/purchase',[FrontWritingController::class, 'purchase'])->name('purchase')->middleware('auth');
-    Route::post('/purchase',[FrontWritingController::class, 'purchase_store'])->name('purchase_store')->middleware('auth');
+    Route::post('/purchase/{id}',[FrontWritingController::class, 'purchase_store'])->name('purchase_store')->middleware('auth');
     Route::get('/purchase_history',[FrontWritingController::class, 'purchase_history'])->name('purchase_history')->middleware('auth');
 
 });
@@ -170,11 +170,12 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     });
 
     Route::group(['prefix' => 'pricing'], function () {
-        Route::get('/', [PromoCodeController::class, 'index'])->name('pricing');
-        Route::post('/', [PromoCodeController::class, 'store'])->name('pricing_store');
-        Route::post('/{id}', [PromoCodeController::class, 'update'])->name('pricing_update');
-        Route::get('/delete/{id}', [PromoCodeController::class, 'destroy'])->name('pricing_delete');
-        Route::get('/user', [PromoCodeController::class, 'user_history'])->name('pricing_user');
+        Route::get('/', [PackageController::class, 'index'])->name('pricing');
+        Route::post('/', [PackageController::class, 'store'])->name('pricing_store');
+        Route::post('/{id}', [PackageController::class, 'update'])->name('pricing_update');
+        Route::get('/delete/{id}', [PackageController::class, 'destroy'])->name('pricing_delete');
+        Route::get('/user', [PackageController::class, 'user_history'])->name('pricing_user');
+        Route::post('/pay/{id}', [PackageController::class, 'payment_confirm'])->name('payment_confirm');
     });
 
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {

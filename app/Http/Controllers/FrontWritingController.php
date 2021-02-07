@@ -8,7 +8,7 @@ use App\Models\Save;
 use App\Models\Favorite;
 use App\Models\User;
 use App\Models\Writing;
-use App\Models\PromoCode;
+use App\Models\Package;
 use App\Models\PurchaseHistory;
 
 use Alert;
@@ -75,7 +75,6 @@ class FrontWritingController extends Controller
         $limit = auth()->user()->limit;
         if ($limit <= 0 ) {
             Alert::warning('Gagal', 'Kamu telah mencapai batas pembuatan Kutipan, beli Kutipan untuk menambah Kutipanmu');
-            // Alert::html('Html Title', 'Html Code', 'Type');
             return redirect()->route('dashboard.pricing');
 
         }else{
@@ -313,31 +312,53 @@ class FrontWritingController extends Controller
     // Purchase
     public function purchase()
     {
-        return view('front.pages.user.purchase.view');
+        $packages = Package::get();
+        return view('front.pages.user.purchase.view', compact('packages'));
     }
 
-    public function purchase_store(Request $request)
+    public function purchase_store(Request $request, $id)
     {
-        $promo_code = PromoCode::where('code', '=', $request->code)->get()->first();
-        if(!$promo_code){
-            Alert::error('Gagal', 'Gagal mengaktifkan kode promo, Periksa kembali kode promo kamu');
-            return redirect()->back();
-        }
-        $user = User::find(auth()->user()->id);
-        $user->update([
-            'limit' => $user->limit + $promo_code->value
+        $packages = Package::find($id);
+
+        $user_id = auth()->user()->id;
+        $history = PurchaseHistory::create([
+            'name' => $packages->name,
+            'code' => "PYM".$user_id."D".now()->format("dmY"),
+            'method' => $request->method,
+            'price' => $packages->price,
+            'value' => $packages->value,
+            'user_id' => $user_id,
         ]);
 
-        PurchaseHistory::create([
-            'name' => $promo_code->name,
-            'code' => $promo_code->code,
-            'price' => $promo_code->price,
-            'value' => $promo_code->value,
-            'user_id' => auth()->user()->id,
-        ]);
+        // Alert::success('Berhasil', 'Berhasil mengaktifkan kode promo');
+        Alert::html('Bayar',
+        '
+        <div class="row text-center">
+            <div class="col-12">
+                <span>'. $history->code .'</span>
+            </div>
+            <div class="col-12">
+                <span>Silahkan lakukan pembayaran sebesar</span>
+            </div>
+            <div class="col-12 mt-3 mb-2">
+                <h3>Rp.'.$packages->price.'</h3><br>
+                <span>Ke rekening BCA</span>
+            </div>
 
-        Alert::success('Berhasil', 'Berhasil mengaktifkan kode promo');
-        return redirect()->back();
+            <div class="ml-4 col-4 mb-3">
+                <img src="'. public_path() .'/assets/img/bca_logo.png" width="100%">
+            </div>
+            <div class="col-auto">
+                <div class="row">
+                    <h2>123456789</h2>
+                </div>
+                <div class="row">
+                    <small>SICEPI INDONESIA</small>
+                </div>
+            </div>
+
+        </div>', 'info')->autoClose(false);
+        return redirect()->route('user.purchase_history');
     }
 
     public function purchase_history()

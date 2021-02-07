@@ -21,23 +21,53 @@
                             <table class="table table-striped" id="template-table">
                                 <thead>
                                     <tr>
+                                        <th>Code</th>
                                         <th>User Name</th>
                                         <th>Nama Paket</th>
-                                        <th>Code</th>
-                                        <th>Value</th>
                                         <th>Harga</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($codes as $code)
+                                    @foreach ($packages as $package)
                                     <tr>
-                                        <td>{{ $code->user_name }}</td>
-                                        <td>{{ $code->name }}</td>
-                                        <td>{{ $code->code }}</td>
-                                        <td>{{ $code->value }}</td>
-                                        <td>Rp. {{ $code->price }}</td>
-                                        <td>{{ $code->created_at }}</td>
+                                        <td>{{ $package->code }} <br> {{ $package->created_at->format("d/m/Y | H:i") }}
+                                        </td>
+                                        <td>{{ $package->user_name }}</td>
+                                        <td>{{ $package->name }} <br> ({{ $package->value }} quota)</td>
+                                        <td>Rp. {{ $package->price }} <br> {{ $package->method }}</td>
+                                        <td>{{ $package->status }}</td>
+                                        <td>
+                                            @if($package->status == "Menunggu Konfirmasi")
+                                            <div class="row">
+                                                <form action="{{ route('dashboard.payment_confirm', $package->id) }}"
+                                                    method="POST" class="mr-2">
+                                                    @csrf
+                                                    <input type="text" name="status" value="Transaksi Selesai" hidden>
+                                                    <button type="submit" class="btn btn-primary">
+                                                        Konfirmasi
+                                                    </button>
+                                                </form>
+                                                <form action="{{ route('dashboard.payment_confirm', $package->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    <input type="text" name="status" value="Transaksi Ditolak" hidden>
+                                                    <button type="submit" class="btn btn-danger">
+                                                        Tolak Transaksi
+                                                    </button>
+                                                </form>
+                                            </div>
+                                            @elseif($package->status == "Transaksi Ditolak")
+                                            <button class="btn btn-danger">
+                                                Transaksi Ditolak
+                                            </button>
+                                            @else
+                                            <button class="btn btn-success" disabled>
+                                                Transaksi Selesai
+                                            </button>
+                                            @endif
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
