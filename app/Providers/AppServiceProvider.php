@@ -41,7 +41,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer('*', function ($view) {
-            View::share('User_Writings', Writing::where('user_id', auth()->user()->id)->get()->count());
+            View::share('User_Writings', Writing::where('user_id', auth()->user()->id ?? '0')->get()->count());
         });
     }
 }

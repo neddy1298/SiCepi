@@ -1,5 +1,5 @@
 @foreach ($writings as $writing)
-<div class="grid-item">
+<div class="grid-item" onmousedown='return false;' onselectstart='return false;'>
     <div class="card card-quote">
         <div class="card-body">
             <div class="quote-text mb-3">
