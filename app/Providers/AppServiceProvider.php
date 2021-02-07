@@ -7,6 +7,7 @@ use View;
 use App\Models\Category;
 use App\Models\Author;
 use App\Models\Topic;
+use App\Models\Writing;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,6 +38,10 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('*', function ($view) {
             View::share('Categories', Category::get());
+        });
+
+        view()->composer('*', function ($view) {
+            View::share('User_Writings', Writing::where('user_id', auth()->user()->id)->get()->count());
         });
     }
 }

@@ -28,7 +28,7 @@
                     </div>
                     <div class="list-group list-group-flush">
                         <label class="list-group-item list-group-item-action text-center">quota:
-                            {{ Auth::user()->limit }} / </label>
+                            {{ Auth::user()->limit }} / {{  $User_Writings + Auth::user()->limit }}</label>
                         <a href="{{ route('user.create') }}" class="list-group-item list-group-item-action">
                             <img src="" alt="" width="20" class="mr-3"> Buat Kutipan</a>
                         <a href="{{ route('user.writing') }}" class="list-group-item list-group-item-action"><img
