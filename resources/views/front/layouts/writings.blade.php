@@ -6,8 +6,15 @@
                 @if($writing->category == 'Quote')
                 " {{ $writing->text }} "
                 @else
+                @guest
+
+                {!! substr($writing->text, 0,50) !!}... <a href="#" data-toggle="modal" data-target="#modalGuest">read
+                    more</a>
+                @endguest
+                @auth
                 {!! substr($writing->text, 0,50) !!}... <a href="{{ route('writing.detail', $writing->id) }}">read
                     more</a>
+                @endauth
                 @endif
             </div>
             <div class="quote-author row mb-4">

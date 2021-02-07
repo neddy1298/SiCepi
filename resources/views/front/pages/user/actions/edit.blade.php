@@ -4,7 +4,10 @@
     <form action="{{ route('user.writing_update', $writing->id) }}" method="post">
         @csrf
         <div class="card-header d-flex">
-            <h5>Ubah Kutipan</h5>
+            <div>
+                <a href="{{ url()->previous() }}">Kembali</a>
+                <h5>Ubah Kutipan</h5>
+            </div>
             <div class="ml-auto">
                 <button class="btn btn-primary">Simpan</button>
             </div>
