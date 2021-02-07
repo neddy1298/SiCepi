@@ -21,7 +21,7 @@ class PurchaseHistories extends Migration
             $table->string('method');
             $table->integer('value');
             $table->integer('price');
-            $table->integer('status')->default('Menunggu Konfirmasi');
+            $table->string('status')->default('Menunggu Konfirmasi');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

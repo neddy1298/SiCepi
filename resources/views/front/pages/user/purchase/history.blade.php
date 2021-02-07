@@ -28,7 +28,7 @@
                             <br>
                             {{ $history->created_at->format("d/m/Y | H:i") }}
                         </td>
-                        <td>{{ $history->user_name }} <br> ({{ $history->email }})</td>
+                        <td>{{ Auth::user()->name }} <br> ({{ Auth::user()->email }})</td>
                         <td>{{ $history->name }} <br> ({{ $history->value }} Quota)</td>
                         <td>Rp.{{ $history->price }} <br> {{ $history->method }}</td>
                         @if ($history->status == "Menunggu Konfirmasi")
