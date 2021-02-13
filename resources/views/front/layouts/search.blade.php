@@ -6,7 +6,7 @@
                 <option value="Semua">Semua</option>
                 <option value="Topik">Topik</option>
                 <option value="Author">Author</option>
-                <option value="Category">Category</option>
+                <option value="Category">Kategori</option>
             </select>
         </div>
         <input type="text" class="form-control input-search-quote" placeholder="Cari kutipan atau dengan Hashtag #"

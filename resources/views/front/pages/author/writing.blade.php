@@ -16,8 +16,10 @@
 
                 </div>
                 <div class="text-center">
-                    <small>Contoh Topik:</small>
+                    <small>Contoh Author:</small>
+                    @foreach ($Authors->where('popular', 1)->take(7) as $topic)
                     @include('front.layouts.tags')
+                    @endforeach
 
                 </div>
             </div>

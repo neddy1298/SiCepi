@@ -22,6 +22,8 @@ class AuthorSeeder extends Seeder
             'popular' => 0
         ]];
 
+        Author::factory()->count(6)->create();
+
         foreach ($authors as $author) {
             Author::create($author);
         }

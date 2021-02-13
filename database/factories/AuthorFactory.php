@@ -22,7 +22,8 @@ class AuthorFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->unique()->randomElement(['Jim Rohn','Dwight D .Eisenhower','Edwin Markham','Anais Nin','John Ruskin','Kurt Vonnegut']),
+            'popular' => $this->faker->randomElement([0,1]),
         ];
     }
 }

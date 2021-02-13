@@ -22,6 +22,7 @@
                                     <option value="Semua">Semua</option>
                                     <option value="Topik">Topik</option>
                                     <option value="Author">Author</option>
+                                    <option value="Category">Kategori</option>
                                 </select>
                             </div>
                             <input type="text" class="form-control input-search-quote"
@@ -36,7 +37,10 @@
                 </div>
                 <div class="text-center">
                     <small>Hashtag Populer Hari Ini:</small>
+                    @foreach ($Topics->where('popular', 1)->take(7) as $topic)
+
                     @include('front.layouts.tags')
+                    @endforeach
                 </div>
             </div>
         </div>

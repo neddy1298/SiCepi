@@ -47,6 +47,24 @@
                     <div class="col-md-12">
                         <h3 class="font-weight-bold">Author Populer</h3>
                         <div class="column-link-group column-5">
+                            @foreach ($Authors->where('popular', 1) as $PopularAuthor)
+                            <a href="{{ route('topics.writing', $PopularAuthor->name) }}"
+                                class="column-link-list">{{ $PopularAuthor->name }}</a>
+                            @endforeach
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <h3 class="font-weight-bold">Semua Author</h3>
+                        <div class="column-link-group column-5">
                             @foreach ($Authors as $PopularAuthor)
                             <a href="{{ route('topics.writing', $PopularAuthor->name) }}"
                                 class="column-link-list">{{ $PopularAuthor->name }}</a>

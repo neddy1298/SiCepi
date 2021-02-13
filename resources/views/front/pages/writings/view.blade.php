@@ -8,12 +8,12 @@
         <div class="row">
             @if ($writing->user_id == auth()->user()->id)
 
-            <form action="{{ route('user.save_store' , $writing->id) }}" method="post" class="mr-1">
+            <a href="{{ route('user.writing_edit' , $writing->id) }}" class="mr-1">
                 @csrf
-                <button class="btn btn-warning btn-sm btn-rounded">
+                <button class="btn btn-warning btn-sm btn-rounded">edit
                     <i class="mdi mdi-pencil-outline align-middle"></i>
                 </button>
-            </form>
+            </a>
             @endif
             <form action="{{ route('user.save_store' , $writing->id) }}" method="post" class="mr-1">
                 @csrf

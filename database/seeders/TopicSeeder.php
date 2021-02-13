@@ -14,6 +14,7 @@ class TopicSeeder extends Seeder
      */
     public function run()
     {
+
         $topics = [[
             'name' => 'Red',
             'popular' => 1
@@ -22,6 +23,7 @@ class TopicSeeder extends Seeder
             'popular' => 0
         ]];
 
+        Topic::factory()->count(45)->create();
         foreach ($topics as $topic) {
             Topic::create($topic);
         }

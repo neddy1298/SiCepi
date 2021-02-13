@@ -53,6 +53,7 @@ class PackageController extends Controller
 
     public function payment_confirm(Request $request, $id)
     {
+        // dd($request->status);
         $package = PurchaseHistory::find($id);
         $package->update([
             'status' => $request->status
@@ -60,7 +61,7 @@ class PackageController extends Controller
 
         if ($request->status == "Transaksi Selesai") {
 
-            $user = User::find(auth()->user()->id);
+            $user = User::find($package->user_id);
             $user->update([
                 'limit' => $user->limit + $package->value
                 ]);
