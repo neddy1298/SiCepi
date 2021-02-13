@@ -28,11 +28,14 @@
                     </div>
                     <div class="list-group list-group-flush">
                         <label class="list-group-item list-group-item-action text-center">quota:
-                            {{ Auth::user()->limit }} / {{  $User_Writings + Auth::user()->limit }}</label>
+                            {{ $User_Writings }} / {{  $User_Writings + Auth::user()->limit }}</label>
+                        @if (Auth::user()->is_admin == 1)
+
                         <a href="{{ route('user.create') }}" class="list-group-item list-group-item-action">
                             <img src="" alt="" width="20" class="mr-3"> Buat Kutipan</a>
+                        @endif
                         <a href="{{ route('user.writing') }}" class="list-group-item list-group-item-action"><img
-                                src="{{ asset('front/images/icon.svg') }}" alt="" width="20" class="mr-3"> Kutipan
+                                src="{{ asset('front/images/icon.svg') }}" alt="" width="20" class="mr-3"> Tulisan
                             Saya</a>
                         <a href="{{ route('user.save') }}" class="list-group-item list-group-item-action"><img
                                 src="{{ asset('front/images/favorite.svg') }}" alt="" width="20" class="mr-3">

@@ -6,12 +6,12 @@
 
 <section class="section">
     <div class="section-header">
-        <h1>Kutipan Saya</h1>
+        <h1>Tulisan Saya</h1>
     </div>
 
     <div class="section-body">
 
-        <h2 class="section-title">Kutipan Saya
+        <h2 class="section-title">Tulisan Saya
             ( {{ $writings->count() }} / {{ auth()->user()->limit }} )</h2>
         <div class="row">
             @foreach ($writings as $writing)

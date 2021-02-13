@@ -77,8 +77,8 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 
 
     // Create Quote
-    Route::get('/create-writing',[FrontWritingController::class, 'create'])->name('create')->middleware('auth');
-    Route::post('/create-writing',[FrontWritingController::class, 'store'])->name('store')->middleware('auth');
+    Route::get('/create-writing',[FrontWritingController::class, 'create'])->name('create')->middleware('admin');
+    Route::post('/create-writing',[FrontWritingController::class, 'store'])->name('store')->middleware('admin');
     Route::get('/edit-writing/{id}',[FrontWritingController::class, 'edit'])->name('writing_edit')->middleware('auth');
     Route::post('/edit-writing/{id}',[FrontWritingController::class, 'update'])->name('writing_update')->middleware('auth');
 
@@ -130,12 +130,12 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
 
 
         // Create Quote
-        Route::get('/simple',[WritingController::class, 'create'])->name('create');
+        Route::get('/simple',[WritingController::class, 'create'])->name('create')->middleware('admin');
 
         //
         Route::get('/',[WritingController::class, 'index'])->name('index');
-        Route::get('/new',[WritingController::class, 'create'])->name('create');
-        Route::post('/fill',[WritingController::class, 'store'])->name('store');
+        Route::get('/new',[WritingController::class, 'create'])->name('create')->middleware('admin');
+        Route::post('/fill',[WritingController::class, 'store'])->name('store')->middleware('admin');
         Route::get('/edit/{writing_id}',[WritingController::class, 'edit'])->name('edit');
         Route::post('/edit/{writing_id}',[WritingController::class, 'update'])->name('update');
         Route::get('/delete/{writing_id}',[WritingController::class, 'destroy'])->name('delete');

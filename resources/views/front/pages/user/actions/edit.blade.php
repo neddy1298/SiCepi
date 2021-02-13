@@ -17,18 +17,18 @@
             <div class="form-group">
                 <label for="">Beri Nama Kutipanmu</label>
                 <input type="text" name="name" class="form-control" data-width="100%" required
-                    value="{{ $writing->name }}" disabled>
+                    value="{{ $writing->name }}" readonly>
             </div>
             <div class="form-group">
                 <label for="">Pilih Kategori</label>
                 <select name="category" id="category" class="form-control" data-width="100%" onchange="change()"
-                    disabled>
+                    readonly>
                     <option value="{{ $writing->category }}">{{ $writing->category }}</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="">Author</label>
-                <select name="author" id="author" class="form-control" data-width="100%" disabled>
+                <select name="author" id="author" class="form-control" data-width="100%" readonly>
                     <option hidden>{{ $writing->author }}</option>
                 </select>
             </div>

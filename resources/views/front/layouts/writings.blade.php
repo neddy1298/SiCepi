@@ -22,7 +22,7 @@
                 <div class="col-auto">
                     <label class="d-block mb-0"><small>Author</small></label>
                     <div><a href="{{ route('author.writing', $writing->author) }}"
-                            class="text-dark font-weight-bold">{{ $writing->author }}</a></div>
+                            class="text-danger font-weight-bold">{{ $writing->author }}</a></div>
                 </div>
                 @endif
                 <div class="col-auto">
@@ -122,7 +122,7 @@
         </div>
         <div class="card-footer">
             @foreach (explode(',',$writing->topics) as $item)
-            <a href="{{ route('topics.writing', $item) }}" class="badge badge-secondary badge-pill">{{ $item }}</a>
+            <a href="{{ route('topics.writing', $item) }}" class="badge badge-primary badge-pill">{{ $item }}</a>
             @endforeach
         </div>
     </div>

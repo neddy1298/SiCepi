@@ -18,7 +18,7 @@
 
         <li class="{{ request()->is('dashboard/writing') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('dashboard.writing.index') }}"><i class="fas fa-bookmark"></i>
-                <span>Kutipan Saya</span></a></li>
+                <span>Tulisan Saya</span></a></li>
 
 
         <li class="{{ request()->is('dashboard/writing/new') ? 'active' : '' }}">

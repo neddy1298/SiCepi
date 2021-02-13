@@ -67,9 +67,8 @@
                                 <a class="dropdown-item has-icon text-primary" href="{{ route('dashboard.index') }}"><i
                                         class="mdi mdi-home"></i> Dashboard</a>
                                 @endif
-                                <a class="dropdown-item has-icon text-info" href="{{ route('user.create') }}"><i
-                                        class="mdi mdi-pencil"></i> Buat
-                                    Kutipan</a>
+                                <a class="dropdown-item has-icon text-info" href="{{ route('user.writing') }}"><i
+                                        class="mdi mdi-pencil"></i> Tulisan Saya</a>
                                 <hr>
                                 <a class="dropdown-item has-icon text-danger" href=" {{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"><i

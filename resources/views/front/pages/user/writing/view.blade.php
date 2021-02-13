@@ -1,7 +1,7 @@
 @extends('front.layouts.main')
 @section('user-content')
 <div class="d-flex align-items-center mb-3">
-    <h4 class="my-0"><strong>Kutipan Saya:</strong> </h4>
+    <h4 class="my-0"><strong>Tulisan Saya:</strong> </h4>
     <div class="ml-auto">
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
