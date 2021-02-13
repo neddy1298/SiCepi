@@ -2,7 +2,8 @@
 @section('user-content')
 
 <div class="d-flex align-items-center mb-3">
-    <h4 class="my-0"><strong>{{ $writing->name }}</strong> </h4>
+    <a href="{{ url()->previous() }}"><strong>
+            <i class="mdi mdi-arrow-left"></i> Kembali</strong> </a>
     <div class="ml-auto">
         <div class="row">
             @if ($writing->user_id == auth()->user()->id)

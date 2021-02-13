@@ -162,11 +162,10 @@ class FrontWritingController extends Controller
                 'saved_from' => $writing->user_id,
             ]);
             Alert::success('Berhasil', 'kutipan berhasil diubah dan disimpan di kutipanmu');
-            return redirect()->back();
+            return redirect()->route('user.writing');
         }else{
 
             $writing->update($request->all());
-            $writing->update(['topics'=>$topics]);
             Alert::success('Berhasil', 'kutipan berhasil diubah');
         }
 
