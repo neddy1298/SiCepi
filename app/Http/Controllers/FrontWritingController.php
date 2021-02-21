@@ -317,6 +317,15 @@ class FrontWritingController extends Controller
 
     public function purchase_store(Request $request, $id)
     {
+        $validator = $request->validate([
+            'method' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            return Redirect::back()->withErrors($validator);
+        }
+
+
         $packages = Package::find($id);
 
         $user_id = auth()->user()->id;

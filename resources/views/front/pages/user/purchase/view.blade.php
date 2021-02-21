@@ -37,11 +37,16 @@
             </table>
         </div>
     </div>
+    <div class="card-footer">
+
+        @if($errors->any())
+
+        <label class="text-danger">Pastikan kamu meilih metode pembayaran</label>
+        @endif
+    </div>
 </div>
 
 @foreach ($packages as $package)
-
-
 
 {{-- Choose Payment --}}
 <div class="modal fade" tabindex="-1" role="dialog" id="Purchase_{{ $package->id }}">
@@ -75,11 +80,11 @@
             </div>
             <div class="mr-3 ml-3">
                 <tr>
-                    <div class="form-check row">
+                    <div class="form-check row active">
                         <div class="col-8">
                             <input class="form-check-input" type="radio" name="method"
                                 id="manual_transfer_{{ $package->id }}" value="manual_transfer"
-                                onclick="manual_transfer_{{ $package->id }}()" required>
+                                onclick="manual_transfer_{{ $package->id }}()">
                             <label class="form-check-label" for="flexRadioDefault1">
                                 Manual Transfer
                             </label>

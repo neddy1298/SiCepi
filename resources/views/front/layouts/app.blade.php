@@ -15,7 +15,6 @@
 
 <body>
     @include('sweetalert::alert')
-
     <div id="wrapper">
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="menunav">
             <div class="container">
