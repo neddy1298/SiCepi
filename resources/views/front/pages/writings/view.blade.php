@@ -15,16 +15,6 @@
                 </button>
             </a>
             @endif
-            <form action="{{ route('user.save_store' , $writing->id) }}" method="post" class="mr-1">
-                @csrf
-                <button type="submit" class="btn btn-info btn-sm btn-rounded"><i
-                        class="mdi mdi-content-save-all-outline align-middle"></i></button>
-            </form>
-            <form action="{{ route('user.favorite_store' , $writing->id) }}" method="post" class="mr-1">
-                @csrf
-                <button type="submit" class="btn btn-primary btn-sm btn-rounded"><i
-                        class="mdi mdi-heart-outline align-middle"></i></button>
-            </form>
         </div>
     </div>
 </div>

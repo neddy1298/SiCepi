@@ -21,12 +21,15 @@ class FrontWritingController extends Controller
     {
         if ($request->key == "Topik") {
             $writings = Writing::where('topics', 'like', "%{$request->search}%")
+            ->where('user_id', 1)
             ->get();
         }elseif($request->key == "Author"){
             $writings = Writing::where('author', 'like', "%{$request->search}%")
+            ->where('user_id', 1)
             ->get();
         }elseif($request->key == "Category"){
             $writings = Writing::where('category', 'like', "%{$request->search}%")
+            ->where('user_id', 1)
             ->get();
 
         return view('front.pages.category.view', compact('writings'));
@@ -37,6 +40,7 @@ class FrontWritingController extends Controller
             ->orWhere('category', 'like', "%{$request->search}%")
             ->orWhere('text', 'like', "%{$request->search}%")
             ->orWhere('name', 'like', "%{$request->search}%")
+            ->where('user_id', 1)
             ->get();
         }
 

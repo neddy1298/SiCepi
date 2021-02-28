@@ -52,38 +52,10 @@ offset-xl-4'])
                     </button>
                 </div>
 
-                <div class="form-group">
-                    <label class="control-label">Demo:</label>
-                    <br>
-                    <label class="control-label">Admin: <a href="#" id="admin_select"
-                            onclick="admin_select()">admin@gmail.com/admin</a></label>
-                    <br>
-                    <label class="control-label">Admin: <a href="#" id="user_select"
-                            onclick="user_select()">user@gmail.com/user</a></label>
-                </div>
-
             </form>
         </div>
     </div>
     <div class="mt-5 text-muted text-center">
         Don't have an account? <a href="{{ route('register') }}">Create One</a>
     </div>
-
-    <script>
-        function admin_select()
-        {
-        var email = $('#email');
-        var password = $('#password');
-        email.val('admin@gmail.com');
-        password.val('admin');
-        }
-
-        function user_select()
-        {
-        var email = $('#email');
-        var password = $('#password');
-        email.val('user@gmail.com');
-        password.val('user');
-        }
-    </script>
     @endsection

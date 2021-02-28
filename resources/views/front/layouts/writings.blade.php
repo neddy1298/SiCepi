@@ -54,8 +54,7 @@
                             @if(!request()->is('user/save'))
                             @if ($User_Saves->count() >= 1)
                             @if ($User_Saves->where('writing_id', $writing->id)->count() >= 1)
-                            <a href="{{ route('user.writing_edit', $writing->id) }}"
-                                class="btn btn-info btn-sm btn-rounded mb-1"><i
+                            <a href="{{ route('user.save') }}" class="btn btn-info btn-sm btn-rounded mb-1"><i
                                     class="mdi mdi-content-save-all"></i></a>
                             @else
                             <form action="{{ route('user.save_store' , $writing->id) }}" method="post" class="mb-1">
@@ -192,8 +191,8 @@
                         {{-- Save / Saved --}}
                         @if ($User_Saves->count() >= 1)
                         @if ($User_Saves->where('writing_id', $writing->id)->count() >= 1)
-                        <a href="{{ route('user.writing_edit', $writing->id) }}"
-                            class="btn btn-info btn-sm btn-rounded mb-1"><i class="mdi mdi-content-save-all"></i>
+                        <a href="{{ route('user.save') }}" class="btn btn-info btn-sm btn-rounded mb-1"><i
+                                class="mdi mdi-content-save-all"></i>
                             Tersimpan</a>
                         @else
                         <form action="{{ route('user.save_store' , $writing->id) }}" method="post" class="mb-1">
