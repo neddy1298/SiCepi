@@ -1,4 +1,4 @@
-/resource/views/auth
+/resources/views/auth
 /app/Http/Controllers/Api
 /routes/api.php
 /node_modules
